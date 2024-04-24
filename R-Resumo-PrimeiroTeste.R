@@ -4,8 +4,6 @@
 
 "-------------------------------------------------------------"
 
-"-------------------------------------------------------------"
-
 #### Ver Tabela/Dados: ####
 
 View(TABELA)
@@ -537,6 +535,57 @@ valor_vx_continuas()
 
 ###### E[AX^2 + B] = A * E[X^2] + B ######
 (A * valor_ex2_continuas() + B)
+
+"-------------------------------------------------------------"
+
+#### Dist. Uniforme Contínua - Descobrir "a" e "b": ####
+
+# Só funciona se se souber a Média, e um F(X) = ? !!!
+
+# Média = (a + b)/2
+# a = Média * 2 - b
+# b = Média * 2 - a
+
+# Resolvendo para "a":
+# Sabemos que: (X - a) / (b - a) = prob_conhecida
+# Substituindo "a" por: media * 2 - b:
+# (X - (media * 2 - b)) / (b - (media * 2 - b)) = prob_conhecida
+# Simplificando:
+# (X - 2media + b) / (2b - 2media) = prob_conhecida
+
+# Agora para "b":
+
+# Função para calcular a probabilidade acumulada dado "a" e "b":
+prob_acumulada <- function (a, b, x) {
+  (x - a) / (b - a)
+}
+
+# Função para verificar se a diferença entre a probabilidade acumulada e
+# a probabilidade conhecida está próxima o suficiente de zero:
+verificar_prob <- function (a, media, x, prob_conhecida) {
+  b <- 2 * media - a
+  abs(prob_acumulada(a, b, x) - prob_conhecida)
+}
+
+# Função principal que inicializa e termina o processo:
+calcular_limites_dominio_uniforme_continua <- function (media, x, prob_conhecida) {
+  # Encontrando "a" e "b" utilizando otimização:
+  result <- optimize(
+    verificar_prob,
+    interval = c(0, media),
+    media = media,
+    x = x,
+    prob_conhecida = prob_conhecida
+  )
+  
+  a <- result$minimum
+  b <- 2 * media - a
+  
+  print(paste("Valor de a:", round(a, 4)))
+  print(paste("Valor de b:", round(b, 4)))
+}
+
+calcular_limites_dominio_uniforme_continua(505.4, 500, 0.05)
 
 "-------------------------------------------------------------"
 

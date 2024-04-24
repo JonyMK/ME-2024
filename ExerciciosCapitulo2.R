@@ -962,3 +962,91 @@ valor_vx_continuas() * (1/2)^2
 # 1 - F(45) =
 # 1 - pexp(45, 1/30) =
 # 0.2231
+
+########################################################
+#################### Exercicio 2.34 ####################
+########################################################
+
+# X - Peso de cada pacote, em gramas.
+# X ~ U(a, b) => Uniforme Contínua
+# E[X] = 505.4g
+
+##############
+##### 1) #####
+##############
+
+# P(X < 500) = 0.05 <=>
+# F(500) = 0.05
+
+# Função para calcular a probabilidade acumulada dado "a" e "b":
+prob_acumulada <- function (a, b, x) {
+  (x - a) / (b - a)
+}
+
+# Função para verificar se a diferença entre a probabilidade acumulada e
+# a probabilidade conhecida está próxima o suficiente de zero:
+verificar_prob <- function (a, media, x, prob_conhecida) {
+  b <- 2 * media - a
+  abs(prob_acumulada(a, b, x) - prob_conhecida)
+}
+
+# Função principal que inicializa e termina o processo:
+calcular_limites_dominio_uniforme_continua <- function (media, x, prob_conhecida) {
+  # Encontrando "a" e "b" utilizando otimização:
+  result <- optimize(
+    verificar_prob,
+    interval = c(0, media),
+    media = media,
+    x = x,
+    prob_conhecida = prob_conhecida
+  )
+  
+  a <- result$minimum
+  b <- 2 * media - a
+  
+  print(paste("Valor de a:", round(a, 4)))
+  print(paste("Valor de b:", round(b, 4)))
+}
+
+calcular_limites_dominio_uniforme_continua(505.4, 500, 0.05)
+
+# a = 449.4
+# b = 511.4
+
+# Dx = [449.4, 511.4]
+
+##############
+##### 2) #####
+##############
+
+# P(X > 500) =
+# 1 - P(X <= 500) =
+# 1 - F(500) =
+# 1 - punif(500, 449.4, 511.4) =
+# 0.1839
+
+##############
+##### 3) #####
+##############
+
+# P(X < 510 | X > 505.4) =
+# P(X < 510 ∧ X > 505.4) / P(X > 505.4) =
+# P(505.4 < X < 510) / (1 - F(505.4)) =
+# (F(510) - F(505.4)) / (1 - punif(505.4, 499.4, 511.4)) =
+# (punif(510.4, 499.4, 511.4) - punif(505.4, 499.4, 511.4)) / 0.5 =
+# 0.4167 / 0.5 =
+# 0.8334
+
+##############
+##### 4) #####
+##############
+
+# Y - Pacote estar fora da validade.
+
+# P (X = 1) = 0.1
+
+# Z - Pacote estar fora da validade.
+
+# 20 Pacotes
+
+0.2
