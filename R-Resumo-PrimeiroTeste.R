@@ -594,9 +594,10 @@ calcular_limites_dominio_uniforme_continua(505.4, 500, 0.05)
 ## ✓ --> Certo
 ## ∧ --> Conjunção / E
 ## ∀x --> Todo e qualquer x
+## √ --> Raiz Quadrada
 ## Σ --> Somatório
 ## λ --> Lambda
-## σ --> Sigma / Variância
+## σ --> Sigma / Desvio Padrão
 ## ∫ --> Integral
 ## ∞ --> Infinito
 ## [-∞, +∞] --> Intervalo Infinito
