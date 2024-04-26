@@ -10,14 +10,34 @@ View(TABELA)
 
 "-------------------------------------------------------------"
 
-#### Consultar uma Tabela: ####
+#### Operadores Lógicos no R: ####
 
-TABELA["CONDIÇÃO_PARA_LINHAS", c("COLUNAS_A_APRESENTAR")]
+# | --> Ou
+# & --> E
+# == --> Igual
+# != --> Diferente
+# > --> Maior
+# >= --> Maior Ou Igual
+# < --> Menor
+# <= --> Menor ou Igual
 
 "-------------------------------------------------------------"
 
-#### Ordenar uma Tabela por uma Coluna: ####
+#### Tabelas: ####
 
+###### Consultar o Nº de Linhas de uma Tabela: ######
+nrow(TABELA)
+
+###### Consultar o Nº de Colunas de uma Tabela: ######
+ncol(TABELA)
+
+###### Consultar Dimensões de uma Tabela: ######
+dim(TABELA)
+
+###### Consultar uma Tabela: ######
+TABELA["CONDIÇÃO_PARA_LINHAS", c("COLUNAS_A_APRESENTAR")]
+
+###### Ordenar uma Tabela por uma Coluna: ######
 TABELA_ORDENADA <- factor(
   TABELA$COLUNA,
   levels=c("CATEGORIA_1", "CATEGORIA_2")
@@ -104,17 +124,19 @@ DescTools::Freq(TABELA$VARIAVEL)
 
 "-------------------------------------------------------------"
 
-#### Para verificar se existem dados omissos: ####
+#### Dados Omissos: ####
 
+###### Para verificar se existem dados omissos: ######
 any(is.na(TABELA))
-
 # OU
-
 anyNA(TABELA)
+
+###### Para retornar a tabela sem dados omissos: ######
+na.omit(TABELA)
 
 "-------------------------------------------------------------"
 
-#  Variáveis Qualitativas: Só se faz a Medida de Localização Central - Moda!
+# Variáveis Qualitativas: Só se faz a Medida de Localização Central - Moda!
 
 # Variáveis Quantitativas:
 (ni.VARIAVEL <- table(TABELA$COLUNA))
@@ -182,16 +204,16 @@ legend(
   cex = 1                           # Tamanho do Objeto (Escala)
 )
 
-### O Comando da Legenda Deve Ser Executado Depois de Criar o Gráfico!
+# O Comando da Legenda Deve Ser Executado Depois de Criar o Gráfico!
 
 "-------------------------------------------------------------"
 
 #### Gráfico de Barras de Frequências Absolutas: ####
 
-## Freq. Absolutas:
+# Freq. Absolutas:
 (ni.VARIAVEL <- table(TABELA$COLUNA))
 
-## Gráfico de Barras:
+# Gráfico de Barras:
 barplot(
   ni.VARIAVEL,                              # Variável no Gráfico
   main = "TITULO (Frequências Absolutas)",  # Título do Gráfico
@@ -206,10 +228,10 @@ barplot(
 
 #### Gráfico de Barras de Frequências Relativas: ####
 
-## Frequências Absolutas:
+# Frequências Absolutas:
 (ni.VARIAVEL <- table(TABELA$COLUNA))
 
-## Frequências Relativas:
+# Frequências Relativas:
 (fi.VARIAVEL <- round(prop.table(ni.VARIAVEL), 4))
 
 barplot(
@@ -226,16 +248,18 @@ barplot(
 
 #### Gráfico de Barras de Frequências Relativas Em Percentagem: ####
 
-# Colocar as Categorias da Variável por Ordem:
+# SE PRECISO - Colocar as Categorias da Variável por Ordem:
 TABELA_ORDENADA <- factor(
   TABELA$COLUNA,
   levels=c("CATEGORIA_1", "CATEGORIA_2")
 )
 
-## Frequências Absolutas:
+# Frequências Absolutas:
 (ni.VARIAVEL <- table(TABELA$COLUNA))
+# OU
+(ni.VARIAVEL <- table(TABELA_ORDENADA))
 
-## Frequências Relativas:
+# Frequências Relativas:
 (fi.VARIAVEL <- round(prop.table(ni.VARIAVEL), 4))
 
 # Gráfico de Barras
@@ -252,21 +276,21 @@ barplot(
 
 #### Gráfico Circular: ####
 
-## SE PRECISO - Colocar as Categorias da Variável por Ordem:
+# SE PRECISO - Colocar as Categorias da Variável por Ordem:
 TABELA_ORDENADA <- factor(
   TABELA$COLUNA,
   levels=c("CATEGORIA_1", "CATEGORIA_2")
 )
 
-## Frequências Absolutas:
+# Frequências Absolutas:
 (ni.VARIAVEL <- table(TABELA$COLUNA))
 # OU
 (ni.VARIAVEL <- table(TABELA_ORDENADA))
 
-## Frequências Relativas:
+# Frequências Relativas:
 (fi.VARIAVEL <- round(prop.table(ni.VARIAVEL), 4))
 
-## Gráfico:
+# Gráfico:
 pie(
   ni.VARIAVEL,
   labels=paste(fi.VARIAVEL * 100, "%"),
@@ -278,6 +302,7 @@ pie(
 
 #### Histograma - Eixo YY - Freq. Absolutas: ####
 
+# Gráfico:
 hist(
   TABELA$COLUNA,
   breaks = COLUNA.cortes,
@@ -293,15 +318,17 @@ hist(
   xaxt = "n"  # Para Poder Definir o Eixo XX de Seguida
 )
 
+# Valores do Eixo XX:
 axis(
   side = 1,
   at = c(0, COLUNA.cortes, 70)
-)  # Define os Valores para o Eixo XX Igual Às Classes
+)
 
 "-------------------------------------------------------------"
 
 #### Histograma - Eixo YY - fi/h - Comparação entre Qualquer Tipo de Classes: ####
 
+# Gráfico:
 hist(
   TABELA$COLUNA,
   breaks = COLUNA.cortes,
@@ -317,16 +344,17 @@ hist(
   xaxt = "n"  # para poder definir o eixo dos xx
 )
 
+# Valores do Eixo XX:
 axis(
   side = 1,
   at = c(0, COLUNA.cortes, 70)
-)  # Define os Valores para o Eixo XX Igual Às Classes
+)
 
 "-------------------------------------------------------------"
 
 #### Histograma - Eixo YY - fi - Comparação Mesmo Tipo de Classes: ####
 
-## Classes:
+# Classes:
 (COLUNA.classes <- cut(
   TABELA$COLUNA,
   breaks = COLUNA.cortes,
@@ -334,10 +362,10 @@ axis(
   include.lowest = TRUE
 ))
 
-## Frequências Absolutas:
+# Frequências Absolutas:
 (ni.VARIAVEL <- table(TABELA$COLUNA))
 
-## Frequências Relativas:
+# Frequências Relativas:
 (fi.VARIAVEL <- round(prop.table(ni.VARIAVEL), 4))
 
 # Atribuir um nome ao histograma para poder aceder aos seus campos:
@@ -350,6 +378,7 @@ graf <- hist(
 
 graf$density <- fi.VARIAVEL
 
+# Gráfico:
 plot(
   graf,
   freq = FALSE,
@@ -362,10 +391,11 @@ plot(
   xaxt = "n"  # para poder definir o eixo dos xx
 )
 
+# Valores do Eixo XX:
 axis(
   side = 1,
   at = c(0, COLUNA.cortes, 70)
-)  # Define os Valores para o Eixo XX Igual Às Classes
+)
 
 "-------------------------------------------------------------"
 
@@ -470,90 +500,143 @@ FRACTION::fra(VALOR)
 
 #### Calcular Integrais: ####
 
-f1 <- function (x) { (x^2 * (x-1)) }
-
-(integrate(f1, lower=1, upper=5)$value)
+integral <- function (x) { (x^2 * (x-1)) }
+(integrate(integral, lower=1, upper=5)$value)
 
 "-------------------------------------------------------------"
 
 #### Calcular Derivadas: ####
 
 library(Deriv)
+derivada <- function (x) { ((x^3/3) + (1/3)) }
+(Deriv::Deriv(derivada, "x"))
 
-expr <- function (x) { ((x^3/3) + (1/3)) }
-(Deriv::Deriv(expr, "x"))
+"-------------------------------------------------------------"
+
+#### Variáveis Aleatórias Discretas: ####
+
+###### Função de Probabilidade: ######
+x <- c("X_1", "X_2")
+fx <- c("f(X_1)", "f(X_2)")
+
+# Valor E[X]:
+valor_ex_discretas <- function () {
+  # Nas discretas, o E[X] corresponde ao somatório de x * f(x).
+  sum(x * fx)
+}
+
+# Valor E[X^2]:
+valor_ex2_discretas <- function () {
+  # Nas discretas, o E[X] corresponde ao somatório de x * f(x).
+  sum((x^2) * fx)
+}
+
+# Valor V[X]:
+valor_vx_discretas <- function () {
+  # Nas discretas, o E[X] corresponde ao somatório de x * f(x).
+  valor_ex2_discretas() - valor_ex_discretas()^2
+}
+
+###### E[X]: ######
+valor_ex_discretas()
+
+###### E[X^2]: ######
+valor_ex2_discretas()
+
+###### V[X]: ######
+valor_vx_discretas()
 
 "-------------------------------------------------------------"
 
 #### Variáveis Aleatórias Contínuas: ####
 
 ###### Função Densidade de Probabilidade: ######
-pdf_cust <- function (x) {
-  ifelse(-1 <= x & x < 0, (x^2),
-    ifelse(0 <= x & x < 1, (x),
-      ifelse(1 <= x & x < 3, (1/12), 0)
+
+# Na função f_densidade_probabilidade, cada ifelse representa:
+## Condição: Ramo conhecido;
+## Verdadeiro: Valor desse ramo;
+## Falso: Novo ifelse com outro ramo, ou 0 caso seja o último ramo conhecido.
+f_densidade_probabilidade <- function (x) {
+  ifelse(
+    "LIMITE_INFERIOR_RAMO_1" <= x & x < "LIMITE_SUPERIOR_RAMO_1",
+    "VALOR_RAMO_1",
+    ifelse(
+      "LIMITE_INFERIOR_RAMO_2" <= x & x < "LIMITE_SUPERIOR_RAMO_2",
+      "VALOR_RAMO_2",
+      0 # SÓ SE FOR O ÚLTIMO RAMO!!
     )
   )
 }
 
-## E[X] - Interno:
-media_ex_continuas <- function (x) {
-  pdf_cust(x) * x
+# E[X] - Interno:
+ex_continuas <- function (x) {
+  # Corresponde a: x * f(x)
+  f_densidade_probabilidade(x) * x
 }
 
-## E[X^2] - Interno:
+# E[X^2] - Interno:
 ex2_continuas <- function (x) {
-  pdf_cust(x) * (x^2)
+  # Corresponde a: x^2 * f(x)
+  f_densidade_probabilidade(x) * (x^2)
 }
 
-## Valor E[X]:
+# Valor E[X]:
 valor_ex_continuas <- function () {
-  integrate(media_ex_continuas, lower = -Inf, upper = +Inf)$value
+  # Nas contínuas, o E[X] corresponde à integral
+  # de - infinito a + infinito de x * f(x).
+  integrate(ex_continuas, lower = -Inf, upper = +Inf)$value
 }
 
-## Valor E[X^2]:
+# Valor E[X^2]:
 valor_ex2_continuas <- function () {
+  # Nas contínuas, o E[X^2] corresponde à integral
+  # de - infinito a + infinito de x^2 * f(x).
   integrate(ex2_continuas, lower = -Inf, upper = +Inf)$value
 }
 
-## Valor V[X]:
+# Valor V[X]:
 valor_vx_continuas <- function () {
-  integrate(ex2_continuas, lower = -Inf, upper = +Inf)$value - (integrate(media_ex_continuas, lower = -Inf, upper = +Inf)$value)^2
+  # Independentemente de ser ou não contínua, o V[X] corresponde
+  # à diferença entre E[X^2] e E^2[X] (os integrais são calculados nos valores
+  # esperados).
+  valor_ex2_continuas() - (valor_ex_continuas()^2)
 }
 
 ###### E[X]: ######
 valor_ex_continuas()
 
 ###### E[X^2]: ######
-valor_ex_continuas()
+valor_ex2_continuas()
 
 ###### V[X]: ######
 valor_vx_continuas()
 
-###### E[AX + B] = A * E[X] + B ######
+###### E[AX + B]: ######
+# E[AX + B] = A * E[X] + B
 (A * valor_ex_continuas() + B)
 
-###### E[AX^2 + B] = A * E[X^2] + B ######
+###### E[AX^2 + B]: ######
+# E[AX^2 + B] = A * E[X^2] + B
 (A * valor_ex2_continuas() + B)
 
 "-------------------------------------------------------------"
 
 #### Dist. Uniforme Contínua - Descobrir "a" e "b": ####
 
-# Só funciona se se souber a Média, e um F(X) = ? !!!
+# Só funciona se se souber a Média, e um F(X) = VALOR !!!
 
-# Média = (a + b)/2
+# Média = (a + b) / 2
 # a = Média * 2 - b
 # b = Média * 2 - a
 
-# Resolvendo para "a":
-# Sabemos que: (X - a) / (b - a) = prob_conhecida
-# Substituindo "a" por: media * 2 - b:
+# Resolve-se primeiro para "a":
+# Sabe-se que: (X - a) / (b - a) = prob_conhecida
+# Substitui-se "a" por: media * 2 - b
 # (X - (media * 2 - b)) / (b - (media * 2 - b)) = prob_conhecida
-# Simplificando:
+# Simplificado fica:
 # (X - 2media + b) / (2b - 2media) = prob_conhecida
 
-# Agora para "b":
+# Depois para "b":
 
 # Função para calcular a probabilidade acumulada dado "a" e "b":
 prob_acumulada <- function (a, b, x) {
@@ -569,7 +652,7 @@ verificar_prob <- function (a, media, x, prob_conhecida) {
 
 # Função principal que inicializa e termina o processo:
 calcular_limites_dominio_uniforme_continua <- function (media, x, prob_conhecida) {
-  # Encontrando "a" e "b" utilizando otimização:
+  # Para encontrar o "a" e o "b" utilizando otimização:
   result <- optimize(
     verificar_prob,
     interval = c(0, media),
@@ -581,25 +664,26 @@ calcular_limites_dominio_uniforme_continua <- function (media, x, prob_conhecida
   a <- result$minimum
   b <- 2 * media - a
   
-  print(paste("Valor de a:", round(a, 4)))
-  print(paste("Valor de b:", round(b, 4)))
+  print(paste("Valor Final de a:", round(a, 4)))
+  print(paste("Valor Final de b:", round(b, 4)))
 }
 
-calcular_limites_dominio_uniforme_continua(505.4, 500, 0.05)
+# Para Utilizar e Calcular:
+calcular_limites_dominio_uniforme_continua("MEDIA_CONHECIDA", "X_UTILIZADO", "RESULTADO_Fx")
 
 "-------------------------------------------------------------"
 
 #### Símbolos: ####
 
-## ✓ --> Certo
-## ∧ --> Conjunção / E
-## ∀x --> Todo e qualquer x
-## √ --> Raiz Quadrada
-## Σ --> Somatório
-## λ --> Lambda
-## σ --> Sigma / Desvio Padrão
-## ∫ --> Integral
-## ∞ --> Infinito
-## [-∞, +∞] --> Intervalo Infinito
+# ✓ --> Certo
+# ∧ --> Conjunção / E
+# ∀x --> Todo e qualquer x
+# √ --> Raiz Quadrada
+# Σ --> Somatório
+# λ --> Lambda
+# σ --> Sigma / Desvio Padrão
+# ∫ --> Integral
+# ∞ --> Infinito
+# [-∞, +∞] --> Intervalo Infinito
 
 "-------------------------------------------------------------"
