@@ -1,0 +1,78 @@
+name	calories	carbo	shelf	rating
+100% Bran	70	5	3	68,40
+100% Natural Bran	120	8	3	33,98
+All-Bran	70	7	3	59,43
+All-Bran with Extra Fiber	50	8	3	93,70
+Almond Delight	110	14	3	34,38
+Apple Cinnamon Cheerios	110	10	1	29,51
+Apple Jacks	110	11	2	33,17
+Basic 4	130	18	3	37,04
+Bran Chex	90	15	1	49,12
+Bran Flakes	90	13	3	53,31
+Cap'n'Crunch	120	12	2	18,04
+Cheerios	110	17	1	50,76
+Cinnamon Toast Crunch	120	13	2	19,82
+Clusters	110	13	3	40,40
+Cocoa Puffs	110	12	2	22,74
+Corn Chex	110	22	1	41,45
+Corn Flakes	100	21	1	45,86
+Corn Pops	110	13	2	35,78
+Count Chocula	110	12	2	22,40
+Cracklin' Oat Bran	110	10	3	40,45
+Cream of Wheat (Quick)	100	21	2	64,53
+Crispix	110	21	3	46,90
+Crispy Wheat & Raisins	100	11	3	36,18
+Double Chex	100	18	3	44,33
+Froot Loops	110	11	2	32,21
+Frosted Flakes	110	14	1	31,44
+Frosted Mini-Wheats	100	14	2	58,35
+"Fruit & Fibre Dates; Walnuts; and Oats"	120	12	3	40,92
+Fruitful Bran	120	14	3	41,02
+Fruity Pebbles	110	13	2	28,03
+Golden Crisp	100	11	1	35,25
+Golden Grahams	110	15	2	23,80
+Grape Nuts Flakes	100	15	3	52,08
+Grape-Nuts	110	17	3	53,37
+Great Grains Pecan	120	13	3	45,81
+Honey Graham Ohs	120	12	2	21,87
+Honey Nut Cheerios	110	11	1	31,07
+Honey-comb	110	14	1	28,74
+Just Right Crunchy  Nuggets	110	17	3	36,52
+Just Right Fruit & Nut	140	20	3	36,47
+Kix	110	21	2	39,24
+Life	100	12	2	45,33
+Lucky Charms	110	12	2	26,73
+Maypo	100	16	2	54,85
+"Muesli Raisins; Dates; & Almonds"	150	16	3	37,14
+"Muesli Raisins; Peaches; & Pecans"	150	16	3	34,14
+Mueslix Crispy Blend	160	17	3	30,31
+Multi-Grain Cheerios	100	15	1	40,11
+Nut&Honey Crunch	120	15	2	29,92
+Nutri-Grain Almond-Raisin	140	21	3	40,69
+Nutri-grain Wheat	90	18	3	59,64
+Oatmeal Raisin Crisp	130	14	3	30,45
+Post Nat, Raisin Bran	120	11	3	37,84
+Product 19	100	20	3	41,50
+Puffed Rice	50	13	3	60,76
+Puffed Wheat	50	10	3	63,01
+Quaker Oat Squares	100	14	3	49,51
+Quaker Oatmeal	100	1	1	50,83
+Raisin Bran	120	14	2	39,26
+Raisin Nut Bran	100	11	3	39,70
+Raisin Squares	90	15	3	55,33
+Rice Chex	110	23	1	42,00
+Rice Krispies	110	22	1	40,56
+Shredded Wheat	80	16	1	68,24
+Shredded Wheat 'n'Bran	90	19	1	74,47
+Shredded Wheat spoon size	90	20	1	72,80
+Smacks	110	9	2	31,23
+Special K	110	16	1	53,13
+Strawberry Fruit Wheats	90	15	2	59,36
+Total Corn Flakes	110	21	3	38,84
+Total Raisin Bran	140	15	3	28,59
+Total Whole Grain	100	16	3	46,66
+Triples	110	21	3	39,11
+Trix	110	13	2	27,75
+Wheat Chex	100	17	1	49,79
+Wheaties	100	17	1	51,59
+Wheaties Honey Gold	110	16	1	36,19
