@@ -681,6 +681,7 @@ calcular_limites_dominio_uniforme_continua("MEDIA_CONHECIDA", "X_UTILIZADO", "RE
 # √ --> Raiz Quadrada
 # Σ --> Somatório
 # λ --> Lambda
+# μ --> IU / Média
 # σ --> Sigma / Desvio Padrão
 # ∫ --> Integral
 # ∞ --> Infinito
