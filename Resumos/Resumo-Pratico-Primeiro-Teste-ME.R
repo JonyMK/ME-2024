@@ -147,13 +147,13 @@ na.omit(TABELA)
 if(min(ni.VARIAVEL)==max(ni.VARIAVEL)){
   print("Amodal")
 } else{
-  print(paste("Moda: ", names(ni.VARIAVEL)[ni.VARIAVEL==max(ni.VARIAVEL)]))
+  print(paste("Moda:", names(ni.VARIAVEL)[ni.VARIAVEL==max(ni.VARIAVEL)]))
 }
 # OU
 if(min(ni.VARIAVEL)==max(ni.VARIAVEL)){
   print("Amodal")
 } else{
-  print(paste("Moda: ", DescTools::Mode(ni.VARIAVEL)))
+  print(paste("Moda:", DescTools::Mode(ni.VARIAVEL)))
 }
 
 ###### Média: ######
@@ -189,8 +189,15 @@ sd(TABELA$COLUNA)
 
 #### Medidas de Dispersão Relativa: ####
 
-###### Coeficiente de Variância = CV: ######
+###### Coeficiente de variação = CV: ######
 ((sd(TABELA$COLUNA)/mean(TABELA$COLUNA))*100)
+
+"-------------------------------------------------------------"
+
+#### Medidas de Simetria: ####
+
+library(e1071)
+e1071::skewness(TABELA$COLUNA)
 
 "-------------------------------------------------------------"
 
