@@ -1236,10 +1236,10 @@ calcular_limites_dominio_uniforme_continua(505.4, 500, 0.05)
 ##### 3) #####
 ##############
 
-# Y - Nº de dias com temperatura abaixo de 20 graus, em 7 dias.
+# Y - Nº de dias com temperatura diária abaixo de 20 graus, em 7 dias.
 # Y ~ B(n, p)
 # n = 7
-# p = P(X < 20) = F(20) = pnorm(20, 21.0368, 2) = 0.3021
+# p = P(X < 20) = 0.3021 ( Alínea 2) )
 # Y ~ B(7, 0.3021)
 
 # P(Y = 2) = dbinom(2, 7, 0.3021) = 0.3173
