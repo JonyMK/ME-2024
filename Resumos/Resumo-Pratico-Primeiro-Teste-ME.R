@@ -201,8 +201,18 @@ e1071::skewness(TABELA$COLUNA)
 
 "-------------------------------------------------------------"
 
+#### Nova Janela para Ver Gráficos: ####
+# Funciona para Todos (Gráficos + Histogramas + BoxPlots):
+
+dev.new()
+
+# O Comando deve ser executado antes do comando do gráfico,
+# para criar a janela de visualização!
+
+"-------------------------------------------------------------"
+
 #### Legenda Para Gráficos: ####
-# Funciona para Tudos (Gráficos + Histogramas + BoxPlots):
+# Funciona para Todos (Gráficos + Histogramas + BoxPlots):
 
 legend(
   "topright",                       # Posição da Legenda
@@ -212,6 +222,20 @@ legend(
 )
 
 # O Comando da Legenda Deve Ser Executado Depois de Criar o Gráfico!
+
+"-------------------------------------------------------------"
+
+#### Valores sobre as Colunas dos Gráficos de Barras: ####
+
+text(
+  x = GRAFICO,          # Gráfico Criado
+  y = ni.VARIAVEL + 1,  # Posição Y dos Valores (Acima das Barras)
+  labels = ni.VARIAVEL, # Valores das Barras
+  pos = 3,              # Posição Relativa ao Texto (3 = acima da linha)
+  cex = 0.8,            # Tamanho do Texto
+  col = "black",        # Cor do Texto
+  font = 2              # Estilo do Texto (2 = Negrito)
+)
 
 "-------------------------------------------------------------"
 
@@ -243,7 +267,7 @@ barplot(
 
 barplot(
   fi.VARIAVEL,                              # Variável no Gráfico
-  main = "TITULO (Frequências Absolutas)",  # Título do Gráfico
+  main = "TITULO (Frequências Relativas)",  # Título do Gráfico
   xlab = "VARIAVEL",                        # Título Eixo XX
   ylab = "Frequências Relativas",           # Título Eixo YY
   col = 1:2,                                # Cores das Barras 
@@ -300,9 +324,9 @@ TABELA_ORDENADA <- factor(
 # Gráfico:
 pie(
   ni.VARIAVEL,
-  labels=paste(fi.VARIAVEL * 100, "%"),
-  col=c("red", "blue"),
-  main="TITULO"
+  labels = paste(fi.VARIAVEL * 100, "%"),
+  col = 1:2,
+  main = "TITULO"
 )
 
 "-------------------------------------------------------------"
@@ -319,16 +343,20 @@ hist(
   main = "Histograma",
   xlab = "VARIAVEL",
   ylab = "Frequências Absolutas",
-  col = 2,
-  xlim = c(0,70),
-  ylim = c(0,1200),
+  col = 1:2,
+  xlim = c(COLUNA.min, COLUNA.max),
+  ylim = c(0, 100),
   xaxt = "n"  # Para Poder Definir o Eixo XX de Seguida
 )
 
 # Valores do Eixo XX:
 axis(
   side = 1,
-  at = c(0, COLUNA.cortes, 70)
+  at = c(
+    round(COLUNA.min, 2),
+    round(COLUNA.cortes, 2),
+    round(COLUNA.max, 2)
+  )
 )
 
 "-------------------------------------------------------------"
@@ -345,16 +373,20 @@ hist(
   main = "Histograma",
   xlab = "VARIAVEL",
   ylab = "Frequências Relativas / Amplitude das Classes",
-  col = 2,
-  xlim = c(0,70),
-  ylim = c(0,0.1),
+  col = 1:2,
+  xlim = c(COLUNA.min, COLUNA.max),
+  ylim = c(0, 0.1),
   xaxt = "n"  # para poder definir o eixo dos xx
 )
 
 # Valores do Eixo XX:
 axis(
   side = 1,
-  at = c(0, COLUNA.cortes, 70)
+  at = c(
+    round(COLUNA.min, 2),
+    round(COLUNA.cortes, 2),
+    round(COLUNA.max, 2)
+  )
 )
 
 "-------------------------------------------------------------"
@@ -392,16 +424,20 @@ plot(
   main = "Histograma",
   xlab = "VARIAVEL",
   ylab = "Frequências Relativas",
-  col = 2,
-  xlim = c(0, 70),
-  ylim = c(0, 0.5),
+  col = 1:2,
+  xlim = c(COLUNA.min, COLUNA.max),
+  ylim = c(0, 1),
   xaxt = "n"  # para poder definir o eixo dos xx
 )
 
 # Valores do Eixo XX:
 axis(
   side = 1,
-  at = c(0, COLUNA.cortes, 70)
+  at = c(
+    round(COLUNA.min, 2),
+    round(COLUNA.cortes, 2),
+    round(COLUNA.max, 2)
+  )
 )
 
 "-------------------------------------------------------------"

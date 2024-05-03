@@ -10,31 +10,332 @@
 ##### A) #####
 ##############
 
-##############
-##### A) #####
-##############
+anyNA(stroke)
+stroke_sem_omissos <- na.omit(stroke)
+anyNA(stroke_sem_omissos)
 
 ##############
-##### A) #####
+##### B) #####
 ##############
 
-##############
-##### A) #####
-##############
+# Freq. Absolutas:
+(ni.sex <- table(stroke_sem_omissos$sex))
+
+# Gráfico de Barras:
+dev.new()
+barplot(
+  ni.sex,                                   # Variável no Gráfico
+  main = "Género (Frequências Absolutas)",  # Título do Gráfico
+  xlab = "SEX",                             # Título Eixo XX
+  ylab = "Frequências Absolutas",           # Título Eixo YY
+  col = 1:2,                                # Cores das Barras 
+  ylim = c(0, 200),                         # Limites do Eixo YY
+  names.arg = c("Masculino", "Feminino")    # Nomes das Barras
+)
 
 ##############
-##### A) #####
+##### C) #####
 ##############
 
-##############
-##### A) #####
-##############
+# Frequências Absolutas:
+(ni.coma <- table(stroke_sem_omissos$coma))
+
+# Frequências Relativas:
+(fi.coma <- round(prop.table(ni.coma), 4))
+
+dev.new()
+barplot(
+  fi.coma,                              # Variável no Gráfico
+  main = "Percentagem pacientes em coma (Frequências Absolutas)",  # Título do Gráfico
+  xlab = "COMA",                        # Título Eixo XX
+  ylab = "Frequências Relativas",           # Título Eixo YY
+  col = 1:2,                                # Cores das Barras 
+  ylim = c(0, 1),                         # Limites do Eixo YY
+  names.arg = c("Não", "Sim")       # Nomes das Barras
+)
 
 ##############
-##### A) #####
+##### D) #####
 ##############
 
+### VAR. sex
 
+# Frequências Absolutas:
+(ni.sex <- table(stroke_sem_omissos$sex))
+
+# Frequências Relativas:
+(fi.sex <- round(prop.table(ni.sex), 4))
+
+# Gráfico:
+dev.new()
+pie(
+  ni.sex,
+  labels=paste(fi.sex * 100, "%"),
+  col=c("red", "blue"),
+  main="Género"
+)
+
+legend(
+  "topright",                            # Posição da Legenda
+  legend = c("Masculino", "Feminino"),   # Valores da Legenda (Nomes)
+  fill = c("red", "blue"),               # Cores dos Valores
+  cex = 1                                # Tamanho do Objeto (Escala)
+)
+
+### VAR. coma
+
+# Frequências Absolutas:
+(ni.coma <- table(stroke_sem_omissos$coma))
+
+# Frequências Relativas:
+(fi.coma <- round(prop.table(ni.coma), 4))
+
+# Gráfico:
+dev.new()
+pie(
+  ni.coma,
+  labels=paste(fi.coma * 100, "%"),
+  col=c("red", "blue"),
+  main="COMA"
+)
+
+legend(
+  "topright",                  # Posição da Legenda
+  legend = c("Não", "Sim"),    # Valores da Legenda (Nomes)
+  fill = c("red", "blue"),     # Cores dos Valores
+  cex = 1                      # Tamanho do Objeto (Escala)
+)
+
+### VAR. diab
+
+# Frequências Absolutas:
+(ni.diab <- table(stroke_sem_omissos$diab))
+
+# Frequências Relativas:
+(fi.diab <- round(prop.table(ni.diab), 4))
+
+# Gráfico:
+dev.new()
+pie(
+  ni.diab,
+  labels=paste(fi.diab * 100, "%"),
+  col=c(1:2),
+  main="DIAB"
+)
+
+legend(
+  "topright",                # Posição da Legenda
+  legend = c("Não", "Sim"),  # Valores da Legenda (Nomes)
+  fill = c(1:2),             # Cores dos Valores
+  cex = 1                    # Tamanho do Objeto (Escala)
+)
+
+### VAR. dead
+
+# Frequências Absolutas:
+(ni.dead <- table(stroke_sem_omissos$dead))
+
+# Frequências Relativas:
+(fi.dead <- round(prop.table(ni.dead), 4))
+
+# Gráfico:
+dev.new()
+pie(
+  ni.dead,
+  labels=paste(fi.dead * 100, "%"),
+  col=c("red", "blue"),
+  main="DEAD"
+)
+
+legend(
+  "topright",                # Posição da Legenda
+  legend = c("Não", "Sim"),  # Valores da Legenda (Nomes)
+  fill = c("red", "blue"),   # Cores dos Valores
+  cex = 1                    # Tamanho do Objeto (Escala)
+)
+
+##############
+##### E) #####
+##############
+
+dgn_ordenada <- factor(
+  stroke_sem_omissos[stroke_sem_omissos$coma == 2,]$dgn,
+  levels=c("ICH", "INF", "SAH", "ID")
+)
+
+# Freq. Absolutas:
+(ni.dgn <- table(dgn_ordenada))
+
+# Gráfico de Barras:
+dev.new()
+barplot(
+  ni.dgn,                                   # Variável no Gráfico
+  main = "DGN (Frequências Absolutas)",     # Título do Gráfico
+  xlab = "DGN",                             # Título Eixo XX
+  ylab = "Frequências Absolutas",           # Título Eixo YY
+  col = 1:4,                                # Cores das Barras 
+  ylim = c(0, 12),                          # Limites do Eixo YY
+  names.arg = names(ni.dgn)                 # Nomes das Barras
+)
+
+##############
+##### F) #####
+##############
+
+dgn_ordenada <- factor(
+  stroke_sem_omissos[stroke_sem_omissos$coma == 1,]$dgn,
+  levels=c("ICH", "INF", "SAH", "ID")
+)
+
+# Freq. Absolutas:
+(ni.dgn <- table(dgn_ordenada))
+
+# Gráfico de Barras:
+dev.new()
+(grafico <- barplot(
+  ni.dgn,                                   # Variável no Gráfico
+  main = "DGN (Frequências Absolutas)",     # Título do Gráfico
+  xlab = "DGN",                             # Título Eixo XX
+  ylab = "Frequências Absolutas",           # Título Eixo YY
+  col = 1:4,                                # Cores das Barras 
+  ylim = c(0, 200),                         # Limites do Eixo YY
+  names.arg = names(ni.dgn)                 # Nomes das Barras
+))
+text(
+  x = grafico,          # Gráfico Criado
+  y = ni.dgn + 1,       # Posição Y dos Valores (Acima das Barras)
+  labels = ni.dgn,      # Valores das Barras
+  pos = 3,              # Posição Relativa ao Texto (3 = acima da linha)
+  cex = 0.8,            # Tamanho do Texto
+  col = "black",        # Cor do Texto
+  font = 2              # Estilo do Texto (2 = Negrito)
+)
+
+##############
+##### G) #####
+##############
+
+# OK
+
+##############
+##### H) #####
+##############
+
+# Regra de Sturgis:
+
+(n <- nrow(stroke_sem_omissos))
+
+# Classes:
+(k <- trunc(1 + log(n)/log(2)))
+
+# Amplitude:
+(h <- (max(stroke_sem_omissos$age) - min(stroke_sem_omissos$age)) / k)
+
+# Mínimo e Máximo das Classes:
+(age.min <- min(stroke_sem_omissos$age))
+(age.max <- age.min + h * k)
+
+# Extremos das Classes:
+(age.cortes <- seq(age.min, age.max, by = h))
+
+# Intervalos - Abertos à Esquerda e Fechados à Direita:
+(age.classes <- cut(
+  stroke_sem_omissos$age,
+  breaks = age.cortes,
+  right = TRUE,
+  include.lowest = TRUE
+))
+
+# Freq. Absolutas
+(ni.age <- table(age.classes))
+
+# Gráfico:
+dev.new()
+hist(
+  stroke_sem_omissos$age,
+  breaks = age.cortes,
+  right = TRUE,
+  include.lowest = TRUE,
+  freq = TRUE,
+  main = "Histograma da Idade",
+  xlab = "AGE",
+  ylab = "Frequências Absolutas",
+  col = c(1:9),
+  xlim = c(age.min, age.max),
+  ylim = c(0, 100),
+  xaxt = "n"  # Para Poder Definir o Eixo XX de Seguida
+)
+
+# Valores do Eixo XX:
+axis(
+  side = 1,
+  at = c(
+    round(age.min, 2),
+    round(age.cortes, 2),
+    round(age.max, 2)
+  )
+)
+
+##############
+##### I) #####
+##############
+
+(nao_morreram_dia_avc <- stroke_sem_omissos[stroke_sem_omissos$obsmonths != 0.1,])
+
+# Regra de Sturgis:
+
+(n <- nrow(nao_morreram_dia_avc))
+
+# Classes:
+(k <- trunc(1 + log(n)/log(2)))
+
+# Amplitude:
+(h <- (max(nao_morreram_dia_avc$obsmonths) - min(nao_morreram_dia_avc$obsmonths)) / k)
+
+# Mínimo e Máximo das Classes:
+(obsmonths.min <- min(nao_morreram_dia_avc$obsmonths))
+(obsmonths.max <- obsmonths.min + h * k)
+
+# Extremos das Classes:
+(obsmonths.cortes <- seq(obsmonths.min, obsmonths.max, by = h))
+
+# Intervalos - Abertos à Esquerda e Fechados à Direita:
+(obsmonths.classes <- cut(
+  nao_morreram_dia_avc$obsmonths,
+  breaks = obsmonths.cortes,
+  right = FALSE,
+  include.lowest = TRUE
+))
+
+# Freq. Absolutas
+(ni.obsmonths <- table(obsmonths.classes))
+
+# Gráfico:
+dev.new()
+hist(
+  nao_morreram_dia_avc$obsmonths,
+  breaks = obsmonths.cortes,
+  right = FALSE,
+  include.lowest = TRUE,
+  freq = TRUE,
+  main = "Histograma da OBSMONTHS",
+  xlab = "OBSMONTHS",
+  ylab = "Frequências Absolutas",
+  col = c(1:9),
+  xlim = c(obsmonths.min, obsmonths.max),
+  ylim = c(0, 120),
+  xaxt = "n"  # Para Poder Definir o Eixo XX de Seguida
+)
+
+# Valores do Eixo XX:
+axis(
+  side = 1,
+  at = c(
+    round(obsmonths.min, 2),
+    round(obsmonths.cortes, 2),
+    round(obsmonths.max, 2)
+  )
+)
 
 #######################################################
 ##################### Exercicio 2 #####################
@@ -44,395 +345,418 @@
 ##### A) #####
 ##############
 
-# Represente graficamente as variáveis qualitativas ordinais 
-# recorrendo ao gráfico de barras.
+### VAR. FCVC
 
-##### variável: FCVC
+# Freq. Absolutas:
+(ni.FCVC <- table(obesidade$FCVC))
 
-# Se come habitualmente vegetais nas refeições: 
-# 1= Nunca, 2=As vezes, 3=Sempre
-
-(ni.FCVC <- table(obesidade$FCVC)) # frequências absolutas
-
-#gráfico de barras das frequências absolutas
-barplot(
-  ni.FCVC,
-  main = "Se come habitualmente vegetais nas refeições", 
-  xlab = "FCVC",
-  ylab = "Frequências absolutas", 
-  col = 3:5,
-  ylim = c(0, 1200),
-  names.arg = c("Nunca", "Às vezes", "Sempre")
+# Gráfico de Barras:
+dev.new()
+text(
+  x = barplot(
+    ni.FCVC,                                     # Variável no Gráfico
+    main = "FCVC (Frequências Absolutas)",       # Título do Gráfico
+    xlab = "FCVC",                               # Título Eixo XX
+    ylab = "Frequências Absolutas",              # Título Eixo YY
+    col = 1:3,                                   # Cores das Barras 
+    ylim = c(0, 1200),                           # Limites do Eixo YY
+    names.arg = c("Nunca", "Às Vezes", "Sempre") # Nomes das Barras
+  ),          # Gráfico Criado
+  y = ni.FCVC + 1,  # Posição Y dos Valores (Acima das Barras)
+  labels = ni.FCVC, # Valores das Barras
+  pos = 3,          # Posição Relativa ao Texto (3 = acima da linha)
+  cex = 0.8,        # Tamanho do Texto
+  col = "black",    # Cor do Texto
+  font = 2          # Estilo do Texto (2 = Negrito)
 )
 
-(fi.FCVC <- round(prop.table(ni.FCVC),4)) # frequências relativas
+### VAR. CAEC
 
-#gráfico de barras das frequências absolutas
-barplot(
-  fi.FCVC, 
-  main = "Se come habitualmente vegetais nas refeições", 
-  xlab = "FCVC",
-  ylab = "Frequências relativas", 
-  col = 3:5,
-  ylim = c(0, 1), 
-  names.arg = c("Nunca", "Às vezes", "Sempre")
+# Freq. Absolutas:
+(ni.CAEC <- table(obesidade$CAEC))
+
+# Gráfico de Barras:
+dev.new()
+text(
+  x = barplot(
+    ni.CAEC,                                                     # Variável no Gráfico
+    main = "CAEC (Frequências Absolutas)",                       # Título do Gráfico
+    xlab = "CAEC",                                               # Título Eixo XX
+    ylab = "Frequências Absolutas",                              # Título Eixo YY
+    col = 1:3,                                                   # Cores das Barras 
+    ylim = c(0, 2000),                                           # Limites do Eixo YY
+    names.arg = c("Sempre", "Frequentemente", "Não", "Às Vezes") # Nomes das Barras
+  ),          # Gráfico Criado
+  y = ni.CAEC + 1,  # Posição Y dos Valores (Acima das Barras)
+  labels = ni.CAEC, # Valores das Barras
+  pos = 3,          # Posição Relativa ao Texto (3 = acima da linha)
+  cex = 0.8,        # Tamanho do Texto
+  col = "black",    # Cor do Texto
+  font = 2          # Estilo do Texto (2 = Negrito)
 )
 
-##### variável CH2O
+### VAR. CH20
 
-(ni.CH2O <- table(obesidade$CH2O))          # frequências absolutas
-(fi.CH2O <- round(prop.table(ni.CH2O),4))   # frequências relativas
+# Freq. Absolutas:
+(ni.CH2O <- table(obesidade$CH2O))
 
-#gráfico de barras das frequências relativas
-barplot(
-  fi.CH2O, 
-  main = "Quantidade de água que bebe diariamente",
-  xlab = "CH2O", 
-  ylab = "Frequências relativas", 
-  col = 13:15,
-  ylim = c(0, 0.6), 
-  names.arg = c("< 1 litro", "1 - 2 litros", "> 2 litros")
+# Gráfico de Barras:
+dev.new()
+text(
+  x = barplot(
+    ni.CH2O,                                     # Variável no Gráfico
+    main = "CH2O (Frequências Absolutas)",       # Título do Gráfico
+    xlab = "CH2O",                               # Título Eixo XX
+    ylab = "Frequências Absolutas",              # Título Eixo YY
+    col = 1:3,                                   # Cores das Barras 
+    ylim = c(0, 1200),                           # Limites do Eixo YY
+    names.arg = c("Menos de 1 Litro", "Entre 1 e 2 Litros", "Mais de 2 Litros") # Nomes das Barras
+  ),          # Gráfico Criado
+  y = ni.CH2O + 1,  # Posição Y dos Valores (Acima das Barras)
+  labels = ni.CH2O, # Valores das Barras
+  pos = 3,          # Posição Relativa ao Texto (3 = acima da linha)
+  cex = 0.8,        # Tamanho do Texto
+  col = "black",    # Cor do Texto
+  font = 2          # Estilo do Texto (2 = Negrito)
+)
+
+### VAR. FAF
+
+# Freq. Absolutas:
+(ni.FAF <- table(obesidade$FAF))
+
+# Gráfico de Barras:
+dev.new()
+text(
+  x = barplot(
+    ni.FAF,                                     # Variável no Gráfico
+    main = "FAF (Frequências Absolutas)",       # Título do Gráfico
+    xlab = "FAF",                               # Título Eixo XX
+    ylab = "Frequências Absolutas",             # Título Eixo YY
+    col = 1:3,                                  # Cores das Barras 
+    ylim = c(0, 1000),                          # Limites do Eixo YY
+    names.arg = c("Não Pratica", "1 ou 2 Dias", "3 ou 4 Dias", "Mais de 4 Dias") # Nomes das Barras
+  ),          # Gráfico Criado
+  y = ni.FAF + 1,  # Posição Y dos Valores (Acima das Barras)
+  labels = ni.FAF, # Valores das Barras
+  pos = 3,          # Posição Relativa ao Texto (3 = acima da linha)
+  cex = 0.8,        # Tamanho do Texto
+  col = "black",    # Cor do Texto
+  font = 2          # Estilo do Texto (2 = Negrito)
+)
+
+### VAR. CALC
+
+# Freq. Absolutas:
+(ni.CALC <- table(obesidade$CALC))
+
+# Gráfico de Barras:
+dev.new()
+text(
+  x = barplot(
+    ni.CALC,                                     # Variável no Gráfico
+    main = "CALC (Frequências Absolutas)",       # Título do Gráfico
+    xlab = "CALC",                               # Título Eixo XX
+    ylab = "Frequências Absolutas",              # Título Eixo YY
+    col = 1:3,                                   # Cores das Barras 
+    ylim = c(0, 1600),                           # Limites do Eixo YY
+    names.arg = c("Sempre", "Frequentemente", "Nunca", "Às Vezes") # Nomes das Barras
+  ),          # Gráfico Criado
+  y = ni.CALC + 1,  # Posição Y dos Valores (Acima das Barras)
+  labels = ni.CALC, # Valores das Barras
+  pos = 3,          # Posição Relativa ao Texto (3 = acima da linha)
+  cex = 0.8,        # Tamanho do Texto
+  col = "black",    # Cor do Texto
+  font = 2          # Estilo do Texto (2 = Negrito)
 )
 
 ##############
 ##### B) #####
 ##############
 
-# Represente graficamente as variáveis qualitativas nominais 
-# recorrendo ao diagrama circular.
+### Género
 
-##### variável Género
+# Frequências Absolutas:
+(ni.Genero <- table(obesidade$Genero))
 
-(ni.G <- table(obesidade$Genero))     # frequências absolutas
-(fi.G <- round(prop.table(ni.G), 4))   # frequências relativas
+# Frequências Relativas:
+(fi.Genero <- round(prop.table(ni.Genero), 4))
 
+# Gráfico:
+dev.new()
 pie(
-  ni.G,
-  labels = paste(fi.G*100, "%"), 
-  col = c("yellow", "lightblue"), 
-  main = "Género"
+  ni.Genero,
+  labels=paste(fi.Genero * 100, "%"),
+  col=c("red", "blue"),
+  main="Género"
 )
 
 legend(
-  "topleft", 
-  legend = names(ni.G), 
-  fill = c("yellow", "lightblue"),
-  cex = 0.7
+  "topright",                # Posição da Legenda
+  legend = names(ni.Genero), # Valores da Legenda (Nomes)
+  fill = c("red", "blue"),   # Cores dos Valores
+  cex = 1                    # Tamanho do Objeto (Escala)
 )
 
-##### variável FAVC
+### FAVC
 
-(ni.FAVC <- table(obesidade$FAVC))          # frequências absolutas
-(fi.FAVC <- round(prop.table(ni.FAVC), 4))   # frequências relativas
+# Frequências Absolutas:
+(ni.FAVC <- table(obesidade$FAVC))
 
+# Frequências Relativas:
+(fi.FAVC <- round(prop.table(ni.FAVC), 4))
+
+# Gráfico:
+dev.new()
 pie(
   ni.FAVC,
-  labels = paste(fi.FAVC*100, "%"),
-  col = 2:3,
-  main = "Se come alimentos altamente calóricos habitualmente"
+  labels=paste(fi.FAVC * 100, "%"),
+  col=c("red", "blue"),
+  main="FAVC"
 )
 
 legend(
-  "topright",
-  legend = c("Não", "Sim"),
-  fill = 2:3,
-  cex = 0.7
+  "topright",                # Posição da Legenda
+  legend = c("Não", "Sim"),  # Valores da Legenda (Nomes)
+  fill = c("red", "blue"),   # Cores dos Valores
+  cex = 1                    # Tamanho do Objeto (Escala)
 )
 
-##### variável MTRANS
+### Fumar
 
-# colocar as categorias por outra ordem para o gráfico ficar legível
-obesidade$MTRANS <- factor(obesidade$MTRANS, levels=c("Automovel", "Mota", "Transportes_Publicos", "Bicicleta", "A_pe"))
+# Frequências Absolutas:
+(ni.Fumar <- table(obesidade$Fumar))
 
-(ni.MTRANS <- table(obesidade$MTRANS))          # frequências absolutas
-(fi.MTRANS <- round(prop.table(ni.MTRANS), 4))   # frequências relativas
+# Frequências Relativas:
+(fi.Fumar <- round(prop.table(ni.Fumar), 4))
 
+# Gráfico:
+dev.new()
+pie(
+  ni.Fumar,
+  labels=paste(fi.Fumar * 100, "%"),
+  col=c("red", "blue"),
+  main="Fumar"
+)
+
+legend(
+  "topright",                # Posição da Legenda
+  legend = c("Não", "Sim"),  # Valores da Legenda (Nomes)
+  fill = c("red", "blue"),   # Cores dos Valores
+  cex = 1                    # Tamanho do Objeto (Escala)
+)
+
+### MTRANS
+
+# Frequências Absolutas:
+(ni.MTRANS <- table(obesidade$MTRANS))
+
+# Frequências Relativas:
+(fi.MTRANS <- round(prop.table(ni.MTRANS), 4))
+
+# Gráfico:
+dev.new()
 pie(
   ni.MTRANS,
-  labels = paste(fi.MTRANS*100, "%"),
-  cex = 0.7,
-  col = 2:6, 
-  main = "Que tipo de transporte utiliza habitualmente"
+  labels=paste(fi.MTRANS * 100, "%"),
+  col=1:5,
+  main="MTRANS"
 )
 
 legend(
-  "topleft",
-  legend = c("Automóvel", "Mota", "Transportes públicos", "Bicicleta", "Anda a pé"), 
-  fill = 2:6,
-  cex = 0.7
+  "topright",                 # Posição da Legenda
+  legend = names(ni.MTRANS),  # Valores da Legenda (Nomes)
+  fill = 1:5,                 # Cores dos Valores
+  cex = 1                     # Tamanho do Objeto (Escala)
 )
 
 ##############
 ##### C) #####
 ##############
 
-# Represente graficamente as variáveis quantitativas discretas 
-# utilizando as frequências relativas.
+### VAR. NCP
 
-##### variável NCP: Número de refeições principais que tem habitualmente: 0, 1, 2, 3, 4,...
+# Frequências Absolutas:
+(ni.NCP <- table(obesidade$NCP))
 
-(ni.NCP <- table(obesidade$NCP))           # frequências absolutas
-(fi.NCP <- round(prop.table(ni.NCP), 4))   # frequências relativas
+# Frequências Relativas:
+(fi.NCP <- round(prop.table(ni.NCP), 4))
 
-#gráfico de barras das frequências relativas
 barplot(
-  fi.NCP, 
-  main = "Número de refeições principais que tem habitualmente", 
-  xlab = "NCP",
-  ylab = "Frequências relativas", 
-  col = 4:7,
-  ylim = c(0, 1)
+  fi.NCP,                                   # Variável no Gráfico
+  main = "NCP - Nº de Refeições Principais (Frequências Relativas)", # Título do Gráfico
+  xlab = "NCP",                             # Título Eixo XX
+  ylab = "Frequências Relativas",           # Título Eixo YY
+  col = 1:2,                                # Cores das Barras 
+  ylim = c(0, 0.8),                         # Limites do Eixo YY
+  names.arg = names(ni.NCP)                 # Nomes das Barras
 )
 
 ##############
 ##### D) #####
 ##############
 
-########
-## i) ##
-########
-
-# Em relação à variàvel idade, considere 8 classes, 
-# com amplitude 6 anos e a primeira classe a começar nos 14 anos 
-# (considere intervalos abertos à esquerda e fechados à direita);
-
-##### variável estatística: Idade
-
-# mínimo e máximo dos dados
-min(obesidade$Idade)
-max(obesidade$Idade)
-
-k <- 8   # 8 classes
-h <- 6   # amplitude 6 anos
-
-# mínimo e máximo das classes
-valor.min <- 14   # primeira classe a começar nos 14 anos
-(valor.max <- valor.min + h*k)
-
-#extremos das classes
-(cortes <- seq(valor.min, valor.max, by=h))
-
-# intervalos abertos à esquerda e fechados à direita
-# como o mínimo dos dados = ao primeiro valor da primeira classe,
-# a primeira classe tem de ser fechada dos dois lados
-
-# histograma -> eixo dos yy -> frequências absolutas
-hist(
-  obesidade$Idade,
-  breaks = cortes,
-  right = TRUE,
-  include.lowest = TRUE,
-  freq = TRUE,
-  main = "Histograma",
-  xlab = "Idade",
-  ylab = "frequências absolutas",
-  col = 2,
-  xlim = c(0, 70),
-  ylim = c(0, 1200),
-  xaxt = "n"  # para poder definir o eixo dos xx como pretendermos
-)                 
-
-axis(
-  side = 1,
-  at = c(0, cortes, 70) # definir os valores para o eixo dos xx igual às classes
-)
-
-# INICIO NOTA ------------------------------------------
-# NOTA: caso fosse necessário saber qual o ni de cada classe para 
-#  colocar no ylim, fariamos:
-(classes <- cut(obesidade$Idade, breaks=cortes, right=TRUE, include.lowest=TRUE))
-
-# tabela de frequências
-(ni.f <- table(classes))  # frexquências absolutas
-
-# Como o maior ni é 1028, o limite do eixo dos yy foi 
-# escolhido entre 0 e 200
-# FIM NOTA -----------------------------------------
-
-# histograma -> eixo dos yy -> fi/h  -> permite comparar histogramas com qualquer tipo de classes
-hist(
-  obesidade$Idade,
-  breaks = cortes,
-  right = TRUE,
-  include.lowest = TRUE,
-  freq = FALSE,
-  main = "histograma",
-  xlab = "Idade",
-  ylab = "frequências relativas / amplitude das classes",
-  col = 2,
-  xlim = c(0, 70),
-  ylim = c(0, 0.1),
-  xaxt = "n" # para poder definir o eixo dos xx
-)
-
-axis(
-  side = 1,
-  at = c(0, cortes, 70) # definir os valores para o eixo dos xx igual às classes
-)
-
-#########
-## ii) ##
-#########
-
-# Em relação à variàvel altura, resuma a informação 
-# nas 3 classes: [1.45,1.60], ]1.60,1.80] e ]1.80,2.00];
-
-# variável estatística: Altura
-
-# mínimo e máximo dos dados
-min(obesidade$Altura)
-max(obesidade$Altura)
-
-# 3 classes: [1.45,1.60], ]1.60,1.80] e ]1.80,2.00]
-#extremos das classes
-cortes2 <- c(1.45,1.60,1.80,2.00)
-
-# intervalos abertos à esquerda e fechados à direita
-# a primeira classe fechada dos dois lados
-
-#####
-# histograma -> eixo dos yy -> frequências absolutas -> só faz se colocar freq=TRUE 
-# avisa que está errado
-
-#####
-# histograma -> eixo dos yy -> fi/h  -> permite comparar histogramas com qualquer tipo de classes
-# como as classes têm amplitudes diferentes, este é o histograma correto
-hist(
-  obesidade$Altura,
-  breaks = cortes2,
-  right = TRUE,
-  include.lowest = TRUE,
-  freq = FALSE,
-  main = "histograma",
-  xlab = "Altura",
-  ylab = "frequências relativas / amplitude das classes",
-  col = 3,
-  xlim = c(0, 2.5),
-  ylim = c(0, 4),
-  xaxt = "n"  # para poder definir o eixo dos xx
-)
-
-axis(
-  side = 1,
-  at = c(0, cortes2, 2.5),
-  las = 2  # definir os valores para o eixo dos xx igual às classes
-)
-
 ##########
-## iii) ##
+### i) ###
 ##########
 
-# Em relação à variàvel peso, recorra à regra de Sturges para definir as classes 
-# (considere intervalos fechados à esquerda e abertos à direita).
+### VAR. idade
 
-# mínimo e máximo do NIVEL DE FERRO
-(n <- nrow(obesidade))
-(min <- min(obesidade$Peso))
-(max <- max(obesidade$Peso))
+# Classes - Pelo Enunciado:
+(k <- 8)
 
-(k <- trunc(1 + log(n) / log(2)))   # número de classes pela regra Sturges
-(h <- (max-min) / k)   # amplitude das classes
+# Amplitude - Pelo Enunciado:
+(h <- 6)
 
-# mínimo e máximo das classes
-(valor.min <- min)
-(valor.max <- min + h*k)
+# Mínimo e Máximo das Classes:
+(idade.min <- min(obesidade$Idade))
+(idade.max <- idade.min + h * k)
 
-#extremos das classes
-(cortes3 <- seq(valor.min, valor.max, by=h))
+# Extremos das Classes:
+(idade.cortes <- seq(idade.min, idade.max, by = h))
 
-# intervalos fechados à esquerda e abertos à direita
-# como o maximo dos dados é igual ao último valor da última classe
-# a última classe tem de ser fechada nos dois lados
-#####
-
-# histograma -> eixo dos yy -> frequências  
-hist(
-  obesidade$Peso,
-  breaks = cortes3,
-  right = FALSE,
-  include.lowest = TRUE,
-  freq = TRUE,
-  main = "histograma",
-  xlab = "Peso",
-  ylab = "frequências absolutas",
-  col = "yellow",
-  xlim = c(0, 180),
-  ylim = c(0, 500),
-  xaxt = "n" # para poder definir o eixo dos xx
-)
-
-axis(
-  side = 1,
-  at = c(0, round(cortes3, 1), 180),
-  las = 2
-)
-
-
-# histograma -> eixo dos yy -> fi/h  -> permite comparar histogramas com qualquer tipo de classes
-# como as classes têm amplitudes diferentes, este é o histograma correto
-hist(
-  obesidade$Peso,
-  breaks = cortes3,
-  right = FALSE,
-  include.lowest = TRUE,
-  freq = FALSE,
-  main = "histograma",
-  xlab = "Peso",
-  ylab = "frequências relativas / amplitude das classes",
-  col = "magenta",
-  xlim = c(0, 180),
-  ylim = c(0, 0.02),
-  xaxt = "n"  # para poder definir o eixo dos xx
-)
-
-axis(
-  side = 1,
-  at = c(0, round(cortes3, 1), 180),
-  las = 2  # definir os valores para o eixo dos xx igual às classes
-)
-
-
-#####
-# histograma -> eixo dos yy -> colocar o que se pretende, por exemplo, 
-#             fi -> permite comparar histogramas com as mesmas classes
-
-# tabela de frequências
-(classes3 <- cut(
-  obesidade$Peso,
-  breaks = cortes3,
-  right = FALSE,
+# Intervalos - Abertos à Esquerda e Fechados à Direita:
+(idade.classes <- cut(
+  obesidade$Idade,
+  breaks = idade.cortes,
+  right = TRUE,
   include.lowest = TRUE
 ))
-(ni.Peso <- table(classes3))                # frequências absolutas
-(fi.Peso <- round(prop.table(ni.Peso), 4))   # frequências relativas
 
-# atribuir um nome ao histograma para poder aceder aos seus campos
-graf3 <- hist(
-  obesidade$Peso,
-  breaks = cortes3,
-  right = FALSE,
-  include.lowest = TRUE
-)
+# Freq. Absolutas
+(ni.idade <- table(idade.classes))
 
-graf3$density <- fi.Peso
-
-plot(
-  graf3,
-  freq = FALSE,
+# Gráfico:
+dev.new
+hist(
+  obesidade$Idade,
+  breaks = idade.cortes,
+  right = TRUE,
+  include.lowest = TRUE,
+  freq = TRUE,
   main = "Histograma",
-  xlab = "Peso",
-  ylab = "frequências relativas",
-  col = 4,
-  xlim = c(0, 180),
-  ylim = c(0, 0.25),
-  xaxt = "n"  # para poder definir o eixo dos xx
+  xlab = "Idade",
+  ylab = "Frequências Absolutas",
+  col = 1:8,
+  xlim = c(idade.min, idade.max),
+  ylim = c(0, 1200),
+  xaxt = "n"  # Para Poder Definir o Eixo XX de Seguida
 )
 
+# Valores do Eixo XX:
 axis(
   side = 1,
-  at  =c(0, round(cortes3, 1), 180),
-  las = 2  # definir os valores para o eixo dos xx igual às classes
+  at = c(
+    round(idade.min, 2),
+    round(idade.cortes, 2),
+    round(idade.max, 2)
+  )
 )
 
+###########
+### ii) ###
+###########
 
+### VAR. altura
 
+# Extremos das Classes:
+(altura.cortes <- c(1.45, 1.60, 1.80, 2.00))
+
+# Intervalos - Abertos à Esquerda e Fechados à Direita:
+(altura.classes <- cut(
+  obesidade$Altura,
+  breaks = altura.cortes,
+  right = TRUE,
+  include.lowest = TRUE
+))
+
+# Freq. Absolutas
+(ni.altura <- table(altura.classes))
+
+# Gráfico:
+dev.new()
+hist(
+  obesidade$Altura,
+  breaks = altura.cortes,
+  right = TRUE,
+  include.lowest = TRUE,
+  freq = TRUE,
+  main = "Histograma",
+  xlab = "Altura",
+  ylab = "Frequências Absolutas",
+  col = 1:3,
+  xlim = c(min(obesidade$Altura), max(obesidade$Altura)),
+  ylim = c(0, 1500),
+  xaxt = "n"  # Para Poder Definir o Eixo XX de Seguida
+)
+
+# Valores do Eixo XX:
+axis(
+  side = 1,
+  at = c(
+    round(min(obesidade$Altura), 2),
+    round(altura.cortes, 2),
+    round(max(obesidade$Altura), 2)
+  )
+)
+
+############
+### iii) ###
+############
+
+### VAR. peso
+
+# Regra de Sturgis:
+
+(n <- nrow(obesidade))
+
+# Classes:
+(k <- trunc(1 + log(n)/log(2)))
+
+# Amplitude:
+(h <- (max(obesidade$Peso) - min(obesidade$Peso)) / k)
+
+# Mínimo e Máximo das Classes:
+(peso.min <- min(obesidade$Peso))
+(peso.max <- peso.min + h * k)
+
+# Extremos das Classes:
+(peso.cortes <- seq(peso.min, peso.max, by = h))
+
+# Intervalos - Abertos à Esquerda e Fechados à Direita:
+(peso.classes <- cut(
+  obesidade$Peso,
+  breaks = peso.cortes,
+  right = TRUE,
+  include.lowest = TRUE
+))
+
+# Freq. Absolutas
+(ni.peso <- table(peso.classes))
+
+# Gráfico:
+dev.new()
+hist(
+  obesidade$Peso,
+  breaks = peso.cortes,
+  right = TRUE,
+  include.lowest = TRUE,
+  freq = TRUE,
+  main = "Histograma",
+  xlab = "Peso",
+  ylab = "Frequências Absolutas",
+  col = 1:12,
+  xlim = c(peso.min, peso.max),
+  ylim = c(0, 500),
+  xaxt = "n"  # Para Poder Definir o Eixo XX de Seguida
+)
+
+# Valores do Eixo XX:
+axis(
+  side = 1,
+  at = c(
+    round(peso.min, 2),
+    round(peso.cortes, 2),
+    round(peso.max, 2)
+  )
+)
