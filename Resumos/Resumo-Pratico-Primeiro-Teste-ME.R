@@ -190,7 +190,7 @@ sd(TABELA$COLUNA)
 #### Medidas de Dispersão Relativa: ####
 
 ###### Coeficiente de variação = CV: ######
-((sd(TABELA$COLUNA)/mean(TABELA$COLUNA))*100)
+((sd(TABELA$COLUNA)/mean(TABELA$COLUNA))*100) # %
 
 "-------------------------------------------------------------"
 
@@ -198,6 +198,11 @@ sd(TABELA$COLUNA)
 
 library(e1071)
 e1071::skewness(TABELA$COLUNA)
+
+# Simetria pelas Medidas de Localição Central:
+## Média = Mediana => Simétrica
+## Média > Mediana => Assimétrica Positiva (à Direita)
+## Média < Mediana => Assimétrica Negativa (à Esquerda)
 
 "-------------------------------------------------------------"
 
@@ -339,7 +344,7 @@ hist(
   breaks = COLUNA.cortes,
   right = TRUE,
   include.lowest = TRUE,
-  freq = TRUE,
+  freq = TRUE, # TRUE => Freq. Absolutas | FALSE => Freq. Relativas
   main = "Histograma",
   xlab = "VARIAVEL",
   ylab = "Frequências Absolutas",
@@ -369,7 +374,7 @@ hist(
   breaks = COLUNA.cortes,
   right = TRUE,
   include.lowest = TRUE,
-  freq = FALSE,
+  freq = FALSE, # TRUE => Freq. Absolutas | FALSE => Freq. Relativas
   main = "Histograma",
   xlab = "VARIAVEL",
   ylab = "Frequências Relativas / Amplitude das Classes",
@@ -420,7 +425,7 @@ graf$density <- fi.VARIAVEL
 # Gráfico:
 plot(
   graf,
-  freq = FALSE,
+  freq = FALSE, # TRUE => Freq. Absolutas | FALSE => Freq. Relativas
   main = "Histograma",
   xlab = "VARIAVEL",
   ylab = "Frequências Relativas",
