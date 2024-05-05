@@ -584,6 +584,9 @@ boxplot(
 
 library(FRACTION)
 FRACTION::fra(VALOR)
+# OU
+library(MASS)
+MASS::fractions(VALOR)
 
 "-------------------------------------------------------------"
 
