@@ -619,13 +619,13 @@ valor_ex_discretas <- function () {
 
 # Valor E[X^2]:
 valor_ex2_discretas <- function () {
-  # Nas discretas, o E[X] corresponde ao somatório de x * f(x).
+  # Nas discretas, o E[X^2] corresponde ao somatório de x^2 * f(x).
   sum((x^2) * fx)
 }
 
 # Valor V[X]:
 valor_vx_discretas <- function () {
-  # Nas discretas, o E[X] corresponde ao somatório de x * f(x).
+  # Nas discretas, o V[X] corresponde à diferença E[X^2] - E^2[X].
   valor_ex2_discretas() - valor_ex_discretas()^2
 }
 
