@@ -10,6 +10,12 @@ View(TABELA)
 
 "-------------------------------------------------------------"
 
+#### Não Escrever Valores em Notação Científica: ####
+
+options(scipen = 999)
+
+"-------------------------------------------------------------"
+
 #### Operadores Lógicos no R: ####
 
 # | --> Ou
@@ -23,7 +29,42 @@ View(TABELA)
 
 "-------------------------------------------------------------"
 
+#### Repetição de Dados: ####
+
+rep("VALOR_A_REPETIR", NR_VEZES_A_REPETIR)
+
+"-------------------------------------------------------------"
+
+#### Arredondar Valores: ####
+
+round(VALOR_A_ARREDONDAR, NR_CASAS_DECIMAIS)
+
+"-------------------------------------------------------------"
+
+#### Arrays / Vetores: ####
+
+###### Criar um Array: ######
+c(ELEMENTO_1, "ELEMENTO_2")
+
+###### Consultar Tamanho de um Array: ######
+length(ARRAY)
+
+###### Criar um Array: ######
+c(ELEMENTO_1, "ELEMENTO_2")
+###### Criar um Array: ######
+c(ELEMENTO_1, "ELEMENTO_2")
+
+"-------------------------------------------------------------"
+
 #### Tabelas: ####
+
+###### Criar uma Tabela: ######
+data.frame(
+  NOME_COLUNA_1 = ARRAY_DADOS_COLUNA_1,
+  NOME_COLUNA_2 = ARRAY_DADOS_COLUNA_2,
+  # ......,
+  NOME_COLUNA_N = ARRAY_DADOS_COLUNA_N
+)
 
 ###### Consultar o Nº de Linhas de uma Tabela: ######
 nrow(TABELA)
