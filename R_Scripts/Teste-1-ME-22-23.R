@@ -31,7 +31,7 @@
 ###### ii) ######
 
 cafe[cafe$bags == max(cafe$bags),] # Produziu mais -> Brasil
-cafe[cafe$price == max(cafe$price),] # Produziu mais -> Brasil
+cafe[cafe$price == max(cafe$price),] # Melhor pago -> Bolívia
 
 ###### iii) ######
 
@@ -163,40 +163,21 @@ axis(
 #### Pergunta 2: ####
 
 ##### A) #####
-
-# Na função f_densidade_probabilidade, cada ifelse representa:
-## Condição: Ramo conhecido;
-## Verdadeiro: Valor desse ramo;
-## Falso: Novo ifelse com outro ramo, ou 0 caso seja o último ramo conhecido.
-f_densidade_probabilidade <- function (x) {
-  ifelse(
-    0 < x & x < 1,
-    x,
-    ifelse(
-      1 <= x & x < 3,
-      (x/8),
-      0 # SÓ SE FOR O ÚLTIMO RAMO!!
-    )
-  )
-}
-
-# F(x):
-
-# No ramo X <= 0:
-(integrate(f_densidade_probabilidade, lower=-Inf, upper=0)$value)
-
-# No ramo 0 < X < 1:
-(integrate(f_densidade_probabilidade, lower=0, upper=1)$value)
-
-# No ramo 1 <= X < 3:
-(integrate(f_densidade_probabilidade, lower=1, upper=5)$value)
-
-# No ramo X >= 3:
-(integrate(f_densidade_probabilidade, lower=1, upper=5)$value)
+# Feito na folha.
 
 ##### B) #####
 
+# F(5/3)
+((7/16) + ((5/3)^2/16)) # = 0.6111
 
+# F(8/3)
+((7/16) + ((8/3)^2/16)) # = 0.8819
+
+# F(1/4)
+((1/4)^2/2) # = 0.0313
+
+# ((F(5/3) - F(1/4)) / (F(8/3) - F(1/4)))
+((0.6111 - 0.0313) / (0.8819 - 0.0313)) # = 0.6816
 
 ##### C) #####
 
