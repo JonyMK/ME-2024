@@ -233,6 +233,8 @@ sd(TABELA$COLUNA)
 ###### Coeficiente de variação = CV: ######
 ((sd(TABELA$COLUNA)/mean(TABELA$COLUNA))*100) # %
 
+# CV => Única Medida de Dispersão para Unidades Diferentes!
+
 "-------------------------------------------------------------"
 
 #### Medidas de Simetria: ####
