@@ -782,4 +782,6 @@ calcular_limites_dominio_uniforme_continua("MEDIA_CONHECIDA", "X_UTILIZADO", "RE
 # ∞ --> Infinito
 # [-∞, +∞] --> Intervalo Infinito
 
+# x̅ --> Média da Amostra
+
 "-------------------------------------------------------------"
