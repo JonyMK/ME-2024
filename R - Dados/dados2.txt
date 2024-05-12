@@ -1,0 +1,315 @@
+Rep,Faltas
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Nenhuma
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Algumas
+Nenhuma,Muitas
+Nenhuma,Muitas
+Nenhuma,Muitas
+Nenhuma,Muitas
+Nenhuma,Muitas
+Nenhuma,Muitas
+Nenhuma,Muitas
+Nenhuma,Muitas
+Nenhuma,Muitas
+Nenhuma,Muitas
+Nenhuma,Muitas
+Nenhuma,Muitas
+Nenhuma,Muitas
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Nenhuma
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Algumas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Uma,Muitas
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Nenhuma
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Algumas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
+Duas ou mais,Muitas
