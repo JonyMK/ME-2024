@@ -1,6 +1,6 @@
-################## Resumo dos Comandos no R ##################
+## Resumo dos Comandos no R ####
 
-############# Resumo R: Primeiro Teste #############
+### Resumo R: Primeiro Teste ####
 
 "-------------------------------------------------------------"
 
@@ -781,7 +781,137 @@ calcular_limites_dominio_uniforme_continua("MEDIA_CONHECIDA", "X_UTILIZADO", "RE
 # ∫ --> Integral
 # ∞ --> Infinito
 # [-∞, +∞] --> Intervalo Infinito
-
 # x̅ --> Média da Amostra
+# α --> Alfa
 
 "-------------------------------------------------------------"
+"-------------------------------------------------------------"
+"-------------------------------------------------------------"
+"-------------------------------------------------------------"
+"-------------------------------------------------------------"
+
+### Resumo R: Segundo Teste ####
+
+"-------------------------------------------------------------"
+
+#### Distribuições Amostrais, Intervalos de COnfiança e Testes de Hipóteses Paramétricos ####
+
+"-------------------------------"
+
+###### Para a Média: ######
+
+# População Normal;
+# σ Conhecido.
+# D.A.: Z = ((x̅ - μ) / (σ / sqrt(n))) ~ N(0, 1)
+# I.C.: ] x̅ - (z_(1 - (α/2))) * (σ / sqrt(n)) , x̅ + (z_(1 - (α/2))) * (σ / sqrt(n)) [
+BSDA::z.test()
+
+# População Normal;
+# σ Desconhecido.
+# D.A.: T = ((x̅ - μ) / (s / sqrt(n))) ~ t(n-1)
+# I.C.: ] x̅ - (t_(1 - (α/2)); n-1) * (s / sqrt(n)) , x̅ + (t_(1 - (α/2)); n-1) * (s / sqrt(n)) [
+t.test()
+
+# População Qualquer;
+# σ Conhecido;
+# n >= 30.
+# D.A.: Z = ((x̅ - μ) / (σ / sqrt(n))) ~ N(0, 1)
+# I.C.: ] x̅ - (z_(1 - (α/2))) * (σ / sqrt(n)) , x̅ + (z_(1 - (α/2))) * (σ / sqrt(n)) [
+BSDA::z.test()
+
+# População Qualquer;
+# σ Desconhecido;
+# n >= 30.
+# D.A.: Z = ((x̅ - μ) / (s / sqrt(n))) ~ N(0, 1)
+# I.C.: ] x̅ - (z_(1 - (α/2))) * (s / sqrt(n)) , x̅ + (z_(1 - (α/2))) * (s / sqrt(n)) [
+BSDA::z.test()
+
+"-------------------------------"
+
+###### Para a Diferença de 2 Médias: ######
+
+
+
+"-------------------------------"
+
+###### Para a Variância: ######
+
+# População Normal.
+# D.A.: X^2 = (((n-1) * s^2) / σ^2) ~ X^2(n-1)
+# I.C.: ] (((n-1) * s^2) / x^2_(1 - (α/2); n-1)) , (((n-1) * s^2) / x^2_(α/2; n-1)) [
+EnvStats::varTest()
+
+"-------------------------------"
+
+###### Para o Quociente de 2 Variâncias: ######
+
+# Populações Normais;
+# Amostras Independentes.
+# D.A.: F = ((s1^2 / s2^2) * (σ2^2 / σ1^2)) ~ F(n1 - 1, n2 - 1)
+# I.C.: ] ((1 / f_(1 - (α/2); n1 - 1; n2 - 1)) * (s1^2 / s2^2)) , 
+# I.C.:   ((1 / f_(α/2; n1 - 1; n2 - 1)) * (s1^2 / s2^2)) [
+var.test()
+
+"-------------------------------"
+
+###### Para a Proporção: ######
+
+# n >= 30.
+# D.A.: Z = ((p* - p) / sqrt(pq / n)) ~=~ ((p* - p) / sqrt((p* * q*) / n)) ~ N(0, 1)
+# I.C.: ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
+BSDA::z.test()
+
+"-------------------------------"
+
+###### Para a Diferença de 2 Proporções: ######
+
+# Amostras Independentes;
+# n1 & n2 >= 30.
+# D.A.: Z = (((p1* - p2*) - (p1 - p2)) / sqrt(((p1 * q1) / (n1)) + ((p2 * q2) / (n2))))
+# D.A.: Z ~=~ (((p1* - p2*) - (p1 - p2)) / sqrt(((p1* * q1*) / (n1)) + ((p2* * q2*) / (n2))))
+# D.A.: z ~ N(0, 1)
+# I.C.: ] (p1* - p2*) |-+| z_(1 - (α/2)) * sqrt(((p1* * q1*) / (n1)) + ((p2* * q2*) / (n2))) [
+BSDA::z.test()
+
+"-------------------------------"
+
+###### Testes de Ajustamento: ######
+
+# Distribuição Discreta ou Contínua com Classes:
+# Qui-Quadrado
+chisq.test()
+
+# Distribuição Contínua Completamente Especificada:
+# Kolmogorov-Smirnov
+ks.test()
+
+# Normal e n >= 50:
+# Lilliefors
+nortest::lillie.test()
+
+# Normal e n < 50:
+# Shapiro Wilk
+shapiro.test()
+
+"-------------------------------"
+
+"-------------------------------------------------------------"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
