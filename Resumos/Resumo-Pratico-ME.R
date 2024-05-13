@@ -796,8 +796,6 @@ calcular_limites_dominio_uniforme_continua("MEDIA_CONHECIDA", "X_UTILIZADO", "RE
 
 #### Distribuições Amostrais, Intervalos de COnfiança e Testes de Hipóteses Paramétricos ####
 
-"-------------------------------"
-
 ###### Para a Média: ######
 
 # População Normal;
@@ -830,6 +828,47 @@ BSDA::z.test()
 
 ###### Para a Diferença de 2 Médias: ######
 
+# Populações Normais;
+# σ1 e σ2 Conhecidos;
+# Amostras Independentes.
+# D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((σ1^2 / n1) + (σ2^2 / n2))) ~ N(0, 1)
+# I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((σ1^2 / n1) + (σ2^2 / n2))) [
+BSDA::z.test()
+
+# Populações Normais;
+# σ1 e σ2 Desconhecidos;
+# σ1 = σ2;
+# Amostras Independentes.
+# D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))))
+# T ~ t(n1 + (n2 - 2))
+# I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); n1 + (n2 - 2)) * sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))) [
+t.test()
+
+# Populações Normais;
+# σ1 e σ2 Desconhecidos;
+# σ1 != σ2;
+# Amostras Independentes.
+# D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2))) ~ t(gl2)
+# I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); gl2) * sqrt((s1^2 / n1) + (s2^2 / n2))) [
+t.test()
+## gl2 ~=~ ((s1^2 / n1) + (s2^2 / n2))^2 / ((s1^4 / (n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1))))
+## Para gl2: Considera-se o inteiro mais próximo ou faz-se a correção de Welch-Satterthwaite.
+
+# Populações Quaiquer;
+# σ1 e σ2 Conhecidos;
+# Amostras Independentes;
+# n1 e n2 >= 30.
+# D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((σ1^2 / n1) + (σ2^2 / n2))) ~ N(0, 1)
+# I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((σ1^2 / n1) + (σ2^2 / n2))) [
+BSDA::z.test()
+
+# Populações Quaiquer;
+# σ1 e σ2 Desconhecidos;
+# Amostras Independentes;
+# n1 e n2 >= 30.
+# D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2))) ~ N(0, 1)
+# I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((s1^2 / n1) + (s2^2 / n2))) [
+BSDA::z.test()
 
 
 "-------------------------------"
@@ -893,25 +932,4 @@ nortest::lillie.test()
 # Shapiro Wilk
 shapiro.test()
 
-"-------------------------------"
-
 "-------------------------------------------------------------"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
