@@ -1,5 +1,20 @@
 ## Resumo dos Comandos no R ####
 
+"-------------------------------------------------------------"
+
+### LIBRARYs: ####
+
+library(e1071)
+library(FRACTION)
+library(MASS)
+library(Deriv)
+library(BSDA)
+library(EnvStats)
+library(nortest)
+library(DescTools)
+
+"-------------------------------------------------------------"
+
 ### Resumo R: Primeiro Teste ####
 
 "-------------------------------------------------------------"
@@ -796,6 +811,9 @@ calcular_limites_dominio_uniforme_continua("MEDIA_CONHECIDA", "X_UTILIZADO", "RE
 
 #### Testes Paramétricos (D.A. e I.C.): ####
 
+library(BSDA)
+library(EnvStats)
+
 # Distribuições Amostrais e Intervalos de Confiança nos Testes Paramétricos
 
 ###### Para a Média: ######
@@ -815,7 +833,12 @@ BSDA::z.test(
 # σ Desconhecido.
 # D.A.: T = ((x̅ - μ) / (s / sqrt(n))) ~ t(n-1)
 # I.C.: ] x̅ - (t_(1 - (α/2)); n-1) * (s / sqrt(n)) , x̅ + (t_(1 - (α/2)); n-1) * (s / sqrt(n)) [
-t.test()
+# t.test()
+t.test(
+  x = VARIAVEL,                   # Vetor com a amostra
+  mu = MEDIA,                     # Média da População
+  conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança para o teste/intervalo
+)
 
 # População Qualquer;
 # σ Conhecido;
@@ -834,7 +857,12 @@ BSDA::z.test(
 # n >= 30.
 # D.A.: Z = ((x̅ - μ) / (s / sqrt(n))) ~ N(0, 1)
 # I.C.: ] x̅ - (z_(1 - (α/2))) * (s / sqrt(n)) , x̅ + (z_(1 - (α/2))) * (s / sqrt(n)) [
-BSDA::z.test()
+# BSDA::z.test()
+BSDA::z.test(
+  x = VARIAVEL,                   # Vetor com a amostra
+  mu = MEDIA,                     # Média da População
+  conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança para o teste/intervalo
+)
 
 "-------------------------------"
 
@@ -971,6 +999,8 @@ BSDA::z.test()
 
 #### Testes Não Paramétricos: ####
 
+library(nortest)
+
 ###### Testes de Ajustamento: ######
 
 # Distribuição Discreta ou Contínua com Classes:
@@ -980,6 +1010,12 @@ chisq.test(
   x = Oi,  # Frequências Observadas (Freq. Absolutas)
   p = pi   # Frequências Esperadas
 )
+RES_CHISQ <- chisq.test(x = Oi, p = pi)
+RES_CHISQ$statistic # Qobs
+RES_CHISQ$parameter # Graus de Liberdade
+RES_CHISQ$p.value   # Valor-P
+RES_CHISQ$observed  # Oi
+RES_CHISQ$expected  # Ei = npi
 
 # Distribuição Contínua Completamente Especificada:
 # Kolmogorov-Smirnov
@@ -1008,11 +1044,114 @@ shapiro.test(
 
 ###### Diferença de Medianas: ######
 
-# Wilcoxon
+## Tipos de Teste:
+### Bilateral => "two.sided"
+### Unilateral Direito => "greater"
+### Unilateral Esquerdo => "less"
 
+# Wilcoxon
+## D = AMOSTRA_Y - AMOSTRA_X
+## H0: Média de D = 0
+## vs.
+## H1: Média de D > 0
+wilcox.test(
+  x = AMOSTRA_Y,            # Amostra X
+  y = AMOSTRA_X,            # Amostra Y
+  alternative = "greater",  # Tipo de Teste
+  mu = 0,                   # Média de H0
+  paired = TRUE             # São Emparelhadas?
+)
+RES_WILCOX <- wilcox.test()
+RES_WILCOX$statistic   # Tobs
+RES_WILCOX$p.value     # valor-p
+RES_WILCOX$null.value  # H0: MD = 0
+RES_WILCOX$alternative # H1: MD > 0
 
 # Mann-Whitney
+## MX - MY
+## H0: Média de X = Média de Y
+## vs.
+## H1: Média de X < Média de Y
+wilcox.test(
+  x = AMOSTRA_X,         # Amostra X
+  y = AMOSTRA_Y,         # Amostra Y
+  alternative = "less",  # Tipo de Teste
+  mu = 0,                # Média de H0
+  paired = FALSE         # São Emparelhadas?
+)
+RES_MANN <- wilcox.test()
+RES_MANN$statistic    # Uobs
+RES_MANN$p.value      # valor-p
+RES_MANN$null.value   # H0: MX - MY = 0
+RES_MANN$alternative  # H1: MX - MY < 0
 
+"-------------------------------------------------------------"
 
+#### Regras de Validação do Teste de Ajustamento Qui-Quadrado: ####
+
+###### Dimensão da Amostra Maior que 30: ######
+if (DIMENSAO_AMOSTRA > 30) {
+  print("Respeita a Regra.")
+} else {
+  print("Amostra Demasiado Pequena!")
+}
+
+###### Todas as Freq. Esperadas >= 1: ######
+if (length(which(RES_CHISQ$expected < 1)) > 0) {
+  print("Juntar Linhas da Tabela de Frequências!")
+} else {
+  print("Respeita a Regra.")
+}
+
+###### Não Há Mais de 20% das Freq. Esperadas < 5: ######
+if (length(which(RES_CHISQ$expected < 5)) > (k * 0.2)) {
+  print("Juntar Linhas da Tabela de Frequências!")
+} else {
+  print("Respeita a Regra.")
+}
+
+"-------------------------------------------------------------"
+
+#### Teste de Independência do Qui-Quadrado: ####
+
+# Função -> chisq.test()
+# Argumentos da Função: Tabela de Contingência
+
+RES_CHISQ <- chisq.test(
+  TABELA_CONTINGENCIA,  # Tabela de Contingência
+  correct = FALSE
+)
+
+RES_CHISQ$statistic # Qobs
+RES_CHISQ$parameter # Graus de Liberdade
+RES_CHISQ$p.value   # Valor-P
+RES_CHISQ$observed  # Oi = Frequências Observadas
+RES_CHISQ$expected  # Ei = Frequências Esperadas
+
+"-------------------------------------------------------------"
+
+#### Medidas de Associação: ####
+
+library(DescTools)
+
+# Tabela de Contingência de Exemplo
+# | 24 | 41 |
+# |  6 | 11 |
+
+TABELA_CONTINGENCIA <- data.frame(
+  coluna1 = c(24, 6),
+  coluna2 = c(41, 11)
+)
+
+###### Coeficiente de Contingência: ######
+ContCoef(TABELA_CONTINGENCIA)
+
+###### Coeficiente V de Crámer: ######
+CramerV(TABELA_CONTINGENCIA)
+
+###### Coeficiente Tb de Kendall: ######
+KendallTauB(TABELA_CONTINGENCIA)
+# OU
+KendallTauB(as.matrix(TABELA_CONTINGENCIA))
 
 "-------------------------------------------------------------"

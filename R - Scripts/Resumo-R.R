@@ -1349,7 +1349,7 @@ qchisq(0.99, 5)
 # Como Qobs = 11.96 !E RC: Não se rejeita H0.
 
 # Conclusão:
-# Com base na amostra e para um nnível de significância de 1%,
+# Com base na amostra e para um nível de significância de 1%,
 # o Nº de rapazes por família com 5 filhos segue uma distribuição binomial.
 
 #######################################################
