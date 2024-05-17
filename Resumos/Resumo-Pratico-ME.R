@@ -794,7 +794,9 @@ calcular_limites_dominio_uniforme_continua("MEDIA_CONHECIDA", "X_UTILIZADO", "RE
 
 "-------------------------------------------------------------"
 
-#### Distribuições Amostrais, Intervalos de COnfiança e Testes de Hipóteses Paramétricos ####
+#### D.A., I.C. e Testes de Hipóteses Paramétricos: ####
+
+# Distribuições Amostrais, Intervalos de Confiança e Testes
 
 ###### Para a Média: ######
 
@@ -802,7 +804,12 @@ calcular_limites_dominio_uniforme_continua("MEDIA_CONHECIDA", "X_UTILIZADO", "RE
 # σ Conhecido.
 # D.A.: Z = ((x̅ - μ) / (σ / sqrt(n))) ~ N(0, 1)
 # I.C.: ] x̅ - (z_(1 - (α/2))) * (σ / sqrt(n)) , x̅ + (z_(1 - (α/2))) * (σ / sqrt(n)) [
-BSDA::z.test()
+# BSDA::z.test()
+BSDA::z.test(
+  x = VARIAVEL,                   # Vetor com a amostra
+  sigma.x = DESVIO_PADRAO,        # Desvio Padrão da População
+  conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança para o teste/intervalo
+)
 
 # População Normal;
 # σ Desconhecido.
@@ -815,7 +822,12 @@ t.test()
 # n >= 30.
 # D.A.: Z = ((x̅ - μ) / (σ / sqrt(n))) ~ N(0, 1)
 # I.C.: ] x̅ - (z_(1 - (α/2))) * (σ / sqrt(n)) , x̅ + (z_(1 - (α/2))) * (σ / sqrt(n)) [
-BSDA::z.test()
+# BSDA::z.test()
+BSDA::z.test(
+  x = VARIAVEL,                   # Vetor com a amostra
+  sigma.x = DESVIO_PADRAO,        # Desvio Padrão da População
+  conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança para o teste/intervalo
+)
 
 # População Qualquer;
 # σ Desconhecido;
@@ -833,7 +845,14 @@ BSDA::z.test()
 # Amostras Independentes.
 # D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((σ1^2 / n1) + (σ2^2 / n2))) ~ N(0, 1)
 # I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((σ1^2 / n1) + (σ2^2 / n2))) [
-BSDA::z.test()
+# BSDA::z.test()
+BSDA::z.test(
+  x = VARIAVEL_1,                 # Primeira Amostra
+  sigma.x = sd(VARIAVEL_1),       # Desvio Padrão da Amostra 1
+  y = VARIAVEL_2,                 # Segunda Amostra
+  sigma.y = sd(VARIAVEL_2),       # Desvio Padrão da Amostra 2
+  conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
+)
 
 # Populações Normais;
 # σ1 e σ2 Desconhecidos;
@@ -842,7 +861,14 @@ BSDA::z.test()
 # D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))))
 # T ~ t(n1 + (n2 - 2))
 # I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); n1 + (n2 - 2)) * sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))) [
-t.test()
+# t.test()
+t.test(
+  x = VARIAVEL_1,                 # Primeira Amostra
+  y = VARIAVEL_2,                 # Segunda Amostra
+  paired = FALSE,                 # As Amostras são Dependentes?
+  var.equal = TRUE,               # As Variâncias são Iguais?
+  conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
+)
 
 # Populações Normais;
 # σ1 e σ2 Desconhecidos;
@@ -850,9 +876,16 @@ t.test()
 # Amostras Independentes.
 # D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2))) ~ t(gl2)
 # I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); gl2) * sqrt((s1^2 / n1) + (s2^2 / n2))) [
-t.test()
 ## gl2 ~=~ ((s1^2 / n1) + (s2^2 / n2))^2 / ((s1^4 / (n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1))))
 ## Para gl2: Considera-se o inteiro mais próximo ou faz-se a correção de Welch-Satterthwaite.
+# t.test()
+t.test(
+  x = VARIAVEL_1,                 # Primeira Amostra
+  y = VARIAVEL_2,                 # Segunda Amostra
+  paired = FALSE,                 # As Amostras são Dependentes?
+  var.equal = FALSE,              # As Variâncias são Iguais?
+  conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
+)
 
 # Populações Quaiquer;
 # σ1 e σ2 Conhecidos;
@@ -860,7 +893,14 @@ t.test()
 # n1 e n2 >= 30.
 # D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((σ1^2 / n1) + (σ2^2 / n2))) ~ N(0, 1)
 # I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((σ1^2 / n1) + (σ2^2 / n2))) [
-BSDA::z.test()
+# BSDA::z.test()
+BSDA::z.test(
+  x = VARIAVEL_1,                 # Primeira Amostra
+  sigma.x = sd(VARIAVEL_1),       # Desvio Padrão da Amostra 1
+  y = VARIAVEL_2,                 # Segunda Amostra
+  sigma.y = sd(VARIAVEL_2),       # Desvio Padrão da Amostra 2
+  conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
+)
 
 # Populações Quaiquer;
 # σ1 e σ2 Desconhecidos;
@@ -868,8 +908,14 @@ BSDA::z.test()
 # n1 e n2 >= 30.
 # D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2))) ~ N(0, 1)
 # I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((s1^2 / n1) + (s2^2 / n2))) [
-BSDA::z.test()
-
+# BSDA::z.test()
+BSDA::z.test(
+  x = VARIAVEL_1,                 # Primeira Amostra
+  sigma.x = sd(VARIAVEL_1),       # Desvio Padrão da Amostra 1
+  y = VARIAVEL_2,                 # Segunda Amostra
+  sigma.y = sd(VARIAVEL_2),       # Desvio Padrão da Amostra 2
+  conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
+)
 
 "-------------------------------"
 
@@ -878,7 +924,11 @@ BSDA::z.test()
 # População Normal.
 # D.A.: X^2 = (((n-1) * s^2) / σ^2) ~ X^2(n-1)
 # I.C.: ] (((n-1) * s^2) / x^2_(1 - (α/2); n-1)) , (((n-1) * s^2) / x^2_(α/2; n-1)) [
-EnvStats::varTest()
+# EnvStats::varTest()
+EnvStats::varTest(
+  x = VARIAVEL,                   # Amostra
+  conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
+)
 
 "-------------------------------"
 
@@ -889,7 +939,12 @@ EnvStats::varTest()
 # D.A.: F = ((s1^2 / s2^2) * (σ2^2 / σ1^2)) ~ F(n1 - 1, n2 - 1)
 # I.C.: ] ((1 / f_(1 - (α/2); n1 - 1; n2 - 1)) * (s1^2 / s2^2)) , 
 # I.C.:   ((1 / f_(α/2; n1 - 1; n2 - 1)) * (s1^2 / s2^2)) [
-var.test()
+# var.test()
+var.test(
+  x = VARIAVEL_1,                 # Primeira Amostra
+  y = VARIAVEL_2,                 # Segunda Amostra
+  conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
+)
 
 "-------------------------------"
 
@@ -918,18 +973,33 @@ BSDA::z.test()
 
 # Distribuição Discreta ou Contínua com Classes:
 # Qui-Quadrado
-chisq.test()
+## chisq.test()
+chisq.test(
+  x = Oi,  # Frequências Observadas (Freq. Absolutas)
+  p = pi   # Frequências Esperadas
+)
 
 # Distribuição Contínua Completamente Especificada:
 # Kolmogorov-Smirnov
-ks.test()
+## ks.test()
+ks.test(
+  VARIAVEL,       # Amostra
+  "DISTRIBUIÇÂO", # Distribuição a Testar
+  rate = MEDIA    # Média
+)
 
 # Normal e n >= 50:
 # Lilliefors
-nortest::lillie.test()
+## nortest::lillie.test()
+nortest::lillie.test(
+  VARIAVEL  # Amostra
+)
 
 # Normal e n < 50:
 # Shapiro Wilk
-shapiro.test()
+## shapiro.test()
+shapiro.test(
+  VARIAVEL  # Amostra
+)
 
 "-------------------------------------------------------------"
