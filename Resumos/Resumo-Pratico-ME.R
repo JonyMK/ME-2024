@@ -794,9 +794,9 @@ calcular_limites_dominio_uniforme_continua("MEDIA_CONHECIDA", "X_UTILIZADO", "RE
 
 "-------------------------------------------------------------"
 
-#### D.A., I.C. e Testes de Hipóteses Paramétricos: ####
+#### Testes Paramétricos (D.A. e I.C.): ####
 
-# Distribuições Amostrais, Intervalos de Confiança e Testes
+# Distribuições Amostrais e Intervalos de Confiança nos Testes Paramétricos
 
 ###### Para a Média: ######
 
@@ -967,7 +967,9 @@ BSDA::z.test()
 # I.C.: ] (p1* - p2*) |-+| z_(1 - (α/2)) * sqrt(((p1* * q1*) / (n1)) + ((p2* * q2*) / (n2))) [
 BSDA::z.test()
 
-"-------------------------------"
+"-------------------------------------------------------------"
+
+#### Testes Não Paramétricos: ####
 
 ###### Testes de Ajustamento: ######
 
@@ -1001,5 +1003,16 @@ nortest::lillie.test(
 shapiro.test(
   VARIAVEL  # Amostra
 )
+
+"-------------------------------"
+
+###### Diferença de Medianas: ######
+
+# Wilcoxon
+
+
+# Mann-Whitney
+
+
 
 "-------------------------------------------------------------"
