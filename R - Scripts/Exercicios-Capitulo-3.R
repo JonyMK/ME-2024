@@ -125,6 +125,8 @@
 # Amostra:
 ## n = ? >= 3
 
+# População Normal;
+# σ Conhecido.
 # D.A.: Z = ((x̅ - μ) / (σ / sqrt(n))) ~ N(0, 1)
 
 "------------ Primeira Forma ------------"
@@ -139,7 +141,7 @@
 # P(Z <= 5 / (5 / sqrt(n))) = 0.95 <=>
 # P(Z <= sqrt(n)) = 0.95 <=>
 # Φ(sqrt(n)) = 0.95 <=>
-# sqrt(n) = Φ^-1(0.95) <=>
+# sqrt(n) = z(0.95) <=>
 # sqrt(n) = qnorm(0.95) <=>
 # sqrt(n) = 1.6449 <=>
 # n = 1.6449^2 <=>
