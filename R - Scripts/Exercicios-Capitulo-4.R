@@ -417,131 +417,471 @@ BSDA::z.test(
 
 #### Exercicio 4.8 ####
 
+# População Normal;
+# Amostras Emparelhadas;
+# n = 10.
 
+(amostra_48_antes <- c(
+  147, 122, 127, 141, 150, 132, 157, 147, 157, 155
+))
+
+(amostra_48_depois <- c(
+  132, 117, 142, 124, 116, 130, 122, 118, 135, 117
+))
 
 ##### 1) #####
 
-
+# As amostras são sobre a mesma referência (mesmos pacientes),
+# apenas retratam estados diferentes, logo, são emparelhadas.
 
 ##### 2) #####
 
+t.test(
+  x = amostra_48_depois,  # Primeira Amostra
+  y = amostra_48_antes,   # Segunda Amostra
+  paired = TRUE,          # As Amostras são Emparelhadas?
+  conf.level = 0.95       # Grau de Confiança
+)
 
+# I.C. => ] -30.3718, -6.0282 [
+
+# Com 95% de certeza, o programa de reabilitação parece ser eficaz.
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.9 ####
 
+# População Normal;
+# Amostras Emparelhadas;
+# n = 8.
 
+(amostra_49_antes <- c(
+  4, 10, 8, 13, 7, 3, 15, 7
+))
+
+(amostra_49_depois <- c(
+  4, 16, 11, 17, 17, 4, 18, 11
+))
 
 ##### 1) #####
 
-
+# Não, pois as amostras são sobre a mesma referência (mesmos utentes),
+# apenas retratam estados diferentes, logo, são emparelhadas.
 
 ##### 2) #####
 
+t.test(
+  x = amostra_49_depois,  # Primeira Amostra
+  y = amostra_49_antes,   # Segunda Amostra
+  paired = TRUE,          # As Amostras são Emparelhadas?
+  conf.level = 0.99       # Grau de Confiança
+)
 
+# I.C. => ] 0.0508,7.6992 [
+
+# Com 99% de certeza, a aplicação da nova prótese influenciou o grau
+# de satisfação dos utentes.
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.10 ####
 
+# Populações:
+## Normais;
+# σ1 = σ2;
 
+# Amostra 1:
+## n1 = 13;
+## x̅1 = 74.5;
+## S1^2 = 82.6.
+
+# Amostra 2:
+## n2 = 11;
+## x̅2 = 71.8;
+## Σ(x2i - x̅2)^2 = 1126;
+## S2^2 = (1/(n-1)) * Σ(x2i - x̅2)^2 = (1126 / 10) = 112.6.
+
+# D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))))
+# T ~ t(n1 + (n2 - 2))
+# I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); n1 + (n2 - 2)) * sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))) [
+
+# I.C. => ] -5.635, 11.035 [
 
 ##### 1) #####
 
+# (x̅1 - x̅2) + t_(1 - (α/2); n1 + (n2 - 2)) * sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))) = 11.035
 
+## (x̅1 - x̅2) = 74.5 - 71.8 = 2.7
+## t_(1 - (α/2); n1 + (n2 - 2)) = t_(1-(α/2); 13 + (11 - 2)) = t_(1-(α/2); 22)
+## sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))) = sqrt(((1 / 13) + (1 / 11)) * ((((13 - 1) * 82.6) + ((11 - 1) * (1126/10))) / (13 + (11 - 2)))) = 4.0189
+
+# (x̅1 - x̅2) + t_(1 - (α/2); n1 + (n2 - 2)) * sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))) = 11.035 <=>
+# 2.7 + t_(1-(α/2); 22) * 4.0189 = 11.035 <=>
+# t_(1-(α/2); 22) * 4.0189 = 11.035 - 2.7 <=>
+# t_(1-(α/2); 22) * 4.0189 = 8.335 <=>
+# t_(1-(α/2); 22) = 8.335 / 4.0189 <=>
+# t_(1-(α/2); 22) = 2.074 <=>
+# qt(1-(α/2), 22) = 2.074 <=>
+# pt(2.074, 22) = 1-(α/2) <=>
+# 0.975 = 1 - (α/2) <=>
+# α / 2 = 1 - 0.975 <=>
+# α / 2 = 0.025 <=>
+# α = 0.025 * 2 <=>
+# α = 0.05
+
+# I.C. a 95% de Confiança
 
 ##### 2) #####
 
+# 90% de Confiança => α = 0.1
 
+# I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); n1 + (n2 - 2)) * sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))) [
+
+## (x̅1 - x̅2) = 74.5 - 71.8 = 2.7
+## t_(1 - (α/2); n1 + (n2 - 2)) = t_(1-(0.1/2); 13 + (11 - 2)) = qt(0.95, 22) = 1.7171
+## sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))) = sqrt(((1 / 13) + (1 / 11)) * ((((13 - 1) * 82.6) + ((11 - 1) * (1126/10))) / (13 + (11 - 2)))) = 4.0189
+
+# ] (x̅1 - x̅2) |-+| t_(1 - (α/2); n1 + (n2 - 2)) * sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))) [ =
+# ] 2.7 |-+| 1.7171 * 4.0189 [ =
+# ] 2.7 |-+| 6.9009 [ =
+# ] 2.7 - 6.9009, 2.7 + 6.9009 [ =
+# ] -4.2009, 9.6009 [
+
+# Com 90% de confiança, pode-se dizer que os métodos de ensino podem ser considerados iguais.
 
 ##### 3) #####
 
+# P(s1^2 = s2^2) = P(s1^2 / s2^2 = 1) = ?
 
+# I.C. a 90% Confiança
+# α = 1 - 0.9 = 0.1
+
+# D.A.: F = ((s1^2 / s2^2) * (σ2^2 / σ1^2)) ~ F(n1 - 1, n2 - 1)
+# I.C.: ] ((1 / f_(1 - (α/2); n1 - 1; n2 - 1)) * (s1^2 / s2^2)) , ((1 / f_(α/2; n1 - 1; n2 - 1)) * (s1^2 / s2^2)) [
+
+# ((1 / f_(1 - (α/2); n1 - 1; n2 - 1)) * (s1^2 / s2^2)) =
+# (1 / qf(1 - (0.1/2), 12, 10)) * (82.6 / 112.6) =
+# 0.2518
+
+# ((1 / f_(α/2; n1 - 1; n2 - 1)) * (s1^2 / s2^2)) =
+# (1 / qf(0.1/2, 12, 10)) * (82.6 / 112.6) =
+# 2.0198
+
+# I.C. => ] 0.2518, 2.0198 [
+
+# Com 90% de confiança, pode-se dizer que as variâncias podem ser iguais
+# (uma vez que o 1 pertence ao intervalo).
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.11 ####
 
+# Populações Normais;
+# σ1 = σ2;
+# Amostras Independentes.
 
+(amostra_411_com_aspirina <- c(
+  9.6, 9.4, 9.3, 11.2, 11.4, 12.1, 10.4, 9.6, 10.2, 8.8, 13.0
+))
+
+(amostra_411_sem_aspirina <- c(
+  11.4, 12.1, 10.4, 9.6, 8.5, 9.7, 12.3, 12.4, 10.8, 10.8
+))
 
 ##### 1) #####
 
+# D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))))
+# T ~ t(n1 + (n2 - 2))
+# I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); n1 + (n2 - 2)) * sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))) [
+t.test(
+  x = amostra_411_com_aspirina,   # Primeira Amostra
+  y = amostra_411_sem_aspirina,   # Segunda Amostra
+  paired = FALSE,                 # As Amostras são Independentes
+  var.equal = TRUE,               # As Variâncias são Iguais?
+  conf.level = 0.95               # Grau de Confiança
+)
 
+# I.C. = ] -1.5380, 0.8471 [
+
+# Com 95% de confiança pode-se dizer que as respostas de ambos os medicamentos
+# podem, em média, ser consideradas iguais.
 
 ##### 2) #####
 
+# P(s1^2 = s2^2) = P(s1^2 / s2^2 = 1) = ?
 
+# I.C. a 95% Confiança
+# α = 1 - 0.95 = 0.05
+
+var.test(
+  x = amostra_411_com_aspirina,  # Primeira Amostra
+  y = amostra_411_sem_aspirina,  # Segunda Amostra
+  conf.level = 0.95              # Grau de Confiança
+)
+
+# OU
+
+# I.C.: ] ((1 / f_(1 - (α/2); n1 - 1; n2 - 1)) * (s1^2 / s2^2)) , ((1 / f_(α/2; n1 - 1; n2 - 1)) * (s1^2 / s2^2)) [
+
+# ((1 / f_(1 - (α/2); n1 - 1; n2 - 1)) * (s1^2 / s2^2)) =
+# (1 / qf(1 - (0.05/2), length(amostra_411_com_aspirina) - 1, length(amostra_411_sem_aspirina) - 1)) * (var(amostra_411_com_aspirina) / var(amostra_411_sem_aspirina)) =
+# 0.2633
+
+# ((1 / f_(α/2; n1 - 1; n2 - 1)) * (s1^2 / s2^2)) =
+# (1 / qf(0.05/2, length(amostra_411_com_aspirina) - 1, length(amostra_411_sem_aspirina) - 1)) * (var(amostra_411_com_aspirina) / var(amostra_411_sem_aspirina)) =
+# 3.9438
+
+# I.C. => ] 0.2633, 3.9438 [
+
+# Com 90% de confiança, pode-se dizer que as variâncias podem ser iguais
+# (uma vez que o 1 pertence ao intervalo).
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.12 ####
 
+# População:
+## Normal.
 
+# Amostra:
+## n = 15
+## x̅ = 134.5mm
+## S = 3.5mm
+
+# I.C. a 95% de Confiança
+# α = 1 - 0.95 = 0.05
+
+# I.C.: ] (((n-1) * s^2) / x^2_(1 - (α/2); n-1)) , (((n-1) * s^2) / x^2_(α/2; n-1)) [
+
+# (((n-1) * s^2) / x^2_(1 - (α/2); n-1)) =
+# (((15-1) * 3.5^2) / qchisq(1 - (0.05/2), 15-1)) =
+# 6.5661mm^2
+
+# (((n-1) * s^2) / x^2_(α/2; n-1)) =
+# (((15-1) * 3.5^2) / qchisq(0.05/2, 15-1)) =
+# 30.4687mm^2
+
+# I.C. = ] sqrt(6.5661), sqrt(30.4687) [
+# I.C. = ] 2.56244, 5.5198 [
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.13 ####
 
+# População:
+## Normal.
 
+# I.C. a 95% de Confiança
+# α = 1 - 0.95 = 0.05
+
+(amostra_413 <- c(
+  6.5, 6.6, 6.7, 6.8, 7.1, 7.3, 7.4, 7.7, 7.7, 7.7
+))
+
+EnvStats::varTest(
+  x = amostra_413,   # Amostra
+  conf.level = 0.95  # Grau de Confiança
+)
+
+# I.C. = ] 0.1075, 0.7573 [
+#      = ] sqrt(0.1075), sqrt(0.7573) [
+#      = ] 0.3279, 0.8702 [
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.14 ####
 
+# População:
+## Normal.
 
+# I.C. a 95% de Confiança
+# α = 1 - 0.95 = 0.05
+
+(amostra_414 <- c(
+  9, 14, 10, 12, 7, 3, 11, 12
+))
+
+EnvStats::varTest(
+  x = amostra_414,   # Amostra
+  conf.level = 0.99  # Grau de Confiança
+)
+
+# I.C. = ] 4.1178, 84.4069 [
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.15 ####
 
+# Populações Normais.
 
+# Amostra 1 (Escola A):
+## n1 = 16
+## S1^2 = 6.62
+
+# Amostra 2 (Escola B):
+## n2 = 21
+## S2^2 = 3.80
+
+# I.C. a 90% de Confiança
+# α = 1 - 0.9 = 0.1
+
+# I.C.: ] ((1 / f_(1 - (α/2); n1 - 1; n2 - 1)) * (s1^2 / s2^2)) , ((1 / f_(α/2; n1 - 1; n2 - 1)) * (s1^2 / s2^2)) [
+
+# ((1 / f_(1 - (α/2); n1 - 1; n2 - 1)) * (s1^2 / s2^2)) =
+# (1 / qf(1 - (0.1/2), 16 - 1, 21 - 1)) * (6.62 / 3.80) =
+# 0.7907
+
+# ((1 / f_(α/2; n1 - 1; n2 - 1)) * (s1^2 / s2^2)) =
+# (1 / qf(0.1/2, 16 - 1, 21 - 1)) * (6.62 / 3.80) =
+# 4.0548
+
+# I.C. => ] 0.7907, 4.0548 [
+
+# Com 95% de confiança pode-se dizer que a variabilidade das escolas não
+# pode ser considerada diferente, pois as variâncias podem ser consideradas iguais.
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.16 ####
 
+# Amostra:
+## n = 2500
 
+# p* = 850 / 2500 = 85 / 250 = 0.34
+
+"95%"
+
+# I.C. a 95% de Confiança
+# α = 1 - 0.95 = 0.05
+
+# I.C.: ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
+
+# p* = 0.34
+# z_(1 - (α/2)) = qnorm(1 - (0.05/2)) = 1.96
+# sqrt((p* * q*) / n) = sqrt((0.34 * (1 - 0.34)) / 2500) = 0.0095
+
+# I.C. = ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
+#      = ] 0.34 - 1.96 * 0.0095 , 0.34 + 1.96 * 0.0095 [
+#      = ] 0.34 - 0.0186 , 0.34 + 0.0186 [
+#      = ] 0.3214 , 0.3586 [
+
+"98%"
+
+# I.C. a 98% de Confiança
+# α = 1 - 0.98 = 0.02
+
+# I.C.: ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
+
+# p* = 0.34
+# z_(1 - (α/2)) = qnorm(1 - (0.02/2)) = 2.3263
+# sqrt((p* * q*) / n) = sqrt((0.34 * (1 - 0.34)) / 2500) = 0.0095
+
+# I.C. = ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
+#      = ] 0.34 - 2.3263 * 0.0095 , 0.34 + 2.3263 * 0.0095 [
+#      = ] 0.34 - 0.0221 , 0.34 + 0.0221 [
+#      = ] 0.3179 , 0.3621 [
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.17 ####
 
+# Amostra:
+## n = 400
 
+# I.C. para a Proporção: ] 0.5114, 0.6086 [
 
 ##### 1) #####
 
+# Como o intervalo da proporção é dado por ] 0.5114, 0.6086 [:
+# p* = (0.5114 + 0.6086) / 2 = 0.56
 
+# A percentagem de pessoas recetivas a
+# um novo tipo de espuma de banho foi de 56%.
 
 ##### 2) #####
 
+# I.C.: ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
 
+# p* - z_(1 - (α/2)) * sqrt((p* * q*) / n) = 0.5114 <=>
+# 0.56 - qnorm(1 - (α/2)) * sqrt((0.56 * (1 - 0.56)) / 400) = 0.5114 <=>
+# 0.56 - 0.5114 = qnorm(1 - (α/2)) * sqrt((0.56 * (1 - 0.56)) / 400) <=>
+# 0.0486 = qnorm(1 - (α/2)) * sqrt((0.56 * (1 - 0.56)) / 400) <=>
+# qnorm(1 - (α/2)) * 0.0248 = 0.0486 <=>
+# qnorm(1 - (α/2)) = 0.0486 / 0.0248 <=>
+# qnorm(1 - (α/2)) = 1.9697 <=>
+# 1 - (α/2) = pnorm(1.9697) <=>
+# 1 - (α/2) = 0.9756 <=>
+# α / 2 = 1 - 0.9756 <=>
+# α / 2 = 0.0244 <=>
+# α = 0.0244 * 2 <=>
+# α = 0.0488
+
+# Grau de Confiança = 1 - α = 1 - 0.0488 = 0.9512 = 95%
 
 ##### 3) #####
 
 ###### a) ######
 
-
+# A afirmação é incorreta => 95% corresponde ao grau de confiança do
+# I.C., e não à percentagem de pessoas.
 
 ###### b) ######
 
-
+# A afirmação é incorreta => Apesar de 95% estar correta e ser o grau
+# de confiança do I.C., 56% não corresponde à quota de mercado, mas sim
+# à percentagem de pessoas recetivas ao novo tipo de espuma de banho.
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.18 ####
 
-
+# Amostra:
+## n = 40
+## casos favoráveis = 10
 
 ##### 1) #####
 
+# P* = 10 / 40 = 1 / 4 = 0.25
 
+# I.C. a 95% de Confiança
+# α = 1 - 0.95 = 0.05
+
+# I.C.: ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
+
+# p* = 0.25
+# z_(1 - (α/2)) = qnorm(1 - (0.05/2)) = 1.96
+# sqrt((p* * q*) / n) = sqrt((0.25 * (1 - 0.25)) / 40) = 0.0685
+
+# I.C. = ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
+#      = ] 0.25 - 1.96 * 0.0685 , 0.25 + 1.96 * 0.0685 [
+#      = ] 0.25 - 0.1343 , 0.25 + 0.1343 [
+#      = ] 0.1157 , 0.3843 [
 
 ##### 2) #####
 
 ###### a) ######
 
+# amplitude = (max - min) / 2 = (0.3843 - 0.1157) / 2 = 0.1343
+# metade: 0.1343 / 2 = 0.0672
 
+# L_sup - L_inf = 0.0672 <=>
+# p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) - (p* - z_(1 - (α/2)) * sqrt((p* * q*) / n)) = 0.0672 <=>
+# p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) - p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) = 0.0672 <=>
+# p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) - p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) = 0.0672 <=>
+# 2 * z_(1 - (α/2)) * sqrt((p* * q*) / n) = 0.0672 <=>
+# 2 * z_(1 - (α/2)) * sqrt((0.25 * (1 - 0.25)) / 40) = 0.0672 <=>
+# 2 * z_(1 - (α/2)) * 0.0685 = 0.0672 <=>
+# 2 * 0.0685 * z_(1 - (α/2)) = 0.0672 <=>
+# 0.137 * z_(1 - (α/2)) = 0.0672 <=>
+# z_(1 - (α/2)) = 0.0672 / 0.137 <=>
+# z_(1 - (α/2)) = 0.4905 <=>
+# 1 - (α/2) = pnorm(0.4905) <=>
+# 1 - (α/2) = 0.6881 <=>
+# α / 2 = 1 - 0.6881 <=>
+# α = 0.3119 * 2 <=>
+# α = 0.6238
+
+# Grau de Confiança = 1 - α = 1 - 0.6238 = 0.3762 = 37.62%
 
 ###### b) ######
 

@@ -886,7 +886,7 @@ BSDA::z.test(
 # Populações Normais;
 # σ1 e σ2 Desconhecidos;
 # σ1 = σ2;
-# Amostras Independentes.
+# Amostras Independentes/Emparelhadas.
 # D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))))
 # T ~ t(n1 + (n2 - 2))
 # I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); n1 + (n2 - 2)) * sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))) [
@@ -902,7 +902,7 @@ t.test(
 # Populações Normais;
 # σ1 e σ2 Desconhecidos;
 # σ1 != σ2;
-# Amostras Independentes.
+# Amostras Independentes/Emparelhadas.
 # D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2))) ~ t(gl2)
 # I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); gl2) * sqrt((s1^2 / n1) + (s2^2 / n2))) [
 ## gl2 ~=~ ((s1^2 / n1) + (s2^2 / n2))^2 / ((s1^4 / (n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1))))
