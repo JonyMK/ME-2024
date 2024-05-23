@@ -861,7 +861,7 @@ BSDA::z.test(
 # BSDA::z.test()
 BSDA::z.test(
   x = VARIAVEL,                   # Vetor com a amostra
-  mu = MEDIA,                     # Média da População
+  sigma.x = DESVIO_PADRAO,        # Desvio Padrão da Amostra
   conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança para o teste/intervalo
 )
 
@@ -984,6 +984,8 @@ var.test(
 # I.C.: ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
 BSDA::z.test()
 
+# Nota: Quando p ou p* for desconhecido, pode-se utilizar 0.5 para o seu valor!
+
 "-------------------------------"
 
 ###### Para a Diferença de 2 Proporções: ######
@@ -995,6 +997,8 @@ BSDA::z.test()
 # D.A.: z ~ N(0, 1)
 # I.C.: ] (p1* - p2*) |-+| z_(1 - (α/2)) * sqrt(((p1* * q1*) / (n1)) + ((p2* * q2*) / (n2))) [
 BSDA::z.test()
+
+# Nota: Quando p ou p* for desconhecido, pode-se utilizar 0.5 para o seu valor!
 
 "-------------------------------------------------------------"
 
@@ -1154,5 +1158,28 @@ CramerV(TABELA_CONTINGENCIA)
 KendallTauB(TABELA_CONTINGENCIA)
 # OU
 KendallTauB(as.matrix(TABELA_CONTINGENCIA))
+
+"-------------------------------------------------------------"
+
+#### Função para Remover os Outliers de Uma Variável: ####
+
+remover_outliers <- function (VARIAVEL) {
+  boxplot_outliers_aux <- boxplot(
+    VARIAVEL,
+    col = "gold",
+    horizontal = TRUE,
+    main = "Extremos e Quartis - Sem Outliers",
+    xlab = "VARIAVEL",
+    type = 2,
+    range = 1.5
+  )
+  
+  outliers <- boxplot_outliers_aux$out
+  
+  sem_outliers <- VARIAVEL
+  sem_outliers <- sem_outliers[!sem_outliers %in% outliers]
+  
+  return(sem_outliers)
+}
 
 "-------------------------------------------------------------"

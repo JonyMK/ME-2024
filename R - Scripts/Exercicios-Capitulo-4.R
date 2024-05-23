@@ -859,86 +859,319 @@ EnvStats::varTest(
 
 ##### 2) #####
 
+# Amplitude = (max - min) = (0.3843 - 0.1157) = 0.2686
+# Amplitude Desejada (Metade): 0.2686 / 2 = 0.1343
+
 ###### a) ######
 
-# amplitude = (max - min) / 2 = (0.3843 - 0.1157) / 2 = 0.1343
-# metade: 0.1343 / 2 = 0.0672
+# Confiança = ?
 
-# L_sup - L_inf = 0.0672 <=>
-# p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) - (p* - z_(1 - (α/2)) * sqrt((p* * q*) / n)) = 0.0672 <=>
-# p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) - p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) = 0.0672 <=>
-# p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) - p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) = 0.0672 <=>
-# 2 * z_(1 - (α/2)) * sqrt((p* * q*) / n) = 0.0672 <=>
-# 2 * z_(1 - (α/2)) * sqrt((0.25 * (1 - 0.25)) / 40) = 0.0672 <=>
-# 2 * z_(1 - (α/2)) * 0.0685 = 0.0672 <=>
-# 2 * 0.0685 * z_(1 - (α/2)) = 0.0672 <=>
-# 0.137 * z_(1 - (α/2)) = 0.0672 <=>
-# z_(1 - (α/2)) = 0.0672 / 0.137 <=>
-# z_(1 - (α/2)) = 0.4905 <=>
-# 1 - (α/2) = pnorm(0.4905) <=>
-# 1 - (α/2) = 0.6881 <=>
-# α / 2 = 1 - 0.6881 <=>
-# α = 0.3119 * 2 <=>
-# α = 0.6238
+# L_sup - L_inf = 0.1343 <=>
+# p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) - (p* - z_(1 - (α/2)) * sqrt((p* * q*) / n)) = 0.1343 <=>
+# z_(1 - (α/2)) * sqrt((p* * q*) / n) + z_(1 - (α/2)) * sqrt((p* * q*) / n)) = 0.1343 <=>
+# 2 * z_(1 - (α/2)) * sqrt((p* * q*) / n) = 0.1343 <=>
+# 2 * z_(1 - (α/2)) * sqrt((0.25 * (1 - 0.25)) / 40) = 0.1343 <=>
+# 2 * z_(1 - (α/2)) * 0.0685 = 0.1343 <=>
+# 2 * 0.0685 * z_(1 - (α/2)) = 0.1343 <=>
+# 0.137 * z_(1 - (α/2)) = 0.1343 <=>
+# z_(1 - (α/2)) = 0.1343 / 0.137 <=>
+# 1 - (α/2) = pnorm(0.9803) <=>
+# 1 - (α/2) = 0.8365 <=>
+# 1 - 0.8365 = (α/2) <=>
+# 0.1635 = (α/2) <=>
+# α = 0.1635 * 2 <=>
+# α = 0.327
 
-# Grau de Confiança = 1 - α = 1 - 0.6238 = 0.3762 = 37.62%
+# Grau de Confiança = 1 - α = 1 - 0.327 = 0.673 = 67.3%
 
 ###### b) ######
 
+# n = ?
 
+# P* = 0.25
+
+# 95% de Confiança
+# α = 1 - 0.95 = 0.05
+
+# L_sup - L_inf = 0.1343 <=>
+# p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) - (p* - z_(1 - (α/2)) * sqrt((p* * q*) / n)) = 0.1343 <=>
+# z_(1 - (α/2)) * sqrt((p* * q*) / n) + z_(1 - (α/2)) * sqrt((p* * q*) / n)) = 0.1343 <=>
+# 2 * z_(1 - (α/2)) * sqrt((p* * q*) / n) = 0.1343 <=>
+# 2 * qnorm(1 - (0.05/2)) * sqrt((0.25 * (1 - 0.25)) / n) = 0.1343 <=>
+# 3.9199 * sqrt((0.25 * (1 - 0.25)) / n) = 0.1343 <=>
+# sqrt((0.25 * (1 - 0.25)) / n) = 0.1343 / 3.9199 <=>
+# sqrt(0.1875 / n) = 0.0343 <=>
+# 0.1875 / n = 0.0343^2 <=>
+# 0.1875 / n = 0.0343^2 <=>
+# 0.1875 / 0.0343^2 = n <=>
+# n = 0.1875 / 0.0343^2 <=>
+# n = 159.3724
+
+# n >= 160
 
 ###### c) ######
 
+# n = ?
 
+# P* = ? = 0.5
+
+# 95% de Confiança
+# α = 1 - 0.95 = 0.05
+
+# L_sup - L_inf = 0.1343 <=>
+# p* + z_(1 - (α/2)) * sqrt((p* * q*) / n) - (p* - z_(1 - (α/2)) * sqrt((p* * q*) / n)) = 0.1343 <=>
+# z_(1 - (α/2)) * sqrt((p* * q*) / n) + z_(1 - (α/2)) * sqrt((p* * q*) / n)) = 0.1343 <=>
+# 2 * z_(1 - (α/2)) * sqrt((p* * q*) / n) = 0.1343 <=>
+# 2 * qnorm(1 - (0.05/2)) * sqrt((p* * q*) / n) = 0.1343 <=>
+# 2 * 1.96 * sqrt((p* * q*) / n) = 0.1343 <=>
+# 2 * 1.96 * sqrt((p* * q*) / n) = 0.1343 <=>
+# 3.92 * sqrt((p* * q*) / n) = 0.1343 <=>
+# sqrt((p* * q*) / n) = 0.1343 / 3.92 <=>
+# sqrt((p* * q*) / n) = 0.0343 <=>
+# (p* * q*) / n = 0.0343^2 <=>
+# (p* * (1 - p*)) / n = 0.0343^2 <=>
+# p* * (1 - p*) = 0.0343^2 * n <=>
+# n = (p* * (1 - p*)) / 0.0343^2 <=>
+# n = (0.5 * (1 - 0.5)) / 0.0343^2 <=>
+# n = 0.25 / 0.0343^2 <=>
+# n = 212.4965
+
+# n >= 213
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.19 ####
 
+# Para a Proporção
 
+# I.C. a 95% de Confiança
+# α = 1 - 0.95 = 0.05
+
+# Como p* = ?, p* = 0.5
+
+# I.C.: ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
+
+# Margem de Erro = z_(1 - (α/2)) * sqrt((p* * q*) / n) = 0.04
+# Amplitude = 0.04 * 2 = 0.08
+
+# z_(1 - (α/2)) * sqrt((p* * q*) / n) = 0.04 <=>
+# qnorm(1 - (0.05/2)) * sqrt((p* * q*) / n) = 0.04 <=>
+# 1.96 * sqrt((p* * q*) / n) = 0.04 <=>
+# sqrt((p* * q*) / n) = 0.04 / 1.96 <=>
+# sqrt((p* * q*) / n) = 0.0204 <=>
+# (p* * q*) / n = 0.0204^2 <=>
+# (0.5 * (1 - 0.5)) / n = 0.0204^2 <=>
+# 0.25 / n = 0.0204^2 <=>
+# n = 0.25 / 0.0204^2 <=>
+# n = 600.7305
+
+# n >= 601
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.20 ####
 
+# Amostra:
+## n = 28000.
 
+# p* = 216 / 300 = 0.72
+
+# I.C. a 98% de Confiança
+# α = 1 - 0.98 = 0.02
+
+# I.C.: ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
+
+# p* = 0.72
+# z_(1 - (α/2)) = qnorm(1 - (0.02/2)) = 2.3263
+# sqrt((p* * q*) / n) = sqrt((0.72 * (1 - 0.72)) / 300) = 0.02592
+
+# I.C. = ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
+#      = ] 0.72 - 2.3263 * 0.02592 , 0.72 + 2.3263 * 0.02592 [
+#      = ] 0.72 - 0.0603 , 0.72 + 0.0603 [
+#      = ] 0.6597 , 0.7803 [
+
+# 0.6597 * 28000 = 18471.6 = 18472
+# 0.7803 * 28000 = 21848.4 = 21848
+
+# I.C. para amostra de 300 médicos = ] 0.6597 , 0.7803 [
+# I.C. para os 28.000 médicos = ] 18.472 , 21.848 [
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.21 ####
 
+# Amostra 1 - 2019:
+## n1 = 5000
 
+# Amostra 2 - 2009:
+## n2 = 4000
+
+# p1* = 2250 / 5000 = 0.45 (Consumidores)
+# p2* = 1750 / 4000 = 0.4375 (Consumidores)
+
+# I.C. a 98% de Confiança
+# α = 1 - 0.98 = 0.02
+
+# I.C.: ] (p1* - p2*) |-+| z_(1 - (α/2)) * sqrt(((p1* * q1*) / (n1)) + ((p2* * q2*) / (n2))) [
+
+# (p1* - p2*) = (0.45 - 0.4375) = 0.0125
+# z_(1 - (α/2)) = qnorm(1 - (0.02/2)) = 2.3263
+# sqrt(((p1* * q1*) / (n1)) + ((p2* * q2*) / (n2))) = sqrt(((0.45 * (1 - 0.45)) / 5000) + ((0.4375 * (1 - 0.4375)) / 4000)) = 0.01053677
+
+# I.C.: ] (p1* - p2*) |-+| z_(1 - (α/2)) * sqrt(((p1* * q1*) / (n1)) + ((p2* * q2*) / (n2))) [
+#      = ] 0.0125 - 2.3263 * 0.01053677 , 0.0125 + 2.3263 * 0.01053677 [
+#      = ] 0.0125 - 0.02451 , 0.0125 + 0.02451 [
+#      = ] -0.01201 , 0.03701 [
+
+# Com 98% pode-se dizer que a afirmação não é correta, uma vez que as
+# proporções podem ser consideradas iguais (o 0 pertence ao intervalo).
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.22 ####
 
+# Amostra A - Novo Medicamento:
+## na = 100
+## Curados = 75
 
+# Amostra B - Novo Placebo:
+## nb = 100
+## Curados = 65
+
+# p1* = 75 / 100 = 0.75
+# p2* = 65 / 100 = 0.65
+
+# I.C. a 95% de Confiança
+# α = 1 - 0.95 = 0.05
+
+# I.C.: ] (p1* - p2*) |-+| z_(1 - (α/2)) * sqrt(((p1* * q1*) / (n1)) + ((p2* * q2*) / (n2))) [
+
+# (p1* - p2*) = (0.75 - 0.65) = 0.1
+# z_(1 - (α/2)) = qnorm(1 - (0.05/2)) = 1.96
+# sqrt(((p1* * q1*) / (n1)) + ((p2* * q2*) / (n2))) = sqrt(((0.75 * (1 - 0.75)) / 100) + ((0.65 * (1 - 0.65)) / 100)) = 0.06442
+
+# I.C.: ] (p1* - p2*) |-+| z_(1 - (α/2)) * sqrt(((p1* * q1*) / (n1)) + ((p2* * q2*) / (n2))) [
+#      = ] 0.1 - 1.96 * 0.06442 , 0.1 + 1.96 * 0.06442 [
+#      = ] 0.1 - 0.1263 , 0.1 + 0.1263 [
+#      = ] -0.0263 , 0.2263 [
+
+# Com 95% pode-se dizer que a afirmação não é correta e que o novo
+# medicamento não é eficaz, uma vez que as proporções podem ser
+# consideradas iguais (o 0 pertence ao intervalo).
 
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.23 ####
 
-
+View(obesidade)
 
 ##### 1) #####
 
-
+# Var. Altura:
+## x̅ = mean(obesidade$Altura) = 1.7017m
+## S^2 = var(obesidade$Altura) = 0.008706m^2
 
 ##### 2) #####
 
+# I.C. a 99% de Confiança para a média
+# α = 1 - 0.99 = 0.01
 
+BSDA::z.test(
+  x = obesidade$Altura,           # Vetor com a amostra
+  sigma.x = sd(obesidade$Altura), # Desvio Padrão da Amostra
+  conf.level = 0.99               # Grau de Confiança para o teste/intervalo
+)
+
+# I.C. = ] 1.6964 , 1.7069 [
 
 ##### 3) #####
 
-
+# Margem de Erro = Amplitude / 2
+# Amplitude = max - min = 1.7069 - 1.6964 = 0.0105
+# Margem de Erro = 0.0105 / 2 = 0.00525m
 
 ##### 4) #####
 
+# Amostra 1 - Pesos Femininos:
+(amostra1_423 <- obesidade[obesidade$Genero == "Feminino",]$Peso)
 
+# Amostra 2 - Pesos Masculinos:
+(amostra2_423 <- obesidade[obesidade$Genero == "Masculino",]$Peso)
+
+# I.C. a 90% de Confiança para a Diferença de Médias
+# α = 1 - 0.90 = 0.10
+
+BSDA::z.test(
+  x = amostra1_423,            # Primeira Amostra
+  sigma.x = sd(amostra1_423),  # Desvio Padrão da Amostra 1
+  y = amostra2_423,            # Segunda Amostra
+  sigma.y = sd(amostra2_423),  # Desvio Padrão da Amostra 2
+  conf.level = 0.90            # Grau de Confiança
+)
+
+# I.C. = ] -10.325267 , -6.608962 [
+
+# Com 90% de confiança pode-se dizer que os pesos entre géneros
+# feminino e masculino não podem ser considerados iguais.
 
 ##### 5) #####
 
+remover_outliers <- function (VARIAVEL) {
+  boxplot_outliers_aux <- boxplot(
+    VARIAVEL,
+    col = "gold",
+    horizontal = TRUE,
+    main = "Extremos e Quartis - Sem Outliers",
+    xlab = "VARIAVEL",
+    type = 2,
+    range = 1.5
+  )
+  
+  outliers <- boxplot_outliers_aux$out
+  
+  sem_outliers <- VARIAVEL
+  sem_outliers <- sem_outliers[!sem_outliers %in% outliers]
+  
+  return(sem_outliers)
+}
 
+(idade_sem_outliers <- remover_outliers(obesidade$Idade))
+
+###### a) ######
+
+# I.C. a 92% de Confiança para a média
+# α = 1 - 0.92 = 0.08
+
+BSDA::z.test(
+  x = idade_sem_outliers,           # Vetor com a amostra
+  sigma.x = sd(idade_sem_outliers), # Desvio Padrão da Amostra
+  conf.level = 0.92                 # Grau de Confiança para o teste/intervalo
+)
+
+# I.C. = ] 22.7736 , 23.1156 [
+
+###### b) ######
+
+# I.C. a 95% de Confiança para a média
+# α = 1 - 0.95 = 0.05
+
+(idade_comem_sem_outliers <- remover_outliers(obesidade[obesidade$FAVC == 1,]$Idade))
+(idade_nao_comem_sem_outliers <- remover_outliers(obesidade[obesidade$FAVC == 0,]$Idade))
+
+# I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((s1^2 / n1) + (s2^2 / n2))) [
+
+BSDA::z.test(
+  x = idade_comem_sem_outliers,                # Primeira Amostra
+  sigma.x = sd(idade_comem_sem_outliers),      # Desvio Padrão da Amostra 1
+  y = idade_nao_comem_sem_outliers,            # Segunda Amostra
+  sigma.y = sd(idade_nao_comem_sem_outliers),  # Desvio Padrão da Amostra 2
+  conf.level = 0.95                            # Grau de Confiança
+)
+
+# I.C. = ] 1.6838, 2.5013 [
+
+# Com 95% de confiança pode-se dizer que, em média, há diferenças nas
+# idades das pessoas que comem habitualmente alimentos altamente calóricos
+# e das que não comem (para as amostras pedidas - sem outliers).
 
 "----------------------------------------------------------------------"
