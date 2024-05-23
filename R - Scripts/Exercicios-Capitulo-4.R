@@ -942,6 +942,13 @@ EnvStats::varTest(
 
 #### Exercicio 4.19 ####
 
+"-------- Enunciado --------"
+# Uma repórter da revista Byte deseja fazer uma pesquisa para estimar
+# a verdadeira proporção de todos os universitários que têm computador pessoal.
+# Nos seus resultados a repórter quer ter 95% de confiança e uma margem
+# de erro de 0.04. Quantos universitários devem ser pesquisados?
+"---------------------------"
+
 # Para a Proporção
 
 # I.C. a 95% de Confiança
