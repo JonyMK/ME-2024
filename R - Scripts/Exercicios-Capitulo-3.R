@@ -4,6 +4,17 @@
 
 #### Exercicio 3.1 ####
 
+
+"-------- Enunciado --------"
+#'* O peso dos indivíduos duma certa espécie de bivalves tem          *
+#'* distribuição normal de média 31g e desvio padrão 2.4g.            *
+#'* Recolhe-se uma amostra aleatória de 36 indivíduos desta espécie.  *
+#'* 1.) Qual a probabilidade da média da amostra ser inferior a 30g?  *
+#'* 2.) Qual a probabilidade da média da amostra estar compreendida   *
+#'*     entre 30g e 32g?                                              *
+"---------------------------"
+
+
 # População:
 ## Normal;
 ## μ = 31g
@@ -44,6 +55,17 @@
 
 #### Exercicio 3.2 ####
 
+
+"-------- Enunciado --------"
+#'* O tempo de espera em pista para a descolagem de cada avião no      *
+#'* aeroporto de Lisboa é uma variável aleatória com valor médio de    *
+#'* 4 minutos e desvio padrão de 2,5 minutos. Suponha que se seleciona *
+#'* ao acaso 50 aviões para se registarem os seus correspondentes      *
+#'* tempos de espera. Calcule a probabilidade da média dos tempos de   *
+#'* espera exceder os 5 minutos.                                       *
+"---------------------------"
+
+
 # População:
 ## X - Tempo de Descolagem
 ## μ = 4
@@ -69,6 +91,16 @@
 
 #### Exercicio 3.3 ####
 
+
+"-------- Enunciado --------"
+#'* Sabe-se que a idade de determinada camada do subsolo segue uma      *
+#'* distribuição Normal com média de 0.5 milhões de anos e um desvio    *
+#'* padrão de 20000 anos. Selecionadas ao acaso 10 amostras de subsolo, *
+#'* calcule a probabilidade da média amostral das suas idades ser       *
+#'* superior a 490000 anos.                                             *
+"---------------------------"
+
+
 # População Normal;
 ## μ = 500 000 anos
 ## σ =  20 000 anos
@@ -92,6 +124,22 @@
 "----------------------------------------------------------------------"
 
 #### Exercicio 3.4 ####
+
+
+"-------- Enunciado --------"
+#'* A duração das chamadas recebidas na central telefônica de uma    *
+#'* determinada empresa tem distribuição normal com média de 17      *
+#'* minutos e desvio padrão de 5 minutos.                            *
+#'* 1.) Determine a probabilidade de numa amostra aleatória de 100   *
+#'*     chamadas, a duração média se situar entre os 16 minutos e    *
+#'*     os 18 minutos.                                               *
+#'* 2.) Se a população não fosse normal, qual seria a probabilidade  *
+#'*     da alínea anterior?                                          *
+#'* 3.) Qual o tamanho da amostra aleatória a recolher para que não  *
+#'*     seja superior a 5% a probabilidade da média da amostra       *
+#'*     diferir da média da população por mais de 5 minutos?         *
+"---------------------------"
+
 
 # População:
 ## Normal;
@@ -177,6 +225,16 @@
 
 #### Exercicio 3.5 ####
 
+
+"-------- Enunciado --------"
+#'* Admita-se uma população Normal com parâmetros desconhecidos.  *
+#'* Selecionou-se ao acaso uma amostra de dimensão 20 da qual     *
+#'* resultou uma variância igual a 5. Calcule a probabilidade da  *
+#'* média amostral ser inferior à média populacional em mais de   *
+#'* 1.43 unidades.                                                *
+"---------------------------"
+
+
 # População:
 ## Normal;
 ## μ e σ Desconhecidos
@@ -201,6 +259,18 @@
 "----------------------------------------------------------------------"
 
 #### Exercicio 3.6 ####
+
+
+"-------- Enunciado --------"
+#'* O tempo X de reparação de um certo tipo de avaria, numa dada      *
+#'* gama de computadores, tem distribuição exponencial de média       *
+#'* 10 dias. Para controlar o processo de reparação por forma a       *
+#'* melhorar o desempenho e diminuir o tempo de espera dos clientes,  *
+#'* foi recolhida uma amostra aleatória de 49 registos de tempos      *
+#'* de reparação (X1, . . ., X49). Calcule a probabilidade do tempo   *
+#'* de reparação médio da amostra ser superior a 8.                   *
+"---------------------------"
+
 
 # X - Tempo de reparação de um certo tipo de avaria, em dias.
 # X ~ Exp(10)
@@ -234,6 +304,26 @@
 "----------------------------------------------------------------------"
 
 #### Exercicio 3.7 ####
+
+
+"-------- Enunciado --------"
+#'* Sabe-se que o nível de colesterol no sangue está dependente,         *
+#'* entre outras coisas, da idade das pessoas. Considere a               *
+#'* população desses níveis de colesterol em adultos com idades          *
+#'* superiores a 15 anos, que se sabe ter distribuição Normal de         *
+#'* valor médio 275 mg/dl de sangue e desvio padrão 100 mg/dl,           *
+#'* da qual se vai retirar uma amostra de dimensão 25. Considere         *
+#'* ainda a população das crianças com idades inferiores a 15 anos,      *
+#'* que se sabe ter uma distribuição Normal de valor médio 180 mg/dl     *
+#'* de sangue e desvio padrão 40 mg/dl, da qual se vai retirar uma       *
+#'* amostra de dimensão 20, independente da anterior.                    *
+#'* Representando por X1 e X2 as médias das amostras atrás indicadas,    *
+#'* respetivamente, calcule a probabilidade de:                          *
+#'* 1.) X1 ser superior a 250 mg/dl de sangue.                           *
+#'* 2.) X1 ser superior a X2.                                            *
+#'* 3.) X1 - X2 estar compreendido entre 35 mg/dl e 155 mg/dl de sangue. *
+"---------------------------"
+
 
 # População 1 - Nivel de colestrol no sangue de pessoas com idade > 15.
 # População 2 - Nivel de colestrol no sangue de pessoas com idade < 15.
@@ -318,6 +408,29 @@
 
 #### Exercicio 3.8 ####
 
+
+"-------- Enunciado --------"
+#'* Suponha que temos duas populações de indivíduos, a população 1      *
+#'* e a população 2. A população 1 é composta por clientes de uma       *
+#'* agência de um banco na região central de uma cidade e a             *
+#'* população 2 é composta por clientes de uma agência do mesmo         *
+#'* banco num bairro periférico da cidade. Um executivo do banco        *
+#'* está desconfiado de que as duas populações de clientes possuem      *
+#'* gastos mensais médios com cartão de crédito diferentes, acha que    *
+#'* os clientes da agência central gastam mais que os clientes da       *
+#'* agência periférica. Do que o executivo conhece das distribuições    *
+#'* de gastos mensais com cartão de crédito dos clientes das duas       *
+#'* agências, habitualmente é assumido que elas são aproximadamente     *
+#'* normais com médias e desvios padrão idênticos. Com base em duas     *
+#'* amostras aleatórias independentes de 15 clientes retirados das      *
+#'* duas populações, obtiveram-se como desvios padrão amostrais 182€    *
+#'* em relação à amostra da agência central e 165€ em relação à         *
+#'* amostra da agência periférica. Qual a probabilidade do executivo    *
+#'* obter uma média amostral da agência central que ultrapasse a média  *
+#'* amostral da agência da periferia em mais de 130€ ?                  *
+"---------------------------"
+
+
 # População:
 ## Ambas Normais
 ## σ1 e σ2 Idênticos e Desconhecidos
@@ -345,6 +458,16 @@
 
 #### Exercicio 3.9 ####
 
+
+"-------- Enunciado --------"
+#'* Numa fábrica que produz cabos elétricos, sabe-se que a proporção    *
+#'* de cabos defeituosos é de 0.45. Suponha que se pretende selecionar  *
+#'* uma amostra aleatória de 500 cabos dessa fábrica. Qual a            *
+#'* probabilidade da proporção de cabos defeituosos que vão calhar na   *
+#'* amostra exceder 0.5?                                                *
+"---------------------------"
+
+
 # População:
 ## Desconhecida/Qualquer;
 ## p = 0.45.
@@ -368,6 +491,16 @@
 "----------------------------------------------------------------------"
 
 #### Exercicio 3.10 ####
+
+
+"-------- Enunciado --------"
+#'* Suponha que está em presença de duas populações Binomiais onde    *
+#'* p1 = 0.6 e p2 = 0.5. Se se retirar da primeira população uma      *
+#'* amostra de 50 observações e da segunda uma amostra com 40         *
+#'* observações, qual a probabilidade de que o desvio entre as duas   *
+#'* proporções amostrais seja, em valor absoluto, superior a 0.2?     *
+"---------------------------"
+
 
 # População 1:
 ## Binomial;
@@ -399,6 +532,14 @@
 
 #### Exercicio 3.11 ####
 
+
+"-------- Enunciado --------"
+#'* De uma população Normal de variância 64, tomou-se uma amostra   *
+#'* aleatória de dimensão 16. Qual a probabilidade da variância     *
+#'* amostral exceder 78?                                            *
+"---------------------------"
+
+
 # População:
 ## Normal;
 ## σ^2 = 64;
@@ -421,6 +562,14 @@
 "----------------------------------------------------------------------"
 
 #### Exercicio 3.12 ####
+
+
+"-------- Enunciado --------"
+#'* Numa população Normal de média desconhecida e desvio padrão 5,     *
+#'* calcule a probabilidade da variância de uma amostra aleatória de   *
+#'* dimensão 20 dessa população estar compreendida entre 24.1 e 50.8.  *
+"---------------------------"
+
 
 # População:
 ## Normal;
@@ -459,6 +608,14 @@
 
 #### Exercicio 3.13 ####
 
+
+"-------- Enunciado --------"
+#'* Recolheu-se uma amostra de dimensão 6 de uma população Normal         *
+#'* com média μ e desvio padrão σ. Determine a probabilidade da           *
+#'* variância da amostra ser inferior a 3 vezes a variância da população. *
+"---------------------------"
+
+
 # População:
 ## Normal;
 ## μ = Desconhecida;
@@ -481,6 +638,20 @@
 "----------------------------------------------------------------------"
 
 #### Exercicio 3.14 ####
+
+
+"-------- Enunciado --------"
+#'* Admita a existência de duas populações nas quais são definidas   *
+#'* duas variáveis aleatórias X1 ~ N(μ1, 4) e X2 ~ N(μ2, 4) tal que  *
+#'* μ1 - μ2 = -2.                                                    *
+#'* Considere que se obtêm duas amostras aleatórias independentes,   *
+#'* uma de cada população, com 9 e 16 elementos, respectivamente.    *
+#'* 1.) Qual a probabilidade da média da segunda amostra exceder a   *
+#'*     média da primeira em mais de 3 unidades?                     *
+#'* 2.) Qual a probabilidade da variância da primeira amostra        *
+#'*     ultrapassar o quádruplo da variância da segunda amostra?     *
+"---------------------------"
+
 
 # População 1:
 ## Normal;
