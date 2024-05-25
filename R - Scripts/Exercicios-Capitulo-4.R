@@ -559,7 +559,7 @@ BSDA::z.test(
 #'* 10 doentes com enfarte do miocárdio foram submetidos a uma prova       *
 #'* de esforço antes e depois do programa. Os resultados, expressos        *
 #'* em batimentos por minuto, estão na tabela seguinte:                    *
-#' * _____________________________________________________________________ *
+#'*  _____________________________________________________________________ *
 #'* |Doente: |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  10 | *
 #'* |--------------------------------------------------------------------- *
 #'* |Antes : | 147 | 122 | 127 | 141 | 150 | 132 | 157 | 147 | 157 | 155 | *
