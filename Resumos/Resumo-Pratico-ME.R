@@ -873,7 +873,7 @@ BSDA::z.test(
 # σ1 e σ2 Conhecidos;
 # Amostras Independentes.
 # D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((σ1^2 / n1) + (σ2^2 / n2))) ~ N(0, 1)
-# I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((σ1^2 / n1) + (σ2^2 / n2))) [
+# I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((σ1^2 / n1) + (σ2^2 / n2)) [
 # BSDA::z.test()
 BSDA::z.test(
   x = VARIAVEL_1,                 # Primeira Amostra
