@@ -4,6 +4,24 @@
 
 #### Exercicio 4.1 ####
 
+
+"-------- Enunciado --------"
+#'* Seja X uma população com distribuição normal de média μ e desvio  *
+#'* padrão igual a 2. Uma amostra aleatória de dimensão n = 25 foi    *
+#'* extraída desta população e revelou uma média x̅ = 78.3.           *
+#'* 1.) Calcule o intervalo de confiança para μ a 99%.                *
+#'* 2.) Qual a amplitude do intervalo de confiança a 99% para μ?      *
+#'* 3.) Qual a margem de erro do intervalo de confiança a 99% para μ? *
+#'* 4.) Qual deverá ser a dimensão da amostra para que a amplitude    *
+#'*     do intervalo de confiança a 99% para μ não exceda os 0.1?     *
+#'* 5.) Calcule o intervalo de confiança a 95% para μ.                *
+#'* 6.) Qual o efeito de variar o grau de confiança?                  *
+#'* 7.) Qual deverá ser a dimensão da amostra para que a amplitude    *
+#'*     do intervalo de confiança a 95% para μ não exceda os 0.1?     *
+#'*     E a 99.9% de confiança? Interprete os resultados.             *
+"---------------------------"
+
+
 ##### 1) #####
 
 ## I.C. para a μ a 99%
@@ -77,6 +95,31 @@
 
 #### Exercicio 4.2 ####
 
+
+"-------- Enunciado --------"
+#'* Certo equipamento de empacotamento automático, encontra-se        *
+#'* regulado para encher embalagens de um quilo de certo produto.     *
+#'* O seu deficiente funcionamento origina prejuízo para a empresa:   *
+#'* se a maioria das embalagens tem peso inferior ao estabelecido,    *
+#'* haverá reclamações por parte dos clientes e perda de prestígio;   *
+#'* peso excessivo será, por outro lado, antieconômico. Aceita-se da  *
+#'* experiência passada que o peso das embalagens se comporta         *
+#'* normalmente com desvio padrão de 12 gramas. Para verificar a      *
+#'* afinação do equipamento, selecionaram-se em determinada altura,   *
+#'* nove embalagens cujos pesos exatos (em gramas) foram anotados:    *
+#'* (983, 992, 1011, 976, 997, 1000, 1004, 983, 998).                 *
+#'* 1.) Calcule uma estimativa pontual para a média da população.     *
+#'* 2.) Construa um intervalo de confiança para μ com os seguintes    *
+#'*     graus de confiança: 90%, 95% e 99%. Como varia a precisão do  *
+#'*     intervalo (a sua amplitude) com a confiança escolhido?        *
+#'* 3.) Com base nos intervalos de confiança calculados na alínea     *
+#'*     anterior, acha que a máquina está regulada?                   *
+#'* 4.) Num intervalo de confiança a 95% para a média da população,   *
+#'*     qual deverá ser o tamanho da amostra a recolher para que a    *
+#'*     margem de erro não seja superior a 1?                         *
+"---------------------------"
+
+
 # População:
 ## Normal
 ## σ = 12g
@@ -123,6 +166,23 @@ BSDA::z.test(
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.3 ####
+
+
+"-------- Enunciado --------"
+#'* A distância percorrida por um avião, desde o contato com o solo   *
+#'* até à imobilização total, é uma variável aleatória X com          *
+#'* distribuição normal. Os valores para X, numa série de 31          *
+#'* aterrissagens, foram compilados e são apresentados de seguida     *
+#'* (valores em milhares de metros):                                  *
+#'*  Σ(xi) = 54.3                                                     *
+#'*  Σ(xi^2) = 95.57^2                                                *
+#'* 1.) Calcule estimativas pontuais para a média e variância da      *
+#'*     população.                                                    *
+#'* 2.) Determine um intervalo de confiança a 99% para a média.       *
+#'*     Acha que é possível efetuar uma aterragem segura numa pista   *
+#'*     com menos de 1500 metros? Justifique.                         *
+"---------------------------"
+
 
 # X - Distância percorrida por um avião em milhares de metros,
 #     desde o contacto com o solo até à imobilização total.
@@ -173,6 +233,29 @@ BSDA::z.test(
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.4 ####
+
+
+"-------- Enunciado --------"
+#'* Com a finalidade de estimar o peso médio (em quilos) das crianças *
+#'* de 15 anos de idade em determinada região geográfica,             *
+#'* selecionaram-se aleatoriamente 10 crianças que forneceram os      *
+#'* seguintes dados: (33.1, 32.1, 40.9, 37.1, 37.7, 35.1, 30.2, 45.6, *
+#'* 27.8, 37.3). Admita a normalidade.                                *
+#'* 1.) Calcule estimativas para a média e o desvio padrão do peso    *
+#'*     das crianças.                                                 *
+#'* 2.) Determine um intervalo de confiança a 99% para o peso médio   *
+#'*     de todas as crianças.                                         *
+#'* 3.) Considerando que a estimativa para o peso médio não é         *
+#'*     suficientemente precisa, dado que o intervalo de confiança    *
+#'*     é demasiado amplo, o que sugere fazer para diminuir a         *
+#'*     amplitude do intervalo de confiança?                          *
+#'* 4.) Considerando que a estimativa para o peso médio não é         *
+#'*     suficientemente precisa (dado que o intervalo de confiança    *
+#'*     é demasiado grande), qual deve ser a dimensão da amostra a    *
+#'*     recolher de modo a obter uma amplitude de 3 quilos com um     *
+#'*     grau de confiança de 99%?                                     *
+"---------------------------"
+
 
 (amostra_44 <- c(
   33.1, 32.1, 40.9, 37.1, 37.7, 35.1, 30.2, 45.6, 27.8, 37.3
@@ -257,6 +340,23 @@ t.test(
 
 #### Exercicio 4.5 ####
 
+
+"-------- Enunciado --------"
+#'* Considere uma população normal com parâmetros desconhecidos, de   *
+#'* onde se obteve uma amostra aleatória com 16 observações, que      *
+#'* permitiu construir o seguinte intervalo de confiança para a       *
+#'* média da população: ] 7.05 , 12.95 [.                             *
+#'* 1.) Determine a média amostral.                                   *
+#'* 2.) Sabendo que, com a informação da amostra, se obteve s = 4,    *
+#'*     qual o grau de confiança que pode atribuir ao intervalo       *
+#'*     referido?                                                     *
+#'* 3.) Suponha que a variância da população é 44. Se pretender       *
+#'*     construir um intervalo de confiança a 95% para a média da     *
+#'*     população, cuja amplitude não exceda 3.5, qual deverá ser a   *
+#'*     dimensão da amostra a considerar?                             *
+"---------------------------"
+
+
 # População:
 ## Normal;
 ## Parâmetros Desconhecidos.
@@ -329,6 +429,26 @@ t.test(
 
 #### Exercicio 4.6 ####
 
+
+"-------- Enunciado --------"
+#'* A concentração ativa de um ingrediente num detergente líquido é   *
+#'* supostamente afetada pelo catalisador usado no processo. O desvio *
+#'* padrão da concentração ativa é 3 gramas/litro independentemente   *
+#'* do catalisador utilizado, sendo o comportamento do processo       *
+#'* normal. Foram recolhidas 10 observações cada uma com o seu        *
+#'* catalisador:                                                      *
+#'* Catalisador 1: 57.9, 66.2, 65.4, 65.2, 62.6, 67.6, 63.7, 67.2,    *
+#'*                71.0, 65.4                                         *
+#'* Catalisador 2: 66.4, 71.7, 70.3, 69.3, 64.8, 69.6, 68.6, 69.4,    *
+#'*                65.3, 68.8                                         *
+#'* 1.) As amostra são independentes ou emparelhadas?                 *
+#'* 2.) Determine um intervalo de confiança a 95% para a diferença    *
+#'*     de médias dos dados obtidos pelos dois catalisadores. Em      *
+#'*     média, os dados obtidos pelos dois catalisadores podem ser    *
+#'*     considerados iguais?                                          *
+"---------------------------"
+
+
 # População 1:
 ## Normal;
 ## σ1 = 3.
@@ -378,6 +498,21 @@ BSDA::z.test(
 
 #### Exercicio 4.7 ####
 
+
+"-------- Enunciado --------"
+#'* Pretende-se investigar o nível de remuneração salarial dos homens *
+#'* e mulheres de certa categoria profissional. De duas amostras      *
+#'* obtidas entre dois grupos, destacam-se os seguintes resultados    *
+#'* (em unidades monetárias):                                         *
+#'* Amostra de 250 homens:    x̅1 = 33.8 | s1^2 = 5.7                 *
+#'* Amostra de 150 mulheres:  x̅2 = 31   | s2^2 = 10.3                *
+#'* Construa um intervalo de confiança a 99% para as diferenças       *
+#'* salariais médias entre os dois géneros e conclua sobre a possível *
+#'* existência de discriminação de género na atribuição de            *
+#'* remunerações.                                                     *
+"---------------------------"
+
+
 # Populações:
 ## Desconhecidas/Quaisquer;
 ## Parâmetros Desconhecidos.
@@ -417,6 +552,28 @@ BSDA::z.test(
 
 #### Exercicio 4.8 ####
 
+
+"-------- Enunciado --------"
+#'* Deseja-se saber se um programa de reabilitação após enfarte de         *
+#'* miocárdio diminui a frequência cardíaca de esforçlo. Para tal,         *
+#'* 10 doentes com enfarte do miocárdio foram submetidos a uma prova       *
+#'* de esforço antes e depois do programa. Os resultados, expressos        *
+#'* em batimentos por minuto, estão na tabela seguinte:                    *
+#' * _____________________________________________________________________ *
+#'* |Doente: |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  10 | *
+#'* |--------------------------------------------------------------------- *
+#'* |Antes : | 147 | 122 | 127 | 141 | 150 | 132 | 157 | 147 | 157 | 155 | *
+#'* |--------------------------------------------------------------------- *
+#'* |Depois: | 132 | 117 | 142 | 124 | 116 | 130 | 122 | 118 | 135 | 117 | *
+#'*  ̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅ *
+#'* Suponha que a variável em estudo segue uma distribuição normal.        *
+#'* 1.) As amostra são independentes ou emparelhadas?                      *
+#'* 2.) Recorrendo a um intervalo de confiança a 95% para a                *
+#'*     diferença média, indique se acha que o programa de                 *
+#'*     reabilitação foi eficaz.                                           *
+"---------------------------"
+
+
 # População Normal;
 # Amostras Emparelhadas;
 # n = 10.
@@ -450,6 +607,28 @@ t.test(
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.9 ####
+
+
+"-------- Enunciado --------"
+#'* Foi estudado o grau de satisfação (medido por questionário) de    *
+#'* vários utentes de uma clínica dentária antes e depois de lhes     *
+#'* ser aplicada uma nova prótese total removível. Os resultados,     *
+#'* expressos em grau de satisfação, foram os apresentados na         *
+#'* tabela seguinte:                                                  *
+#'* Suponha que o grau de satisfação segue uma distribuição normal.   *
+#' * _________________________________________________                *
+#'* |Utente: |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |                *
+#'* |-------------------------------------------------                *
+#'* |Antes : |  4 | 10 |  8 | 13 |  7 |  3 | 15 |  7 |                *
+#'* |-------------------------------------------------                *
+#'* |Depois: |  4 | 16 | 11 | 17 | 17 |  4 | 18 | 11 |                *
+#'*  ̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅                *
+#'* 1.) Estas amostras podem ser consideradas independentes?          *
+#'* 2.) Recorrendo a um intervalo de confiança a 99% para a diferença *
+#'*     média, indique se a aplicação da nova prótese influenciou o   *
+#'*     grau de satisfação dos utentes.                               *
+"---------------------------"
+
 
 # População Normal;
 # Amostras Emparelhadas;
@@ -485,6 +664,26 @@ t.test(
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.10 ####
+
+
+"-------- Enunciado --------"
+#'* Para comparar a eficiência de dois métodos de ensino, uma turma   *
+#'* de 24 alunos foi dividida aleatoriamente em dois grupos. Cada     *
+#'* grupo é ensinado de acordo com um método diferente. Os resultados *
+#'* no fim do semestre são os seguintes (numa escala de 0 a 100):     *
+#'* 1º Grupo: n1 = 13  |  x̅1 = 74.5  |  S1^2 = 82.6                  *
+#'* 2º Grupo: n2 = 11  |  x̅2 = 71.8  |  Σ(x2i - x̅2)^2 = 1126        *
+#'* Supondo que as populações são normais (com variâncias iguais),    *
+#'* obteve-se o seguinte intervalo de confiança para a diferença      *
+#'* entre os valores esperados das duas populações: ]−5.635, 11.035[. *
+#'* 1.)  Indique qual o grau de confiança utilizado no cálculo deste  *
+#'*      intervalo.                                                   *
+#'* 2.) Com base num intervalo de confiança a 90% acha que, em média, *
+#'*     os métodos de ensino podem ser considerados iguais?           *
+#'* 3.) Com base num intervalo de confiança a 90% verifique se a      *
+#'*     suposição das variâncias serem iguais é válida.               *
+"---------------------------"
+
 
 # Populações:
 ## Normais;
@@ -576,6 +775,28 @@ t.test(
 
 #### Exercicio 4.11 ####
 
+
+"-------- Enunciado --------"
+#'* Duas marcas de comprimidos, um deles contendo aspirina, são       *
+#'* anunciados como fazendo desaparecer a dor de cabeça em tempo      *
+#'* recorde. Foram feitas experiências com cada um deles, tendo-se    *
+#'* obtido duas amostras aleatórias independentes, cujos resultados   *
+#'* (tempo em minutos) foram os seguintes:                            *
+#'* Comprimido 1 (com aspirina): 9.6; 9.4; 9.3; 11.2; 11.4; 12.1;     *
+#'*                              10.4; 9.6; 10.2; 8.8; 13.0           *
+#'* Comprimido 2 (com aspirina): 11.4; 12.1; 10.4; 9.6; 8.5; 9.7;     *
+#'*                              12.3; 12.4; 10.8; 10.8               *
+#'* Admita que as populações são normais e que os desvios padrão são  *
+#'* iguais.                                                           *
+#'* 1.) Construa um intervalo de confiança a 95% para a verdadeira    *
+#'*     diferença das médias das respostas aos dois medicamentos.     *
+#'*     Acha que, em média, as respostas dos dois medicamentos podem  *
+#'*     ser consideradas iguais?                                      *
+#'* 2.) Com base num intervalo de confiança a 95% verifique se a      *
+#'*     suposição dos desvios padrão serem iguais é válida.           *
+"---------------------------"
+
+
 # Populações Normais;
 # σ1 = σ2;
 # Amostras Independentes.
@@ -640,6 +861,19 @@ var.test(
 
 #### Exercicio 4.12 ####
 
+
+"-------- Enunciado --------"
+#'* Obtém-se uma amostra de 15 crânios de homens egípcios que viveram *
+#'* por volta de 1850ac. Mede-se a largura máxima de cada crânio, e   *
+#'* obtiveram-se da amostra uma média de 134.5 mm e um desvio padrão  *
+#'* de 3.5 mm (com base em dados de Ancient Races of Thebaid, por     *
+#'* Thomson e RandallMaciver ). Suponha que a largura máxima dos      *
+#'* crânios tem um comportamento normal. Com esses dados amostrais,   *
+#'* construa um intervalo de 95% de confiança para o desvio padrão    *
+#'* populacional.                                                     *
+"---------------------------"
+
+
 # População:
 ## Normal.
 
@@ -668,6 +902,18 @@ var.test(
 
 #### Exercicio 4.13 ####
 
+
+"-------- Enunciado --------"
+#'* Pretende-se estudar a variabilidade do tempo de espera (em        *
+#'* minutos) de clientes num dado banco, onde os clientes entram      *
+#'* numa fila única. Suponha que o tempo de espera segue uma          *
+#'* distribuição normal. Construa um intervalo de 95% de confiança    *
+#'* para o desvio padrão populacional sabendo que se recolheu a       *
+#'* seguinte amostra:                                                 *
+#'* (6.5; 6.6; 6.7; 6.8; 7.1; 7.3; 7.4; 7.7; 7.7; 7.7).               *
+"---------------------------"
+
+
 # População:
 ## Normal.
 
@@ -691,6 +937,15 @@ EnvStats::varTest(
 
 #### Exercicio 4.14 ####
 
+
+"-------- Enunciado --------"
+#'* Considere-se a seguinte amostra de uma população cuja             *
+#'* distribuição é Normal: (9; 14; 10; 12; 7; 3; 11; 12).             *
+#'* Nestas condições, construa o intervalo de confiança a 99% mais    *
+#'* adequado para a variância dessa população.                        *
+"---------------------------"
+
+
 # População:
 ## Normal.
 
@@ -711,6 +966,20 @@ EnvStats::varTest(
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.15 ####
+
+
+"-------- Enunciado --------"
+#'* Durante uma avaliação de desempenhos das escolas A e B, sugeriu-se *
+#'* que a escola A tinha uma maior variabilidade que a escola B em     *
+#'* termos das notas finais dos alunos. Fizeram-se 16 registos de      *
+#'* classificações para a escola A e 21 registos de classificações     *
+#'* para a escola B conduzindo às variâncias de 6.62 e 3.80,           *
+#'* respetivamente. Suponha que as populações em estudo têm um         *
+#'* comportamento normal. Construa um intervalo de confiança a 90%     *
+#'* para a razão das verdadeiras variâncias e diga se a variabilidade  *
+#'* das escolas pode ser considerada diferente.                        *
+"---------------------------"
+
 
 # Populações Normais.
 
@@ -743,6 +1012,15 @@ EnvStats::varTest(
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.16 ####
+
+
+"-------- Enunciado --------"
+#'* Numa região afetada por um surto epidémico, observou-se uma       *
+#'* amostra de 2500 indivíduos, tendo-se encontrado 850 contaminados. *
+#'* Determine intervalos de confiança a 95% e 98% de confiança para a *
+#'* proporção de contaminados na população.                           *
+"---------------------------"
+
 
 # Amostra:
 ## n = 2500
@@ -784,6 +1062,23 @@ EnvStats::varTest(
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.17 ####
+
+
+"-------- Enunciado --------"
+#'* Num estudo de mercado efetuado sobre uma amostra aleatória de     *
+#'* 400 consumidores, foi encontrado o seguinte intervalo de          *
+#'* confiança para a proporção de pessoas recetivas a um novo tipo    *
+#'* de espuma de banho a lançar em breve no mercado: ]0.5114, 0.6086[ *
+#'* 1.) Em relação à amostra recolhida, qual foi a percentagem de     *
+#'*     pessoas recetivas a um novo tipo de espuma de banho?          *
+#'* 2.) Mostre que o grau de confiança considerado no intervalo       *
+#'*     calculado é de 95%.                                           *
+#'* 3.) Comente as seguintes afirmações, indicando se estas lhe       *
+#'*     parecem corretas ou incorretas:                               *
+#'*  a.) 95% das pessoas vão passar a usar a nova espuma de banho.    *
+#'*  b.) A quota de mercado poderá ser, com 95% de confiança, de 56%. *
+"---------------------------"
+
 
 # Amostra:
 ## n = 400
@@ -834,6 +1129,27 @@ EnvStats::varTest(
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.18 ####
+
+
+"-------- Enunciado --------"
+#'* Recolheu-se uma amostra de 40 alunos do 1.o ano da ESTSetúbal     *
+#'* tendo-se verificado que 10 destes alunos frequentam os cursos que *
+#'* escolheram em primeira opção.                                     *
+#'* 1.) Calcule um intervalo de confiança a 95%, para a verdadeira    *
+#'*     proporção de estudantes que está no curso que escolheu em     *
+#'*     primeira opção.                                               *
+#'* 2.) Se pretendesse reduzir a metade a amplitude do intervalo      *
+#'*     anterior:                                                     *
+#'*  a.) e manter a dimensão da amostra, qual o grau de confiança que *
+#'*      deveria utilizar?                                            *
+#'*  b.) e manter o grau de confiança, qual a dimensão da amostra que *
+#'*      deveria utilizar? Suponha que não há alteração na estimativa *
+#'*      da proporção.                                                *
+#'*  c.) e manter o grau de confiança, qual a dimensão da amostra que *
+#'*      deveria utilizar? Suponha que não conhece estimativas da     *
+#'*      proporção.                                                   *
+"---------------------------"
+
 
 # Amostra:
 ## n = 40
@@ -942,12 +1258,15 @@ EnvStats::varTest(
 
 #### Exercicio 4.19 ####
 
+
 "-------- Enunciado --------"
-# Uma repórter da revista Byte deseja fazer uma pesquisa para estimar
-# a verdadeira proporção de todos os universitários que têm computador pessoal.
-# Nos seus resultados a repórter quer ter 95% de confiança e uma margem
-# de erro de 0.04. Quantos universitários devem ser pesquisados?
+#'* Uma repórter da revista Byte deseja fazer uma pesquisa para    *
+#'* estimar a verdadeira proporção de todos os universitários      *
+#'* que têm computador pessoal. Nos seus resultados a repórter     *
+#'* quer ter 95% de confiança e uma margem de erro de 0.04.        *
+#'* Quantos universitários devem ser pesquisados?                  *
 "---------------------------"
+
 
 # Para a Proporção
 
@@ -978,6 +1297,17 @@ EnvStats::varTest(
 
 #### Exercicio 4.20 ####
 
+
+"-------- Enunciado --------"
+#'* Pretende-se estimar o número total de médicos que trabalham numa  *
+#'* certa cidade e estão associados a planos de saúde. Para isso      *
+#'* recolheu-se uma amostra aleatória com 300 médicos dessa cidade e  *
+#'* apurou-se que entre eles 216 se enquadram nessa condição. Obtenha *
+#'* um intervalo de confiança a 98% para a sua estimativa, sabendo    *
+#'* que o número total de médicos na cidade é 28000.                  *
+"---------------------------"
+
+
 # Amostra:
 ## n = 28000.
 
@@ -1006,6 +1336,26 @@ EnvStats::varTest(
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.21 ####
+
+
+"-------- Enunciado --------"
+#'* Dois inquéritos realizados (em 2009 e 2019), relativamente ao     *
+#'* consumo de bebidas alcoólicas, em idades entre os 15 e os 35      *
+#'* anos, forneceram os seguintes dados:                              *
+#' * ____________________________________________________________     *
+#'* | Ano: | Nº de Inquiridos | Consumidores | Não Consumidores |     *
+#'* |------------------------------------------------------------     *
+#'* | 2009 |       4000       |     1750     |       2250       |     *
+#'* |------------------------------------------------------------     *
+#'* | 2019 |       5000       |     2250     |       2750       |     *
+#'*  ̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅     *
+#'* Através de um intervalo de confiança, a 98%, indique a veracidade *
+#'* da afirmação:                                                     *
+#'*  ”A percentagem de consumidores de bebidas alcoólicas, em         *
+#'*  indivíduos com idades compreendidas entre os 15 e os 35 anos,    *
+#'*  registou um grande aumento na década analisada.”                 *
+"---------------------------"
+
 
 # Amostra 1 - 2019:
 ## n1 = 5000
@@ -1036,6 +1386,20 @@ EnvStats::varTest(
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.22 ####
+
+
+"-------- Enunciado --------"
+#'* Com o objetivo de verificar o efeito de um novo medicamento no     *
+#'* tratamento de uma dada doença, dois grupos, A e B, foram formados, *
+#'* cada um composto por 100 indivíduos que apresentavam a tal doença, *
+#'* estando todos eles no mesmo estágio da mesma. O grupo A recebeu o  *
+#'* novo medicamento e o grupo B recebeu um placebo. Curaram-se da     *
+#'* doença 75 pessoas no grupo A e 65 no grupo B. É possível afirmar   *
+#'* que o novo medicamento é eficaz no tratamento da doença?           *
+#'* Justifique a sua resposta recorrendo a um intervalo de confiança   *
+#'* a 95%.                                                             *
+"---------------------------"
+
 
 # Amostra A - Novo Medicamento:
 ## na = 100
@@ -1069,6 +1433,27 @@ EnvStats::varTest(
 "----------------------------------------------------------------------"
 
 #### Exercicio 4.23 ####
+
+
+"-------- Enunciado --------"
+#'* No ficheiro ”Obesidade” tem as respostas a um inquérito efetuado  *
+#'* num estudo sobre obesidade a um grupo de indivíduos obesos.       *
+#'* 1.) Calcule estimativas pontuais para a altura média e para a     *
+#'*     variância das alturas.                                        *
+#'* 2.) Calcule um intervalo de confiança a 99% para a altura média.  *
+#'* 3.) Qual a margem de erro do intervalo da alínea anterior?        *
+#'* 4.) Recorrendo a um intervalo de confiança a 90%, acha que,       *
+#'*     em média, os pesos do género feminino podem ser considerados  *
+#'*     iguais aos pesos do género masculino? Justifique.             *
+#'* 5.) Remova os ”outliers” existentes nos dados referentes à Idade. *
+#'*     Com os dados sem ”outliers”:                                  *
+#'*  a.) calcule um intervalo de confiança a 92% para a idade média.  *
+#'*  b.) recorrendo a um intervalo de confiança a 95%, acha que,      *
+#'*      em média, há diferenças na idade das pessoas que comem       *
+#'*      habitualmente alimentos altamente calóricos e os que não     *
+#'*      comem? Justifique.                                           *
+"---------------------------"
+
 
 View(obesidade)
 
