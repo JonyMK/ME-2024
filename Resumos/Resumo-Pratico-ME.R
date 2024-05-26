@@ -904,7 +904,7 @@ t.test(
 # σ1 != σ2;
 # Amostras Independentes/Emparelhadas.
 # D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2))) ~ t(gl2)
-# I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); gl2) * sqrt((s1^2 / n1) + (s2^2 / n2))) [
+# I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); gl2) * sqrt((s1^2 / n1) + (s2^2 / n2)) [
 ## gl2 ~=~ ((s1^2 / n1) + (s2^2 / n2))^2 / ((s1^4 / (n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1))))
 ## Para gl2: Considera-se o inteiro mais próximo ou faz-se a correção de Welch-Satterthwaite.
 # t.test()
@@ -921,7 +921,7 @@ t.test(
 # Amostras Independentes;
 # n1 e n2 >= 30.
 # D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((σ1^2 / n1) + (σ2^2 / n2))) ~ N(0, 1)
-# I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((σ1^2 / n1) + (σ2^2 / n2))) [
+# I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((σ1^2 / n1) + (σ2^2 / n2)) [
 # BSDA::z.test()
 BSDA::z.test(
   x = VARIAVEL_1,                 # Primeira Amostra
@@ -936,7 +936,7 @@ BSDA::z.test(
 # Amostras Independentes;
 # n1 e n2 >= 30.
 # D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2))) ~ N(0, 1)
-# I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((s1^2 / n1) + (s2^2 / n2))) [
+# I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((s1^2 / n1) + (s2^2 / n2)) [
 # BSDA::z.test()
 BSDA::z.test(
   x = VARIAVEL_1,                 # Primeira Amostra
@@ -1164,6 +1164,8 @@ KendallTauB(as.matrix(TABELA_CONTINGENCIA))
 #### Função para Remover os Outliers de Uma Variável: ####
 
 remover_outliers <- function (VARIAVEL) {
+  # Utilização do Boxplot (com range a 1.5) para verificar facilmente
+  # quais são os dados outliers.
   boxplot_outliers_aux <- boxplot(
     VARIAVEL,
     col = "gold",
@@ -1174,11 +1176,17 @@ remover_outliers <- function (VARIAVEL) {
     range = 1.5
   )
   
+  # Guardar numa variável os dados outliers provenientes do Boxplot.
   outliers <- boxplot_outliers_aux$out
   
+  # Fazer uma cópia da variável original, para manipular.
   sem_outliers <- VARIAVEL
+  
+  # Remover, da variável cópia, todos os dados que estejam presentes
+  # na lista de dados outliers.
   sem_outliers <- sem_outliers[!sem_outliers %in% outliers]
   
+  # Retornar a nova variável criada, sem os dados outliers.
   return(sem_outliers)
 }
 
