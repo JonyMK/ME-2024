@@ -822,48 +822,164 @@ library(EnvStats)
 # População Normal;
 # σ Conhecido.
 # D.A.: Z = ((x̅ - μ) / (σ / sqrt(n))) ~ N(0, 1)
-# I.C.: ] x̅ - (z_(1 - (α/2))) * (σ / sqrt(n)) , x̅ + (z_(1 - (α/2))) * (σ / sqrt(n)) [
+# I.C.: ] x̅ |-+| (z_(1 - (α/2))) * (σ / sqrt(n)) [
 # BSDA::z.test()
+### Comando para Amostras Conhecidas
 BSDA::z.test(
   x = VARIAVEL,                   # Vetor com a amostra
   sigma.x = DESVIO_PADRAO,        # Desvio Padrão da População
   conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança para o teste/intervalo
 )
+### Cálculos para Amostras Desconhecidas
+media_caso_1 <- function(
+  xbarra = 0,
+  desviopadrao = 0,
+  dimensao = 0,
+  tipo_calculo,
+  mi = 0,
+  alfa = 0
+)
+{
+  if (tipo_calculo == 1) {
+    res <- ((xbarra - mi) / (desviopadrao / sqrt(dimensao)))
+    res <- round(res, 4)
+    da <- sprintf("DA: Z = %s ~ N(0, 1)", res)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- xbarra - qnorm(1 - (alfa/2)) * (desviopadrao / sqrt(dimensao))
+    upper <- xbarra + qnorm(1 - (alfa/2)) * (desviopadrao / sqrt(dimensao))
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 # População Normal;
 # σ Desconhecido.
 # D.A.: T = ((x̅ - μ) / (s / sqrt(n))) ~ t(n-1)
-# I.C.: ] x̅ - (t_(1 - (α/2)); n-1) * (s / sqrt(n)) , x̅ + (t_(1 - (α/2)); n-1) * (s / sqrt(n)) [
+# I.C.: ] x̅ |-+| (t_(1 - (α/2)); n-1) * (s / sqrt(n)) [
 # t.test()
+### Comando para Amostras Conhecidas
 t.test(
   x = VARIAVEL,                   # Vetor com a amostra
   mu = MEDIA,                     # Média da População
   conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança para o teste/intervalo
 )
+### Cálculos para Amostras Desconhecidas
+media_caso_2 <- function(
+  xbarra = 0,
+  desviopadrao = 0,
+  dimensao = 0,
+  tipo_calculo,
+  mi = 0,
+  alfa = 0
+)
+{
+  if (tipo_calculo == 1) {
+    res <- ((xbarra - mi) / (desviopadrao / sqrt(dimensao)))
+    res <- round(res, 4)
+    da <- sprintf("DA: T = %s ~ t(%s)", dimensao-1)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- xbarra - qt((1 - (alfa/2)), dimensao-1) * (desviopadrao / sqrt(dimensao))
+    upper <- xbarra + qt((1 - (alfa/2)), dimensao-1) * (desviopadrao / sqrt(dimensao))
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 # População Qualquer;
 # σ Conhecido;
 # n >= 30.
 # D.A.: Z = ((x̅ - μ) / (σ / sqrt(n))) ~ N(0, 1)
-# I.C.: ] x̅ - (z_(1 - (α/2))) * (σ / sqrt(n)) , x̅ + (z_(1 - (α/2))) * (σ / sqrt(n)) [
+# I.C.: ] x̅ |-+| (z_(1 - (α/2))) * (σ / sqrt(n)) [
 # BSDA::z.test()
+### Comando para Amostras Conhecidas
 BSDA::z.test(
   x = VARIAVEL,                   # Vetor com a amostra
   sigma.x = DESVIO_PADRAO,        # Desvio Padrão da População
   conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança para o teste/intervalo
 )
+### Cálculos para Amostras Desconhecidas
+media_caso_3 <- function(
+  xbarra = 0,
+  desviopadrao = 0,
+  dimensao = 0,
+  tipo_calculo,
+  mi = 0,
+  alfa = 0
+)
+{
+  if (tipo_calculo == 1) {
+    res <- ((xbarra - mi) / (desviopadrao / sqrt(dimensao)))
+    res <- round(res, 4)
+    da <- sprintf("DA: Z = %s ~ N(0, 1)", res)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- xbarra - qnorm(1 - (alfa/2)) * (desviopadrao / sqrt(dimensao))
+    upper <- xbarra + qnorm(1 - (alfa/2)) * (desviopadrao / sqrt(dimensao))
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 # População Qualquer;
 # σ Desconhecido;
 # n >= 30.
 # D.A.: Z = ((x̅ - μ) / (s / sqrt(n))) ~ N(0, 1)
-# I.C.: ] x̅ - (z_(1 - (α/2))) * (s / sqrt(n)) , x̅ + (z_(1 - (α/2))) * (s / sqrt(n)) [
+# I.C.: ] x̅ |-+| (z_(1 - (α/2))) * (s / sqrt(n)) [
 # BSDA::z.test()
+### Comando para Amostras Conhecidas
 BSDA::z.test(
   x = VARIAVEL,                   # Vetor com a amostra
   sigma.x = DESVIO_PADRAO,        # Desvio Padrão da Amostra
   conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança para o teste/intervalo
 )
+### Cálculos para Amostras Desconhecidas
+media_caso_4 <- function(
+  xbarra = 0,
+  desviopadrao = 0,
+  dimensao = 0,
+  tipo_calculo,
+  mi = 0,
+  alfa = 0
+)
+{
+  if (tipo_calculo == 1) {
+    res <- ((xbarra - mi) / (desviopadrao / sqrt(dimensao)))
+    res <- round(res, 4)
+    da <- sprintf("DA: Z = %s ~ N(0, 1)", res)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- xbarra - qnorm(1 - (alfa/2)) * (desviopadrao / sqrt(dimensao))
+    upper <- xbarra + qnorm(1 - (alfa/2)) * (desviopadrao / sqrt(dimensao))
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 "-------------------------------"
 
@@ -875,6 +991,7 @@ BSDA::z.test(
 # D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((σ1^2 / n1) + (σ2^2 / n2))) ~ N(0, 1)
 # I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((σ1^2 / n1) + (σ2^2 / n2)) [
 # BSDA::z.test()
+### Comando para Amostras Conhecidas
 BSDA::z.test(
   x = VARIAVEL_1,                 # Primeira Amostra
   sigma.x = sd(VARIAVEL_1),       # Desvio Padrão da Amostra 1
@@ -882,15 +999,48 @@ BSDA::z.test(
   sigma.y = sd(VARIAVEL_2),       # Desvio Padrão da Amostra 2
   conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
 )
+### Cálculos para Amostras Desconhecidas
+diferenca_medias_caso_1 <- function(
+  xb1 = 0,
+  xb2 = 0,
+  desviopadrao1 = 0,
+  desviopadrao2 = 0,
+  dimensao1 = 0,
+  dimensao2 = 0,
+  tipo_calculo,
+  mi1 = 0,
+  mi2 = 0,
+  alfa = 0
+)
+{
+  if (tipo_calculo == 1) {
+    res <- (((xb1 - xb2) - (mi1 - mi2)) / sqrt((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2)))
+    res <- round(res, 4)
+    da <- sprintf("DA: Z = %s ~ N(0, 1)", res)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- (xb1 - xb2) - qnorm(1 - (alfa/2)) * sqrt((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2))
+    upper <- (xb1 - xb2) + qnorm(1 - (alfa/2)) * sqrt((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2))
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 # Populações Normais;
 # σ1 e σ2 Desconhecidos;
 # σ1 = σ2;
 # Amostras Independentes/Emparelhadas.
-# D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))))
+# D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + n2 - 2))))
 # T ~ t(n1 + (n2 - 2))
-# I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); n1 + (n2 - 2)) * sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + (n2 - 2)))) [
+# I.C.: ] (x̅1 - x̅2) |-+| t_(1 - (α/2); n1 + n2 - 2) * sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + n2 - 2))) [
 # t.test()
+### Comando para Amostras Conhecidas
 t.test(
   x = VARIAVEL_1,                 # Primeira Amostra
   y = VARIAVEL_2,                 # Segunda Amostra
@@ -898,6 +1048,38 @@ t.test(
   var.equal = TRUE,               # As Variâncias são Iguais?
   conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
 )
+### Cálculos para Amostras Desconhecidas
+diferenca_medias_caso_2 <- function(
+  xb1 = 0,
+  xb2 = 0,
+  desviopadrao1 = 0,
+  desviopadrao2 = 0,
+  dimensao1 = 0,
+  dimensao2 = 0,
+  tipo_calculo,
+  mi1 = 0,
+  mi2 = 0,
+  alfa = 0
+)
+{
+  if (tipo_calculo == 1) {
+    res <- (((xb1 - xb2) - (mi1 - mi2)) / sqrt(((1 / dimensao1) + (1 / dimensao2)) * ((((dimensao1 - 1) * desviopadrao1^2) + ((dimensao2 - 1) * desviopadrao2^2)) / (dimensao1 + dimensao2 - 2))))
+    res <- round(res, 4)
+    da <- sprintf("DA: T = %s ~ t(%s)", res, dimensao1+dimensao2-2)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- (xb1 - xb2) - qt(1 - (alfa/2), n1+n2-2) * sqrt(((1 / dimensao1) + (1 / dimensao2)) * ((((dimensao1 - 1) * desviopadrao1^2) + ((dimensao2 - 1) * desviopadrao2^2)) / (dimensao1 + dimensao2 - 2)))
+    upper <- (xb1 - xb2) + qt(1 - (alfa/2), n1+n2-2) * sqrt(((1 / dimensao1) + (1 / dimensao2)) * ((((dimensao1 - 1) * desviopadrao1^2) + ((dimensao2 - 1) * desviopadrao2^2)) / (dimensao1 + dimensao2 - 2)))
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 # Populações Normais;
 # σ1 e σ2 Desconhecidos;
@@ -908,6 +1090,7 @@ t.test(
 ## gl2 ~=~ ((s1^2 / n1) + (s2^2 / n2))^2 / ((s1^4 / (n1^2 * (n1 - 1))) + (s2^4 / (n2^2 * (n2 - 1))))
 ## Para gl2: Considera-se o inteiro mais próximo ou faz-se a correção de Welch-Satterthwaite.
 # t.test()
+### Comando para Amostras Conhecidas
 t.test(
   x = VARIAVEL_1,                 # Primeira Amostra
   y = VARIAVEL_2,                 # Segunda Amostra
@@ -915,6 +1098,41 @@ t.test(
   var.equal = FALSE,              # As Variâncias são Iguais?
   conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
 )
+### Cálculos para Amostras Desconhecidas
+diferenca_medias_caso_3 <- function(
+  xb1 = 0,
+  xb2 = 0,
+  desviopadrao1 = 0,
+  desviopadrao2 = 0,
+  dimensao1 = 0,
+  dimensao2 = 0,
+  tipo_calculo,
+  mi1 = 0,
+  mi2 = 0,
+  alfa = 0
+)
+{
+  gl2 <- ((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2))^2 / ((desviopadrao1^4 / (dimensao1^2 * (dimensao1 - 1))) + (desviopadrao2^4 / (dimensao2^2 * (dimensao2 - 1))))
+  gl2 <- round(gl2, 0)
+  
+  if (tipo_calculo == 1) {
+    res <- (((xb1 - xb2) - (mi1 - mi2)) / sqrt((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2)))
+    res <- round(res, 4)
+    da <- sprintf("DA: T = %s ~ t(%s)", res, gl2)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- (xb1 - xb2) - qt(1 - (alfa/2), gl2) * sqrt((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2))
+    upper <- (xb1 - xb2) + qt(1 - (alfa/2), gl2) * sqrt((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2))
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 # Populações Quaiquer;
 # σ1 e σ2 Conhecidos;
@@ -923,6 +1141,7 @@ t.test(
 # D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((σ1^2 / n1) + (σ2^2 / n2))) ~ N(0, 1)
 # I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((σ1^2 / n1) + (σ2^2 / n2)) [
 # BSDA::z.test()
+### Comando para Amostras Conhecidas
 BSDA::z.test(
   x = VARIAVEL_1,                 # Primeira Amostra
   sigma.x = sd(VARIAVEL_1),       # Desvio Padrão da Amostra 1
@@ -930,6 +1149,38 @@ BSDA::z.test(
   sigma.y = sd(VARIAVEL_2),       # Desvio Padrão da Amostra 2
   conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
 )
+### Cálculos para Amostras Desconhecidas
+diferenca_medias_caso_4 <- function(
+  xb1 = 0,
+  xb2 = 0,
+  desviopadrao1 = 0,
+  desviopadrao2 = 0,
+  dimensao1 = 0,
+  dimensao2 = 0,
+  tipo_calculo,
+  mi1 = 0,
+  mi2 = 0,
+  alfa = 0
+)
+{
+  if (tipo_calculo == 1) {
+    res <- (((xb1 - xb2) - (mi1 - mi2)) / sqrt((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2)))
+    res <- round(res, 4)
+    da <- sprintf("DA: Z = %s ~ N(0, 1)", res)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- (xb1 - xb2) - qnorm(1 - (alfa/2)) * sqrt((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2))
+    upper <- (xb1 - xb2) + qnorm(1 - (alfa/2)) * sqrt((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2))
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 # Populações Quaiquer;
 # σ1 e σ2 Desconhecidos;
@@ -938,6 +1189,7 @@ BSDA::z.test(
 # D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2))) ~ N(0, 1)
 # I.C.: ] (x̅1 - x̅2) |-+| z_(1 - (α/2)) * sqrt((s1^2 / n1) + (s2^2 / n2)) [
 # BSDA::z.test()
+### Comando para Amostras Conhecidas
 BSDA::z.test(
   x = VARIAVEL_1,                 # Primeira Amostra
   sigma.x = sd(VARIAVEL_1),       # Desvio Padrão da Amostra 1
@@ -945,6 +1197,38 @@ BSDA::z.test(
   sigma.y = sd(VARIAVEL_2),       # Desvio Padrão da Amostra 2
   conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
 )
+### Cálculos para Amostras Desconhecidas
+diferenca_medias_caso_5 <- function(
+  xb1 = 0,
+  xb2 = 0,
+  desviopadrao1 = 0,
+  desviopadrao2 = 0,
+  dimensao1 = 0,
+  dimensao2 = 0,
+  tipo_calculo,
+  mi1 = 0,
+  mi2 = 0,
+  alfa = 0
+)
+{
+  if (tipo_calculo == 1) {
+    res <- (((xb1 - xb2) - (mi1 - mi2)) / sqrt((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2)))
+    res <- round(res, 4)
+    da <- sprintf("DA: Z = %s ~ N(0, 1)", res)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- (xb1 - xb2) - qnorm(1 - (alfa/2)) * sqrt((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2))
+    upper <- (xb1 - xb2) + qnorm(1 - (alfa/2)) * sqrt((desviopadrao1^2 / dimensao1) + (desviopadrao2^2 / dimensao2))
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 "-------------------------------"
 
@@ -954,10 +1238,38 @@ BSDA::z.test(
 # D.A.: X^2 = (((n-1) * s^2) / σ^2) ~ X^2(n-1)
 # I.C.: ] (((n-1) * s^2) / x^2_(1 - (α/2); n-1)) , (((n-1) * s^2) / x^2_(α/2; n-1)) [
 # EnvStats::varTest()
+### Comando para Amostras Conhecidas
 EnvStats::varTest(
   x = VARIAVEL,                   # Amostra
   conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
 )
+### Cálculos para Amostras Desconhecidas
+variancia_caso_unico <- function(
+  desviopadrao_amostra = 0,
+  desviopadrao_populacao = 0,
+  dimensao = 0,
+  tipo_calculo,
+  alfa = 0
+)
+{
+  if (tipo_calculo == 1) {
+    res <- (((dimensao - 1) * desviopadrao_amostra^2) / desviopadrao_populacao^2)
+    res <- round(res, 4)
+    da <- sprintf("DA: X^2 = %s ~ X^2(%s)", res, dimensao-1)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- (((dimensao - 1) * desviopadrao_amostra^2) / qchisq(1 - (alfa/2), dimensao - 1))
+    upper <- (((dimensao - 1) * desviopadrao_amostra^2) / qchisq(alfa / 2, dimensao - 1))
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 "-------------------------------"
 
@@ -969,11 +1281,42 @@ EnvStats::varTest(
 # I.C.: ] ((1 / f_(1 - (α/2); n1 - 1; n2 - 1)) * (s1^2 / s2^2)) , 
 # I.C.:   ((1 / f_(α/2; n1 - 1; n2 - 1)) * (s1^2 / s2^2)) [
 # var.test()
+### Comando para Amostras Conhecidas
 var.test(
   x = VARIAVEL_1,                 # Primeira Amostra
   y = VARIAVEL_2,                 # Segunda Amostra
   conf.level = GRAU_DE_CONFIANCA  # Grau de Confiança
 )
+### Cálculos para Amostras Desconhecidas
+quociente_variancias_caso_unico <- function(
+  desviopadrao_amostra1 = 0,
+  desviopadrao_amostra2 = 0,
+  desviopadrao_populacao1 = 0,
+  desviopadrao_populacao2 = 0,
+  dimensao1 = 0,
+  dimensao2 = 0,
+  tipo_calculo,
+  alfa = 0
+)
+{
+  if (tipo_calculo == 1) {
+    res <- ((desviopadrao_amostra1^2 / desviopadrao_amostra2^2) * (desviopadrao_populacao2^2 / desviopadrao_populacao1^2))
+    res <- round(res, 4)
+    da <- sprintf("DA: F = %s ~ F(%s , %s)", res, dimensao1-1, dimensao2-1)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- ((1 / qf(1 - (alfa/2), dimensao1 - 1, dimensao2 - 1)) * (desviopadrao_amostra1^2 / desviopadrao_amostra2^2))
+    upper <- ((1 / qf(alfa / 2, dimensao1 - 1, dimensao2 - 1)) * (desviopadrao_amostra1^2 / desviopadrao_amostra2^2))
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 "-------------------------------"
 
@@ -982,9 +1325,45 @@ var.test(
 # n >= 30.
 # D.A.: Z = ((p* - p) / sqrt(pq / n)) ~=~ ((p* - p) / sqrt((p* * q*) / n)) ~ N(0, 1)
 # I.C.: ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
-BSDA::z.test()
 
 # Nota: Quando p ou p* for desconhecido, pode-se utilizar 0.5 para o seu valor!
+
+### Comando para Amostras Conhecidas
+BSDA::z.test()
+
+### Cálculos para Amostras Desconhecidas
+proporcao_caso_unico <- function(
+  p = 0,
+  p_asterisco = 0,
+  dimensao = 0,
+  tipo_calculo,
+  alfa = 0
+)
+{
+  if (tipo_calculo == 0) {
+    res <- ((p_asterisco - p) / sqrt(p * (1 - p) / dimensao))
+    res <- round(res, 4)
+    da <- sprintf("DA: Z = %s ~ N(0, 1)", res)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 1) {
+    res <- ((p_asterisco - p) / sqrt(p_asterisco * (1 - p_asterisco) / dimensao))
+    res <- round(res, 4)
+    da <- sprintf("DA: Z = %s ~ N(0, 1)", res)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- p_asterisco - qnorm(1 - (alfa/2)) * sqrt((p_asterisco * (1 - p_asterisco)) / dimensao)
+    upper <- p_asterisco + qnorm(1 - (alfa/2)) * sqrt((p_asterisco * (1 - p_asterisco)) / dimensao)
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 "-------------------------------"
 
@@ -992,13 +1371,52 @@ BSDA::z.test()
 
 # Amostras Independentes;
 # n1 & n2 >= 30.
-# D.A.: Z = (((p1* - p2*) - (p1 - p2)) / sqrt(((p1 * q1) / (n1)) + ((p2 * q2) / (n2))))
-# D.A.: Z ~=~ (((p1* - p2*) - (p1 - p2)) / sqrt(((p1* * q1*) / (n1)) + ((p2* * q2*) / (n2))))
+# D.A.: Z = (((p1* - p2*) - (p1 - p2)) / sqrt(((p1 * q1) / n1) + ((p2 * q2) / n2)))
+# D.A.: Z ~=~ (((p1* - p2*) - (p1 - p2)) / sqrt(((p1* * q1*) / n1) + ((p2* * q2*) / n2)))
 # D.A.: z ~ N(0, 1)
-# I.C.: ] (p1* - p2*) |-+| z_(1 - (α/2)) * sqrt(((p1* * q1*) / (n1)) + ((p2* * q2*) / (n2))) [
-BSDA::z.test()
+# I.C.: ] (p1* - p2*) |-+| z_(1 - (α/2)) * sqrt(((p1* * q1*) / n1) + ((p2* * q2*) / n2)) [
 
 # Nota: Quando p ou p* for desconhecido, pode-se utilizar 0.5 para o seu valor!
+
+### Comando para Amostras Conhecidas
+BSDA::z.test()
+
+### Cálculos para Amostras Desconhecidas
+proporcao_caso_unico <- function(
+  p1 = 0,
+  p2 = 0,
+  p_asterisco1 = 0,
+  p_asterisco2 = 0,
+  dimensao1 = 0,
+  dimensao2 = 0,
+  tipo_calculo,
+  alfa = 0
+)
+{
+  if (tipo_calculo == 0) {
+    res <- (((p_asterisco1 - p_asterisco2) - (p1 - p2)) / sqrt(((p1 * (1 - p1)) / dimensao1) + ((p2 * (1 - p2)) / dimensao2)))
+    res <- round(res, 4)
+    da <- sprintf("DA: Z = %s ~ N(0, 1)", res)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 1) {
+    res <- (((p_asterisco1 - p_asterisco2) - (p1 - p2)) / sqrt(((p_asterisco1 * (1 - p_asterisco1)) / dimensao1) + ((p_asterisco2 * (1 - p_asterisco2)) / dimensao2)))
+    res <- round(res, 4)
+    da <- sprintf("DA: Z = %s ~ N(0, 1)", res)
+    print(da)
+    return(res)
+  } else if (tipo_calculo == 2) {
+    lower <- (p_asterisco1 - p_asterisco2) - qnorm(1 - (alfa/2)) * sqrt(((p_asterisco1 * (1 - p_asterisco1)) / dimensao1) + ((p_asterisco2 * (1 - p_asterisco2)) / dimensao2))
+    upper <- (p_asterisco1 - p_asterisco2) + qnorm(1 - (alfa/2)) * sqrt(((p_asterisco1 * (1 - p_asterisco1)) / dimensao1) + ((p_asterisco2 * (1 - p_asterisco2)) / dimensao2))
+    lower <- round(lower, 4)
+    upper <- round(upper, 4)
+    ic <- sprintf("IC = ] %s , %s [", lower, upper)
+    print(ic)
+    return(c(lower, upper))
+  } else {
+    print("Tipo Desconhecido!")
+  }
+}
 
 "-------------------------------------------------------------"
 
