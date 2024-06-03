@@ -29,19 +29,50 @@
 "---------------------------"
 
 
-# EX.
+# População:
+## Normal
+## μ = 2060
+## σ = 20
+
+# Amostra:
+## n = 10
+
+(amostra_5_1 <- c(
+  2100, 2025, 2071, 2067, 2150, 2115, 2064, 2088, 1995, 2095
+))
 
 #### 1) #####
 
+# Teste de Hipóteses Paramétrico:
 
+# H0: μ = 2060 vs. H1: μ != 2060
+
+# Tipo de Teste: Teste Bilateral
 
 #### 2) #####
 
+# R.C. = ?
 
+# α = 0.05
+
+# R.C. = ] -∞ , -qnorm(1 - (α/2)) ] U [ qnorm(1 - (α/2)) , +∞ [
+#      = ] -∞ , -qnorm(1 - (0.05/2)) ] U [ qnorm(1 - (0.05/2)) , +∞ [
+#      = ] -∞ , -1.96 ] U [ 1.96 , +∞ [
 
 #### 3) #####
 
+# Estatística de Teste:
+## D.A.: Z = ((x̅ - μ) / (σ / sqrt(n))) ~ N(0, 1)
+## D.A.: ((mean(amostra_5_1) - 2060) / (20 / sqrt(10)))
+media_caso_1(
+  xbarra = mean(amostra_5_1),
+  mi = 2060,
+  desviopadrao = 20,
+  dimensao = 10,
+  tipo_calculo = 1
+)
 
+# Como Zobs = 2.6879 pertence à R.C., rejeita-se a H0.
 
 "----------------------------------------------------------------------"
 
