@@ -174,6 +174,7 @@ r <- 1
 
 chisq4$expected
 
+#### Exemplo 5 ####
 
 
 
