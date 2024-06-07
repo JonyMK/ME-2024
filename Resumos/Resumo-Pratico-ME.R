@@ -781,26 +781,6 @@ calcular_limites_dominio_uniforme_continua <- function (media, x, prob_conhecida
 calcular_limites_dominio_uniforme_continua("MEDIA_CONHECIDA", "X_UTILIZADO", "RESULTADO_Fx")
 
 "-------------------------------------------------------------"
-
-#### Símbolos: ####
-
-# ✓ --> Certo
-# ∧ --> Conjunção / E
-# ∀x --> Todo e qualquer x
-# √ --> Raiz Quadrada
-# Σ --> Somatório
-# λ --> Lambda
-# Φ --> Fi (Dist. Normal Reduzida -> F(X))
-# μ --> IU / Média
-# σ --> Sigma / Desvio Padrão
-# ∫ --> Integral
-# ∞ --> Infinito
-# [-∞, +∞] --> Intervalo Infinito
-# x̅ --> Média da Amostra
-# α --> Alfa
-# θ --> Theta
-
-"-------------------------------------------------------------"
 "-------------------------------------------------------------"
 "-------------------------------------------------------------"
 "-------------------------------------------------------------"
@@ -1465,7 +1445,29 @@ shapiro.test(
 
 "-------------------------------"
 
-###### Diferença de Medianas: ######
+###### Teste de Independência: ######
+
+# Qui-Quadrado
+
+# Não sai no 2º teste!
+
+# Função -> chisq.test()
+# Argumentos da Função: Tabela de Contingência Bidimensional
+
+RES_CHISQ <- chisq.test(
+  TABELA_CONTINGENCIA,  # Tabela de Contingência
+  correct = FALSE
+)
+
+RES_CHISQ$statistic # Qobs
+RES_CHISQ$parameter # Graus de Liberdade
+RES_CHISQ$p.value   # Valor-P
+RES_CHISQ$observed  # Oi = Frequências Observadas
+RES_CHISQ$expected  # Ei = Frequências Esperadas
+
+"-------------------------------"
+
+###### Testes à Igualdade de 2 Distribuições: ######
 
 ## Tipos de Teste:
 ### Bilateral => "two.sided"
@@ -1474,9 +1476,9 @@ shapiro.test(
 
 # Wilcoxon
 ## D = AMOSTRA_Y - AMOSTRA_X
-## H0: Média de D = 0
+## H0: Mediana de D = 0
 ## vs.
-## H1: Média de D > 0
+## H1: Mediana de D > 0
 wilcox.test(
   x = AMOSTRA_Y,            # Amostra X
   y = AMOSTRA_X,            # Amostra Y
@@ -1492,9 +1494,9 @@ RES_WILCOX$alternative # H1: MD > 0
 
 # Mann-Whitney
 ## MX - MY
-## H0: Média de X = Média de Y
+## H0: Mediana de X = Mediana de Y
 ## vs.
-## H1: Média de X < Média de Y
+## H1: Mediana de X < Mediana de Y
 wilcox.test(
   x = AMOSTRA_X,         # Amostra X
   y = AMOSTRA_Y,         # Amostra Y
@@ -1535,21 +1537,44 @@ if (length(which(RES_CHISQ$expected < 5)) > (k * 0.2)) {
 
 "-------------------------------------------------------------"
 
-#### Teste de Independência do Qui-Quadrado: ####
+#### Construção de uma Tabela de Contingência: ####
 
-# Função -> chisq.test()
-# Argumentos da Função: Tabela de Contingência
+# 1º - Definir a coluna das Freq. Absolutas = Freq. Observadas (Oi = ni):
+(Oi <- table(TABELA_OU_VAR_DAS_CLASSES))
 
-RES_CHISQ <- chisq.test(
-  TABELA_CONTINGENCIA,  # Tabela de Contingência
-  correct = FALSE
-)
+# 2º - Estimar Parâmetros (se necessário):
+# . . .
 
-RES_CHISQ$statistic # Qobs
-RES_CHISQ$parameter # Graus de Liberdade
-RES_CHISQ$p.value   # Valor-P
-RES_CHISQ$observed  # Oi = Frequências Observadas
-RES_CHISQ$expected  # Ei = Frequências Esperadas
+# Indicar o Nº de Parâmetros Estimados:
+(r <- NR_PARAMETROS_ESTIMADOS)
+
+# Definir os Graus de Liberdade do Qui-Quadrado:
+(gl <- k - 1 - r)
+
+# 3º - Definir a coluna das Probabilidades (pi):
+## Se xi é um valor: pi = P(X <= xi)
+## Se xi é uma classe: pi = P(LIM_INF < X < LIM_SUP)
+### Os sinais < > variam consoante a classe é aberta/fechada.
+
+## Código para calcular a coluna pi para Distribuições Exponencias:
+(pi <- pexp(cortes[2:(k+1)], 1/estimativa))
+for (i in 2:k) {
+  pi[i] <- pexp(cortes[i+1], 1/estimativa) - pexp(cortes[i], 1/estimativa)
+}
+pi[k] <- 1 - pexp(cortes[k], 1/estimativa)
+round(pi, 4)
+sum(pi) # Tem que dar ~=~ 1, caso contrário está errado!
+
+# Caso seja preciso juntar linhas, deve-se verificar quais as
+# que falham à regra para as juntar.
+# Após saber quais juntar, deve-se refazer o processo de
+# construção (incluindo as classes, se necessário).
+
+# Caso se estimem parâmetros, apenas o valor da E.T. do teste
+# estará correto.
+# Para saber o P-Value correto, é necessário calculá-lo.
+# Exemplo da Exponencial:
+(p.value_correto <- 1 - pchisq(teste_qui_quadrado$statistic, gl))
 
 "-------------------------------------------------------------"
 
@@ -1557,7 +1582,7 @@ RES_CHISQ$expected  # Ei = Frequências Esperadas
 
 library(DescTools)
 
-# Tabela de Contingência de Exemplo
+# Tabela de Contingência de Exemplo (já definida)
 # | 24 | 41 |
 # |  6 | 11 |
 
@@ -1607,5 +1632,25 @@ remover_outliers <- function (VARIAVEL) {
   # Retornar a nova variável criada, sem os dados outliers.
   return(sem_outliers)
 }
+
+"-------------------------------------------------------------"
+
+# Símbolos: ####
+
+# ✓ --> Certo
+# ∧ --> Conjunção / E
+# ∀x --> Todo e qualquer x
+# √ --> Raiz Quadrada
+# Σ --> Somatório
+# λ --> Lambda
+# Φ --> Fi (Dist. Normal Reduzida -> F(X))
+# μ --> IU / Média
+# σ --> Sigma / Desvio Padrão
+# ∫ --> Integral
+# ∞ --> Infinito
+# [-∞, +∞] --> Intervalo Infinito
+# x̅ --> Média da Amostra
+# α --> Alfa
+# θ --> Theta
 
 "-------------------------------------------------------------"
