@@ -65,11 +65,10 @@ BSDA::z.test(
   mu = 0.01
 )
 
-# 2º - No caso das proporções colocar a amostra no R.
-
-# 3º - No caso da proporção, o sigma é sqrt(pq).
-
-# 4º - Se não houver exigencias na forma de tomar decisao o mais facil é com o p-value.
+# 1º - ?
+# 2º - No caso das proporções pode-se colocar a amostra no R.
+# 3º - No caso da proporção, para o teste z.test, o sigma do teste é sqrt(pq) ou sqrt(p*q*).
+# 4º - Se não houver exigências na forma de tomar a decisão, a forma mais fácil é através do P-Value.
 
 "-----------------------"
 
