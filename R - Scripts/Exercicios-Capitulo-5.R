@@ -104,15 +104,97 @@ media_caso_1(
 "---------------------------"
 
 
-# EX.
+# População - 1º Forma:
+## Normal
+## μ = 1800 toneladas
+## σ = 100 toneladas
+
+# População - 2ª Forma:
+## Normal
+## μ = 1750 toneladas
+## σ = 100 toneladas
+
+# Amostra:
+## n = 35
+
+(amostra_5_2 <- c(
+  1595.1, 1514.4, 1608.8, 1591.7, 1482.5,
+  1796.1, 1700.1, 1501.5, 1658.9, 1777.1,
+  1625.4, 1713.9, 1522.3, 1575.2, 1634.7,
+  1615.8, 1690.5, 1729.0, 1646.7, 1681.1,
+  1769.7, 1707.3, 1668.3, 1768.0, 1655.1,
+  1715.6, 1805.2, 1724.8, 1578.1, 1548.4,
+  1647.0, 1586.5, 1706.8, 1535.0, 1673.4
+))
 
 #### 1) #####
 
+# Teste de Hipóteses Paramétrico:
 
+# 1º Passo:
+
+## H0: μ = 1800 vs. μ = 1750
+## <=>
+## H0: μ = 1800 vs. μ < 1800
+## Teste Unilateral Esquerdo
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## Z = ((x̅ - μ) / (σ / sqrt(n))) ~ N(0, 1)
+BSDA::z.test(
+  x = amostra_5_2, # Vetor com a amostra
+  sigma.x = 100,   # Desvio Padrão da População
+  mu = 1800,
+  alternative = "less"
+)
+## Z_obs = -8.8741
+## P-Value < 0.00000000000000022
+
+# 4º Passo:
+## R.C. = ] -∞ , -qnorm(0.05/2) ]
+## R.C. = ] -∞ , 1.96 ]
+
+## Como Z_obs = -8.8741 E R.C., não se rejeita H0.
+
+# 5º Passo:
+## Com base na amostra e para 5% de significância, o segundo fabricante parece ter razão.
 
 #### 2) #####
 
+# Teste de Hipóteses Paramétrico:
 
+# 1º Passo:
+
+## H0: μ = 1750 vs. μ = 1800
+## <=>
+## H0: μ = 1750 vs. μ > 1750
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.1
+
+# 3º Passo:
+
+## Z = ((x̅ - μ) / (σ / sqrt(n))) ~ N(0, 1)
+BSDA::z.test(
+  x = amostra_5_2, # Vetor com a amostra
+  sigma.x = 100,   # Desvio Padrão da População
+  mu = 1750,
+  alternative = "greater"
+)
+## Z_obs = -5.9161
+## P-Value = 1
+
+# 4º Passo:
+## Como P-Value = 1 > α = 0.1, não se rejeita H0.
+
+# 5º Passo:
+## Com base na amostra e para 10% de significância, o primeiro fabricante parece ter razão.
 
 "----------------------------------------------------------------------"
 
@@ -135,7 +217,50 @@ media_caso_1(
 "---------------------------"
 
 
-# EX.
+# Classe A:
+## Distribuição Normal;
+## μ = 50;
+## σ = 8.
+
+# Classe B:
+## Distribuição Normal;
+## μ = 55;
+## σ = 8.
+
+# Amostra:
+## n = 10.
+
+(amostra_5_3 <- c(44.8, 61.4, 50.3, 46.9, 44.7, 64.2, 61.5, 47.3, 46.5, 62.4))
+
+# Teste de Hipóteses Paramétrico para a Média:
+
+# 1º Passo:
+
+## H0: μ = 55 vs. μ = 50 <=> H0: μ = 55 vs. μ != 55
+## Teste Bilateral
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## Z = ((x̅ - μ) / (σ / sqrt(n))) ~ N(0, 1)
+BSDA::z.test(
+  x = amostra_5_3, # Vetor com a amostra
+  sigma.x = 8,   # Desvio Padrão da População
+  mu = 55,
+  alternative = "two.sided"
+)
+## Z_obs = -0.79057
+## P-Value = 0.4292
+
+# 4º Passo:
+## Como P-Value = 0.4292 <= α = 0.05, rejeita-se H0.
+
+# 5º Passo:
+## Com base na amostra e para 5% de significância, o comerciante não deve
+## fazer uma reclamação pois os ovos aparentam ser de classe B.
 
 "----------------------------------------------------------------------"
 
@@ -156,19 +281,80 @@ media_caso_1(
 "---------------------------"
 
 
-# EX.
+# População:
+## Normal.
+
+# Amostra:
+## n = 10.
+
+(amostra_5_4 <- c(23.9, 23.5, 23.8, 23.1, 23.4, 23.6, 23.4, 23.2, 23.6, 23.5))
 
 #### 1) #####
 
-
+# x̅ = mean(amostra_5_4) = 23.5%
+# S = sd(amostra_5_4) = 0.245%
 
 #### 2) #####
 
+# Teste de Hipóteses Paramétrico para a Média:
 
+# 1º Passo:
+
+## H0: μ = 23.2% vs. μ != 23.2%
+## Teste Bilateral
+
+# 2º Passo:
+
+## α = 0.01
+
+# 3º Passo:
+
+# D.A.: T = ((x̅ - μ) / (s / sqrt(n))) ~ t(n-1)
+t.test(
+  x = amostra_5_4,                   # Vetor com a amostra
+  mu = 23.2,                     # Média da População
+  alternative = "two.sided"
+)
+## t_obs = 3.873
+## P-Value = 0.003772
+
+# 4º Passo:
+## Como P-Value = 0.003772 <= α = 0.01, rejeita-se H0.
+
+# 5º Passo:
+## Com base na amostra e para 1% de significância, não se pode concluir que
+## o produto satisfaça as especificações.
 
 #### 3) #####
 
+# Teste de Hipóteses Paramétrico para a Média:
 
+# 1º Passo:
+
+## H0: μ <= 23.2% vs. μ > 23.2%
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.01
+
+# 3º Passo:
+
+# D.A.: T = ((x̅ - μ) / (s / sqrt(n))) ~ t(n-1)
+t.test(
+  x = amostra_5_4,                   # Vetor com a amostra
+  mu = 23.2,                     # Média da População
+  alternative = "greater"
+)
+## t_obs = 3.873
+## P-Value = 0.001886
+
+# 4º Passo:
+## Como P-Value = 0.001886 <= α = 0.01, rejeita-se H0.
+
+# 5º Passo:
+## Com base na amostra e para 1% de significância, pode-se concluir que
+## o conteúdo médio de cobre seja superior ao exigido pelas especificações.
 
 "----------------------------------------------------------------------"
 
@@ -191,14 +377,78 @@ media_caso_1(
 "---------------------------"
 
 
-# EX.
+(amostra_5_5 <- c(6.2, 5.7, 5.8, 5.8, 6.1, 5.9, 6.0, 5.7, 5.9))
 
 #### 1) #####
 
+# População:
+## Normal;
+## μ = ?;
+## σ = 0.24.
 
+# Teste de Hipóteses Paramétrico para a Média:
+
+# 1º Passo:
+
+## H0: μ >= 6% vs. μ < 6%
+## Teste Unilateral Esquerdo
+
+# 2º Passo:
+
+## α = ?
+
+# 3º Passo:
+
+# D.A.: Z = ((x̅ - μ) / (σ / sqrt(n))) ~ N(0, 1)
+BSDA::z.test(
+  x = amostra_5_5,                   # Vetor com a amostra
+  sigma.x = 0.24,        # Desvio Padrão da População
+  mu = 6,
+  alternative = "less"
+)
+## Z_obs = -1.25
+## P-Value = 0.1056
+
+# 4º Passo:
+## Para se rejeitar H0, o P-Value tem de ser <= que α.
+## Sabe-se que H1 é verdadeira, logo P-Value <= α.
+
+## Então: α >= 0.1056.
 
 #### 2) #####
 
+# População:
+## Normal;
+## μ = ?;
+## σ = ?.
+
+# Teste de Hipóteses Paramétrico para a Média:
+
+# 1º Passo:
+
+## H0: μ >= 6% vs. μ < 6%
+## Teste Unilateral Esquerdo
+
+# 2º Passo:
+
+## α = ?
+
+# 3º Passo:
+
+# D.A.: T = ((x̅ - μ) / (s / sqrt(n))) ~ t(n-1)
+t.test(
+  x = amostra_5_5,                   # Vetor com a amostra
+  mu = 6,                     # Média da População
+  alternative = "less"
+)
+## t_obs = -1.7321
+## P-Value = 0.06075
+
+# 4º Passo:
+## Para se rejeitar H0, o P-Value tem de ser <= que α.
+## Sabe-se que H1 é verdadeira, logo P-Value <= α.
+
+## Então: α >= 0.06075.
 
 
 "----------------------------------------------------------------------"
@@ -238,23 +488,131 @@ media_caso_1(
 "---------------------------"
 
 
-# EX.
+(amostra_5_6_fornecedor1 <- c(88.9, 89.2, 87.1, 88.8, 87.5, 92.0, 91.9, 87.5, 84.4, 91.0, 84.1, 85.4))
+(amostra_5_6_fornecedor2 <- c(93.0, 88.6, 90.9, 90.2, 99.5, 89.8, 93.8, 90.1, 90.3))
+
+# População:
+## Normal.
 
 #### 1) #####
 
+# Teste de Hipóteses Paramétrico para o Quociente de Variâncias:
 
+# 1º Passo:
+
+## H0: σ1/σ2 = 1 vs. σ1/σ2 != 1
+## Teste Bilateral
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## D.A.: F = ((s1^2 / s2^2) * (σ2^2 / σ1^2)) ~ F(n1 - 1, n2 - 1)
+var.test(
+  x = amostra_5_6_fornecedor1,  # Primeira Amostra
+  y = amostra_5_6_fornecedor2,  # Segunda Amostra
+  alternative = "two.sided"
+)
+## F_obs = 0.65736
+## P-Value = 0.5084
+
+# 4º Passo:
+
+## Como P-Value = 0.5084 > α = 0.05, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base nas amostras e com 5% de significância, é possível afirmar
+## que as variâncias das resistências das calças de ambos os fornecedores
+## podem ser iguais.
 
 #### 2) #####
 
+# Teste de Hipóteses Paramétrico para a Média:
 
+# 1º Passo:
+
+## H0: μ1 <= μ2 vs. μ1 > μ2 <=> H0: μ1 - μ2 <= 0 vs. μ1 - μ2 > 0
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+# D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + n2 - 2))))
+t.test(
+  x = amostra_5_6_fornecedor1,                 # Primeira Amostra
+  y = amostra_5_6_fornecedor2,                 # Segunda Amostra
+  paired = FALSE,                 # As Amostras são Dependentes?
+  var.equal = TRUE,               # As Variâncias são Iguais?
+  alternative = "greater"
+)
+## t_obs = -2.7958
+## P-Value = 0.9942
+
+# 4º Passo:
+
+## Como P-Value = 0.9942 > α = 0.05, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base nas amostras e com 5% de significância, pode-se afirmar
+## que o fornecedor 1 tem uma média de resistência menor que o fornecedor 2,
+## logo a dona da loja deve optar pelo fornecedor 2.
 
 #### 3) #####
 
-
+# A alteração do nível de significância não implica uma alteração ao
+# teste realizado nem aos resultados obtidos, apenas poderia alterar a
+# decisão final. Como o P-Value obtido continuaria a ser superior ao novo
+# nível de significância (0.01), a decisão final também se manteria igual,
+# não implicando assim qualquer alteração.
 
 #### 4) #####
 
+# σ1^2 = 8
+# σ2^2 = 9
 
+# σ1 = 2.8284
+# σ2 = 3
+
+# Teste de Hipóteses Paramétrico para o Quociente de Variâncias:
+
+# 1º Passo:
+
+## H0: μ1 <= μ2 vs. μ1 > μ2 <=> H0: μ1 - μ2 <= 0 vs. μ1 - μ2 > 0
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.1
+
+# 3º Passo:
+
+## D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((σ1^2 / n1) + (σ2^2 / n2))) ~ N(0, 1)
+BSDA::z.test(
+  x = amostra_5_6_fornecedor1,                 # Primeira Amostra
+  sigma.x = sd(amostra_5_6_fornecedor1),       # Desvio Padrão da Amostra 1
+  y = amostra_5_6_fornecedor2,                 # Segunda Amostra
+  sigma.y = sd(amostra_5_6_fornecedor2),       # Desvio Padrão da Amostra 2
+  alternative = "greater"
+)
+## Z_obs = -2.71
+## P-Value = 0.9966
+
+# 4º Passo:
+
+## Como P-Value = 0.9966 > α = 0.1, não se rejeita H0.
+
+# 5º Passo:
+
+# Com base nas amostras e com 10% de significância, pode-se afirmar
+# que o fornecedor 1 tem uma média de resistência menor ou igual que
+# o fornecedor 2, logo a dona da loja deve optar pelo fornecedor 2.
 
 "----------------------------------------------------------------------"
 
