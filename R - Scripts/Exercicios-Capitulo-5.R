@@ -687,13 +687,12 @@ t.test(
 
 #### 2) #####
 
-# valor-p = P(T >= t_obs) = 1 - P(T < t_obs) = 1 - F(1.8914)
-
-# = 1 - pt(1.8914, length(amostra_5_7_alto) + length(amostra_5_7_baixo) - 2) = 0.03787
-
-# = 1 - pt(1.8914, length(amostra_5_7_alto)) = 0.0415
-
-# = 1 - pt(1.8914, length(amostra_5_7_baixo)) = 0.0502
+# valor-p =
+# P(T >= t_obs) =
+# 1 - P(T < t_obs) =
+# 1 - F(1.8914) =
+# 1 - pt(1.8914, length(amostra_5_7_alto) + length(amostra_5_7_baixo) - 2) =
+# 0.03787
 
 "----------------------------------------------------------------------"
 
@@ -721,15 +720,69 @@ t.test(
 "---------------------------"
 
 
-# EX.
+# Populações:
+## Normais.
+
+# Amostra Fabricante 1:
+(amostra_5_8_fab1 <- c(80, 72, 65, 78, 85))
+# Amostra Fabricante 2:
+(amostra_5_8_fab2 <- c(75, 70, 60, 72, 78))
 
 #### 1) #####
 
-
+# As amostras apesar de serem de máquinas de fabricantes diferentes,
+# dozem respeito aos tempos dos mesmos operadores. Por este motivo,
+# as amostras são consideradas emparelhadas.
 
 #### 2) #####
 
+# Teste de Hipóteses Paramétrico para a Diferença de Médias:
 
+# 1º Passo:
+
+## H0: μ1 <= μ2 vs. H1: μ1 > μ2 <=> H0: μ1 - μ2 <= 0 vs. H1: μ1 - μ2 > 0
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.1
+
+# 3º Passo:
+
+## Como as populações são normais e os desvios padrões são desconhecidos,
+## é necessário determinar se eles podem ser ou não considerados iguais,
+## para se poder proceder à escolha da D.A. certa.
+
+var.test(
+  x = amostra_5_8_fab1,  # Primeira Amostra
+  y = amostra_5_8_fab2,  # Segunda Amostra
+  conf.level = 0.90      # Grau de Confiança
+)
+## I.C. para as Variâncias: ] 0.1981702 , 8.0872310 [
+
+## Como 1 E I.C., as variâncias podem ser consideradas iguais.
+## Logo:
+
+# D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + n2 - 2))))
+t.test(
+  x = amostra_5_8_fab1,     # Primeira Amostra
+  y = amostra_5_8_fab2,     # Segunda Amostra
+  paired = TRUE,            # As Amostras são Dependentes?
+  var.equal = TRUE,         # As Variâncias são Iguais?
+  alternative = "greater"
+)
+## t_obs = 5.9761
+## P-Value = 0.00197
+
+# 4º Passo:
+
+## Como P-Value = 0.00197 <= α = 0.1, rejeita-se H0.
+
+# 5º Passo:
+
+## Com base nas amostras e com 1% de significância, pode-se concluir
+## que a tarefa realizada na máquina do fornecedor 1 demora, em
+## média, mais do que na máquina do fornecedor 2.
 
 "----------------------------------------------------------------------"
 
@@ -758,15 +811,67 @@ t.test(
 "---------------------------"
 
 
-# EX.
+# Populações Normais.
+
+(amostra5_9_A <- c(12.2,  12.1, 10.55, 13.33, 11.42, 10.3, 12.32, 13.27, 11.93, 12.5))
+(amostra5_9_B <- c(12.5,  12.2, 10.57, 13.32, 11.47, 10.3, 12.36, 13.29, 11.91, 12.61))
 
 #### 1) #####
 
-
+# Não. Como se tratam das mesmas medidas (foram lidas por
+# aparelhos diferentes mas referem-se às mesmas medidas) as
+# amostras são emparelhadas.
 
 #### 2) #####
 
+# Teste de Hipóteses Paramétrico para a Diferença de Médias:
 
+# 1º Passo:
+
+## H0: μ1 = μ2 vs. H1: μ1 != μ2 <=> H0: μ1 - μ2 = 0 vs. H1: μ1 - μ2 != 0
+## Teste Bilateral
+
+# 2º Passo:
+
+## α = 0.01
+
+# 3º Passo:
+
+## Como as populações são normais e os desvios padrões são desconhecidos,
+## é necessário determinar se eles podem ser ou não considerados iguais,
+## para se poder proceder à escolha da D.A. certa.
+
+var.test(
+  x = amostra5_9_A,  # Primeira Amostra
+  y = amostra5_9_B,  # Segunda Amostra
+  conf.level = 0.90      # Grau de Confiança
+)
+## I.C. para as Variâncias: ] 0.3053108 , 3.0852759 [
+
+## Como 1 E I.C., as variâncias podem ser consideradas iguais.
+## Logo:
+
+# D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + n2 - 2))))
+t.test(
+  x = amostra5_9_A,     # Primeira Amostra
+  y = amostra5_9_B,     # Segunda Amostra
+  paired = TRUE,            # As Amostras são Dependentes?
+  var.equal = TRUE,         # As Variâncias são Iguais?
+  mu = 0,
+  alternative = "two.sided"
+)
+## t_obs = -2.0423
+## P-Value = 0.0715
+
+# 4º Passo:
+
+## Como P-Value = 0.0715 > α = 0.01, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base nas amostras e com 1% de significância, pode-se concluir
+## que a suspeita do diretos não faz sentido, uma vez que as amostras
+## parecem ter, em média, dados iguais.
 
 "----------------------------------------------------------------------"
 
@@ -804,7 +909,58 @@ t.test(
 "---------------------------"
 
 
-# EX.
+(amostra_5_10_dieta1 <- c(
+  8.0, 15.2,  6.7, 6.5,  9.1, 8.5, 14.1,  8.9, 10.9,  7.6,
+  9.4,  8.6,  9.4, 6.7, 11.5, 6.8, 10.9,  6.7, 11.0, 10.6,
+  9.8,  6.6, 10.7, 9.4, 13.6, 8.2,  8.0, 12.3, 14.2,  9.1,
+  7.3, 11.3,  6.9, 8.3,  7.2, 7.2, 10.5, 11.1, 14.9, 12.4,
+  7.9,  6.3,  6.2, 6.3,  5.7, 9.0,  9.5,  7.1,  8.0,  6.9
+))
+
+(amostra_5_10_dieta2 <- c(
+  4.8, 5.7,  7.8,  7.7, 10.7,  9.1, 6.3, 8.4,  6.2, 12.6,
+  8.4, 7.7,  9.1, 12.0,  8.8,  6.0, 8.7, 7.2,  6.2, 10.0,
+  8.6, 6.1,  6.9,  6.2,  7.0, 11.5, 9.0, 7.2, 11.1,  6.0,
+  6.6, 5.0, 12.4,  7.1,  9.9,  8.8, 5.5, 6.6,  3.8,  8.0,
+  6.8, 8.8, 17.6,  7.9,  9.4,  6.1, 6.0, 5.8, 16.4,  4.9
+))
+
+# Teste de Hipóteses Paramétrico para a Diferença de Médias:
+
+# 1º Passo:
+
+## H0: μ1 = μ2 vs. H1: μ1 != μ2 <=> H0: μ1 - μ2 = 0 vs. H1: μ1 - μ2 != 0
+## Teste Bilateral
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## As populações são desconhecidas e os desvios padrões
+## também são desconhecidos.
+## Logo:
+
+# D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2))) ~ N(0, 1)
+BSDA::z.test(
+  x = amostra_5_10_dieta1,                 # Primeira Amostra
+  sigma.x = sd(amostra_5_10_dieta1),       # Desvio Padrão da Amostra 1
+  y = amostra_5_10_dieta2,                 # Segunda Amostra
+  sigma.y = sd(amostra_5_10_dieta2),       # Desvio Padrão da Amostra 2
+  alternative = "two.sided"
+)
+## Z_obs = 2.0142
+## P-Value = 0.04399
+
+# 4º Passo:
+
+## Como P-Value = 0.04399 <= α = 0.05, rejeita-se H0.
+
+# 5º Passo:
+
+## Com base nas amostras e com 5% de significância, pode-se concluir
+## que as duas dietas não têm, em média, o mesmo efeito na perda de peso.
 
 "----------------------------------------------------------------------"
 
