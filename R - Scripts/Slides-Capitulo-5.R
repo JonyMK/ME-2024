@@ -197,3 +197,18 @@ BSDA::z.test(
 ### da leitura entre meninos e meninas do 1º ciclo, em média.
 
 "-----------------------------------------------------"
+
+## Exemplo 5 - Slide 59 ####
+
+# Pretende-se comparar o consumo médio (MPG),
+# tendo em conta a transmissão (AM).
+
+# 1º - Criar novas amostras:
+## Amostra 1 = Transmissão Manual
+## Amostra 2  = Transmissão Automática
+
+# Como não se podem utilizar as opções em que a populão é "qualquer",
+# porque o nº de elementos das amostras são inferiores a 30.
+
+# Não sabemos se as populações são normais, mas se forem podemos usar
+# uma das opções para populações normais.
