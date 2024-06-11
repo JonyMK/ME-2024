@@ -639,15 +639,61 @@ BSDA::z.test(
 "---------------------------"
 
 
-# EX.
+# Populações:
+## Normais;
+## Variâncias Desconhecidas;
+## Variâncias Iguais.
+
+# Amostras:
+## Independentes.
+
+(amostra_5_7_alto <- c(123, 134, 146, 104, 119, 124, 161, 107,  83, 113,  97, 129))
+(amostra_5_7_baixo <- c(70, 118, 101, 85, 107, 132, 94))
 
 #### 1) #####
 
+# Teste de Hipóteses Paramétrico para a Diferença de Médias:
 
+# 1º Passo:
+
+## H0: μ1 <= μ2 vs. μ1 > μ2 <=> H0: μ1 - μ2 <= 0 vs. μ1 - μ2 > 0
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.01
+
+# 3º Passo:
+
+## D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + n2 - 2))))
+t.test(
+  x = amostra_5_7_alto,                 # Primeira Amostra
+  y = amostra_5_7_baixo,                 # Segunda Amostra
+  paired = FALSE,                 # As Amostras são Dependentes?
+  var.equal = TRUE,               # As Variâncias são Iguais?
+  alternative = "greater"
+)
+## t_obs = 1.8914
+## P-Value = 0.03787
+
+# 4º Passo:
+
+## Como P-Value = 0.03787 > α = 0.01, não se rejeita H0.
+
+# 5º Passo:
+
+# Com base nas amostras e com 1% de significância, pode-se afirmar
+# que a dieta com alto conteúdo de proteína não aumenta o ganho de peso.
 
 #### 2) #####
 
+# valor-p = P(T >= t_obs) = 1 - P(T < t_obs) = 1 - F(1.8914)
 
+# = 1 - pt(1.8914, length(amostra_5_7_alto) + length(amostra_5_7_baixo) - 2) = 0.03787
+
+# = 1 - pt(1.8914, length(amostra_5_7_alto)) = 0.0415
+
+# = 1 - pt(1.8914, length(amostra_5_7_baixo)) = 0.0502
 
 "----------------------------------------------------------------------"
 
