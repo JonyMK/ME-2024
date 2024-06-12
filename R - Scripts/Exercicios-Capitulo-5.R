@@ -133,9 +133,9 @@ media_caso_1(
 
 # 1º Passo:
 
-## H0: μ = 1800 vs. μ = 1750
+## H0: μ = 1800 vs. H1: μ = 1750
 ## <=>
-## H0: μ = 1800 vs. μ < 1800
+## H0: μ = 1800 vs. H1: μ < 1800
 ## Teste Unilateral Esquerdo
 
 # 2º Passo:
@@ -169,9 +169,9 @@ BSDA::z.test(
 
 # 1º Passo:
 
-## H0: μ = 1750 vs. μ = 1800
+## H0: μ = 1750 vs. H1: μ = 1800
 ## <=>
-## H0: μ = 1750 vs. μ > 1750
+## H0: μ = 1750 vs. H1: μ > 1750
 ## Teste Unilateral Direito
 
 # 2º Passo:
@@ -236,7 +236,7 @@ BSDA::z.test(
 
 # 1º Passo:
 
-## H0: μ = 55 vs. μ = 50 <=> H0: μ = 55 vs. μ != 55
+## H0: μ = 55 vs. H1: μ = 50 <=> H0: μ = 55 vs. H1: μ != 55
 ## Teste Bilateral
 
 # 2º Passo:
@@ -300,7 +300,7 @@ BSDA::z.test(
 
 # 1º Passo:
 
-## H0: μ = 23.2% vs. μ != 23.2%
+## H0: μ = 23.2% vs. H1: μ != 23.2%
 ## Teste Bilateral
 
 # 2º Passo:
@@ -331,7 +331,7 @@ t.test(
 
 # 1º Passo:
 
-## H0: μ <= 23.2% vs. μ > 23.2%
+## H0: μ <= 23.2% vs. H1: μ > 23.2%
 ## Teste Unilateral Direito
 
 # 2º Passo:
@@ -390,7 +390,7 @@ t.test(
 
 # 1º Passo:
 
-## H0: μ >= 6% vs. μ < 6%
+## H0: μ >= 6% vs. H1: μ < 6%
 ## Teste Unilateral Esquerdo
 
 # 2º Passo:
@@ -426,7 +426,7 @@ BSDA::z.test(
 
 # 1º Passo:
 
-## H0: μ >= 6% vs. μ < 6%
+## H0: μ >= 6% vs. H1: μ < 6%
 ## Teste Unilateral Esquerdo
 
 # 2º Passo:
@@ -500,7 +500,7 @@ t.test(
 
 # 1º Passo:
 
-## H0: σ1/σ2 = 1 vs. σ1/σ2 != 1
+## H0: σ1/σ2 = 1 vs. H1: σ1/σ2 != 1
 ## Teste Bilateral
 
 # 2º Passo:
@@ -534,7 +534,7 @@ var.test(
 
 # 1º Passo:
 
-## H0: μ1 <= μ2 vs. μ1 > μ2 <=> H0: μ1 - μ2 <= 0 vs. μ1 - μ2 > 0
+## H0: μ1 <= μ2 vs. H1: μ1 > μ2 <=> H0: μ1 - μ2 <= 0 vs. H1: μ1 - μ2 > 0
 ## Teste Unilateral Direito
 
 # 2º Passo:
@@ -584,7 +584,7 @@ t.test(
 
 # 1º Passo:
 
-## H0: μ1 <= μ2 vs. μ1 > μ2 <=> H0: μ1 - μ2 <= 0 vs. μ1 - μ2 > 0
+## H0: μ1 <= μ2 vs. H1: μ1 > μ2 <=> H0: μ1 - μ2 <= 0 vs. H1: μ1 - μ2 > 0
 ## Teste Unilateral Direito
 
 # 2º Passo:
@@ -656,7 +656,7 @@ BSDA::z.test(
 
 # 1º Passo:
 
-## H0: μ1 <= μ2 vs. μ1 > μ2 <=> H0: μ1 - μ2 <= 0 vs. μ1 - μ2 > 0
+## H0: μ1 <= μ2 vs. H1: μ1 > μ2 <=> H0: μ1 - μ2 <= 0 vs. H1: μ1 - μ2 > 0
 ## Teste Unilateral Direito
 
 # 2º Passo:
