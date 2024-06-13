@@ -984,15 +984,81 @@ BSDA::z.test(
 "---------------------------"
 
 
-# EX.
+# População:
+## Qualquer.
+
+# Amostra:
+## n = 31.
+(amostra_5_11 <- c(
+  10.1, 10.8, 11.4,  8.4,  7.7, 11.4, 11.1,  9.8, 11.4,  8.9, 7.5,
+   8.9,  8.0, 10.0, 11.5, 10.5, 10.0,  8.6, 10.9,  9.1, 10.2, 8.7,
+  12.3, 10.7, 11.5,  9.3,  9.7, 10.1, 12.3,  8.6, 10.4
+))
 
 #### 1) #####
 
+# Teste de Hipóteses Não Paramétrico: Teste de Ajustamento:
 
+# 1º Passo:
+
+## H0: X1 ~ Normal vs. H1: X1 !~ Normal
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## n = 31 < 50.
+## Logo:
+shapiro.test(
+  amostra_5_11  # Amostra
+)
+## W_1_obs = 0.97009
+## P-Value_1 = 0.5215
+
+# 4º Passo:
+
+## Como P-Value = 0.5215 > α = 0.05, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que a população pode ser considerada Normal.
 
 #### 2) #####
 
+# Teste de Hipóteses Paramétrico: Teste para a Variância:
 
+# 1º Passo:
+
+## H0: σ^2 = 5 vs. H1: σ^2 > 5
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+# D.A.: X^2 = (((n-1) * s^2) / σ^2) ~ X^2(n-1)
+EnvStats::varTest(
+  x = amostra_5_11,                   # Amostra
+  conf.level = 0.95,  # Grau de Confiança
+  alternative = "greater",
+  sigma.squared = 5
+)
+## X^2_obs = 10.4277
+## P-Value = 0.9997
+
+# 4º Passo:
+
+## Como P-Value = 0.9997 > α = 0.05, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que a variância é igual a 5.
 
 "----------------------------------------------------------------------"
 
@@ -1015,15 +1081,100 @@ BSDA::z.test(
 "---------------------------"
 
 
-# EX.
+# Populações Desconhecidas.
+
+# Amostra 1:
+## n1 = 21.
+(amostra_5_12_1 <- c(
+  12.96,  6.19, 14.62, 1.79, 7.40, 4.56,
+  1.54, 15.12,  9.09, 7.14, 7.65, 9.33,
+  6.93,  9.07,  1.82, 5.44, 0.04, 2.94,
+  0.46,  5.07,  5.28
+))
+
+# Amostra 2:
+## n2 = 9.
+(amostra_5_12_2 <- c(
+  7.85,  8.23,  1.75, 7.22, 3.13, 1.12,
+  1.57,  5.67,  3.87
+))
 
 #### 1) #####
 
+# Teste de Hipóteses Não Paramétrico: Teste de Ajustamento:
 
+# 1º Passo:
+
+## TA1 => H0: X1 ~ Normal vs. H1: X1 !~ Normal
+## TA2 => H0: X2 ~ Normal vs. H1: X2 !~ Normal
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## n1 = 21 e n2 = 9 < 50.
+## Logo:
+
+shapiro.test(
+  amostra_5_12_1  # Amostra
+)
+## W_1_obs = 0.94824
+## P-Value_1 = 0.3155
+
+shapiro.test(
+  amostra_5_12_2  # Amostra
+)
+## W_2_obs = 0.89358
+## P-Value_2 = 0.2171
+
+# 4º Passo:
+
+## Como P-Value_1 = 0.3155 e P-Value_2 = 0.2171 > α = 0.05, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que as populações podem ser consideradas Normais.
 
 #### 2) #####
 
+# Teste de Hipóteses Paramétrico: Teste para o Quociente de Variâncias:
 
+# 1º Passo:
+
+## H0: σ1^2 <= σ2^2 vs. H1: σ1^2 > σ2^2
+## <=>
+## H0: σ1^2/σ2^2 <= 1 vs. H1: σ1^2/σ2^2 > 1
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## D.A.: F = ((s1^2 / s2^2) * (σ2^2 / σ1^2)) ~ F(n1 - 1, n2 - 1)
+var.test(
+  x = amostra_5_12_1,                 # Primeira Amostra
+  y = amostra_5_12_2,                 # Segunda Amostra
+  conf.level = 0.95,  # Grau de Confiança
+  alternative = "greater",
+  ratio = 1
+)
+## F_obs = 2.3462
+## P-Value = 0.1085
+
+# 4º Passo:
+
+## Como P-Value = 0.1085 > α = 0.05, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que a variância da população 1 parece ser inferior ou igual à
+## variância da população 2.
 
 "----------------------------------------------------------------------"
 
