@@ -1199,19 +1199,141 @@ var.test(
 "---------------------------"
 
 
-# EX.
+# Populações:
+## Normais;
+## Variâncias Desconhecidas e Iguais.
+
+# Amostra 1:
+## n1 = 8
+(amostra_5_13_M1 <- c(10.25, 10.56, 10.23, 10.45, 10.54, 10.21, 10.65, 10.56))
+
+# Amostra 2:
+## n1 = 9
+(amostra_5_13_M2 <- c(11.15, 10.84, 10.69, 10.78, 10.93, 10.87, 11.03, 10.93, 10.30))
 
 #### 1) #####
 
+# Teste de Hipóteses Não Paramétrico: Teste de Ajustamento:
 
+# 1º Passo:
+
+## TA1 => H0: X1 ~ Normal vs. H1: X1 !~ Normal
+## TA2 => H0: X2 ~ Normal vs. H1: X2 !~ Normal
+
+# 2º Passo:
+
+## α = 0.01
+
+# 3º Passo:
+
+## n1 = 8 e n2 = 9 < 50.
+## Logo:
+
+shapiro.test(
+  amostra_5_13_M1  # Amostra
+)
+## W_1_obs = 0.85795
+## P-Value_1 = 0.1146
+
+shapiro.test(
+  amostra_5_13_M2  # Amostra
+)
+## W_2_obs = 0.90201
+## P-Value_2 = 0.2639
+
+# 4º Passo:
+
+## Como P-Value_1 = 0.1146 e P-Value_2 = 0.2639 > α = 0.01, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 1% de significância, pode-se concluir
+## que as populações podem ser consideradas Normais.
 
 #### 2) #####
 
+# Teste de Hipóteses Paramétrico: Teste para o Quociente de Variâncias:
 
+# 1º Passo:
+
+## H0: σ1^2 <= σ2^2 vs. H1: σ1^2 > σ2^2
+## <=>
+## H0: σ1^2/σ2^2 = 1 vs. H1: σ1^2/σ2^2 != 1
+## Teste Bilateral
+
+# 2º Passo:
+
+## α = 0.01
+
+# 3º Passo:
+
+## D.A.: F = ((s1^2 / s2^2) * (σ2^2 / σ1^2)) ~ F(n1 - 1, n2 - 1)
+var.test(
+  x = amostra_5_13_M1,                 # Primeira Amostra
+  y = amostra_5_13_M2,                 # Segunda Amostra
+  conf.level = 0.99,  # Grau de Confiança
+  alternative = "two.sided",
+  ratio = 1
+)
+## F_obs = 0.52755
+## P-Value = 0.4144
+
+# 4º Passo:
+
+## Como P-Value = 0.4144 > α = 0.01, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 1% de significância, pode-se concluir
+## que as variabilidades da produção de ambas as máquinas parece ser
+## idêntica.
 
 #### 3) #####
 
+# Teste de Hipóteses Paramétrico: Teste para a Diferença de Médias:
 
+# 1º Passo:
+
+## H0: μ2 <= μ1 vs. H1: μ2 > μ1
+## <=>
+## H0: μ1 >= μ2 vs. H1: μ1 < μ2
+## <=>
+## H0: μ1-μ2 >= 0 vs. H1: μ1-μ2 < 0
+## Teste Unilateral Esquerdo
+
+# 2º Passo:
+
+## α = 0.01
+
+# 3º Passo:
+
+## Populações Normais;
+## σ1 e σ2 Desconhecidos;
+## σ1 = σ2.
+## Logo:
+
+# D.A.: T = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt(((1 / n1) + (1 / n2)) * ((((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / (n1 + n2 - 2))))
+# T ~ t(n1 + (n2 - 2))
+t.test(
+  x = amostra_5_13_M1,   # Primeira Amostra
+  y = amostra_5_13_M2,   # Segunda Amostra
+  paired = FALSE,        # As Amostras são Dependentes?
+  var.equal = TRUE,      # As Variâncias são Iguais?
+  conf.level = 0.99,     # Grau de Confiança
+  alternative = "less",  # Tipo de Teste
+  mu = 0
+)
+## t_obs = -3.9013
+## P-Value = 0.0007088
+
+# 4º Passo:
+
+## Como P-Value = 0.0007088 <= α = 0.01, rejeita-se H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 1% de significância, pode-se concluir
+## que a máquina 2 produz, em média, mais quantidade que a máquina 1.
 
 "----------------------------------------------------------------------"
 
@@ -1232,15 +1354,73 @@ var.test(
 "---------------------------"
 
 
-# EX.
+# População:
+## Desconhecida.
+
+# Amostra:
+## n = 180
+## p* = 20/180 = 0.1111111
 
 #### 1) #####
 
+# Teste de Hipóteses Paramétrico: Teste para a Proporção:
 
+# 1º Passo:
+
+## H0: p <= 0.10 vs. p > 0.10
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## D.A.: Z = ((p* - p) / sqrt(pq / n)) ~=~ ((p* - p) / sqrt((p* * q*) / n)) ~ N(0, 1)
+
+## Z_obs = ((0.1111111 - 0.10) / sqrt((0.10 * 0.90) / 180)) = 0.4969035
+
+# 4º Passo:
+
+## R.C. = [ z_(1-α) , +∞ [ = [ qnorm(1-0.05) , +∞ [ = [ 1.6449 , +∞ [
+
+## Como Z_obs = 0.4969035 !E R.C. = [ 1.6449 , +∞ [, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que não há evidência estatística para corroborar as suspeitas do
+## diretor de produção.
 
 #### 2) #####
 
+# Teste de Hipóteses Paramétrico: Teste para a Proporção:
 
+# 1º Passo:
+
+## H0: p <= 0.10 vs. p > 0.10
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## D.A.: Z = ((p* - p) / sqrt(pq / n)) ~=~ ((p* - p) / sqrt((p* * q*) / n)) ~ N(0, 1)
+
+## Z_obs = ((0.1111111 - 0.10) / sqrt((0.10 * 0.90) / 180)) = 0.4969035
+## P-Value = P(Z >= Z_obs) = 1 - P(Z < 0.4969035) = 1 - pnorm(0.4969035) = 0.3096
+
+# 4º Passo:
+
+## Como P-Value = 0.3096 > α = 0.05, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que não há evidência estatística para corroborar as suspeitas do
+## diretor de produção.
 
 "----------------------------------------------------------------------"
 
@@ -1257,7 +1437,37 @@ var.test(
 "---------------------------"
 
 
-# EX.
+# Amostra:
+## n = 50
+## p* = 0.27
+
+# Teste de Hipóteses Paramétrico: Teste para a Proporção:
+
+# 1º Passo:
+
+## H0: p <= 0.20 vs. p > 0.20
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## D.A.: Z = ((p* - p) / sqrt(pq / n)) ~=~ ((p* - p) / sqrt((p* * q*) / n)) ~ N(0, 1)
+
+## Z_obs = ((0.27 - 0.20) / sqrt((0.20 * 0.80) / 50)) = 1.2374
+## P-Value = P(Z >= Z_obs) = 1 - P(Z < 1.2374) = 1 - pnorm(1.2374) = 0.1080
+
+# 4º Passo:
+
+## Como P-Value = 0.1080 > α = 0.05, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que não existe evidência estatística para corroborar as suspeitas
+## do diretor de produção.
 
 "----------------------------------------------------------------------"
 
