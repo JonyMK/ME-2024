@@ -1367,7 +1367,7 @@ t.test(
 
 # 1º Passo:
 
-## H0: p <= 0.10 vs. p > 0.10
+## H0: p <= 0.10 vs. H1: p > 0.10
 ## Teste Unilateral Direito
 
 # 2º Passo:
@@ -1398,7 +1398,7 @@ t.test(
 
 # 1º Passo:
 
-## H0: p <= 0.10 vs. p > 0.10
+## H0: p <= 0.10 vs. H1: p > 0.10
 ## Teste Unilateral Direito
 
 # 2º Passo:
@@ -1445,7 +1445,7 @@ t.test(
 
 # 1º Passo:
 
-## H0: p <= 0.20 vs. p > 0.20
+## H0: p <= 0.20 vs. H1: p > 0.20
 ## Teste Unilateral Direito
 
 # 2º Passo:
@@ -1495,23 +1495,147 @@ t.test(
 "---------------------------"
 
 
-# EX.
+# População:
+## Normal
+## µ = ?
+## σ = ?
+
+# Amostra:
+## n = 5
+(amostra_5_16 <- c(16, 16.5, 19, 15.4, 15.6))
 
 #### 1) #####
 
+# Teste de Hipóteses Paramétrico: Teste para a Média:
 
+# 1º Passo:
+
+## H0: µ = 13.5 vs. H1: µ != 13.5
+## Teste Bilateral
+
+# 2º Passo:
+
+## α = 0.1
+
+# 3º Passo:
+
+# D.A.: T = ((x̅ - μ) / (s / sqrt(n))) ~ t(n-1)
+t.test(
+  x = amostra_5_16,          # Vetor com a amostra
+  mu = 13.5,                 # Média da População
+  conf.level = 0.90,         # Grau de Confiança para o teste/intervalo
+  alternative = "two.sided"
+)
+## t_obs = 4.5964
+## P-Value = 0.01006
+
+# 4º Passo:
+
+## Como P-Value = 0.01006 <= α = 0.1, rejeita-se H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 10% de significância, pode-se concluir
+## que a média da população aparenta ser diferente de 13.5 mg.
 
 #### 2) #####
 
+# Teste de Hipóteses Paramétrico: Teste para a Média:
 
+# 1º Passo:
+
+## H0: µ = 14 vs. H1: µ = 13.5
+## <=>
+## H0: µ = 14 vs. H1: µ < 14
+## Teste Unilateral Esquerdo
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+# D.A.: T = ((x̅ - μ) / (s / sqrt(n))) ~ t(n-1)
+t.test(
+  x = amostra_5_16,          # Vetor com a amostra
+  mu = 14,                 # Média da População
+  conf.level = 0.95,         # Grau de Confiança para o teste/intervalo
+  alternative = "less"
+)
+## t_obs = 3.8303
+## P-Value = 0.9907
+
+# 4º Passo:
+
+## Como P-Value = 0.9907 > α = 0.05, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que a média da população aparenta ser 14 mg.
 
 #### 3) #####
 
+# p* = 20/100 = 0.2
 
+# Teste de Hipóteses Paramétrico: Teste para a Média:
+
+# 1º Passo:
+
+## H0: p <= 0.18 vs. H1: p > 0.18
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+# Proporção de Fumadores com Cancro do Pulmão:
+# p* = 20/100 = 0.2
+# 20 Fumadores em 100 com Cancro do Pulmão
+# População Binomial
+(amostra_5_16_3 <- c(rep(1, 20), rep(0, (100 - 20))))
+
+# Teste: Z_obs e P-Value
+BSDA::z.test(
+  x = amostra_5_16_3,
+  sigma.x = sqrt(0.2 * (1 - 0.2)),
+  alternative = "greater",
+  mu = 0.18
+)
+## Z_obs = 0.5
+## P-Value = 0.3085
+
+## D.A.: Z = ((p* - p) / sqrt(pq / n)) ~=~ ((p* - p) / sqrt((p* * q*) / n)) ~ N(0, 1)
+## Z_obs = ((0.2 - 0.18) / sqrt((0.2 * 0.8) / 100)) = 0.5
+
+# 4º Passo:
+
+## R.C. = [ z_(1-α) , +∞ [ = [ qnorm(1-0.05) , +∞ [ = [ 1.6449 , +∞ [
+
+## Como Z_obs = 0.5 !E R.C. = [ 1.6449 , +∞ [, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que a afirmação não aparenta estar correta, pois a percentagem
+## de fumadores que contraem cancro do pulmão aparenta ser menor
+## ou igual a 18%.
 
 #### 4) #####
 
+## P-Value = P(Z >= Z_obs) = 1 - pnorm(0.5) = 0.3085
 
+## OU
+
+BSDA::z.test(
+  x = amostra_5_16_3,
+  sigma.x = sqrt(0.2 * (1 - 0.2)),
+  alternative = "greater",
+  mu = 0.18
+)
+## P-Value = 0.3085
 
 "----------------------------------------------------------------------"
 
@@ -1538,15 +1662,103 @@ t.test(
 "---------------------------"
 
 
-# EX.
-
 #### 1) #####
 
+# Teste de Hipóteses Paramétrico: Teste para a Proporção:
 
+# 1º Passo:
+
+## H0: p <= 0.65 vs. H1: p > 0.65
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.025
+
+# 3º Passo:
+
+# Proporção de Mulheres que Concordam com a Proibição:
+# p* = 60/100 = 0.6
+# 60 Mulheres em 100 concordam com a proibição
+# População Binomial
+(amostra_5_17_Mulheres_Concordantes <- c(rep(1, 60), rep(0, (100 - 60))))
+
+# Teste: Z_obs e P-Value
+BSDA::z.test(
+  x = amostra_5_17_Mulheres_Concordantes,
+  sigma.x = sqrt(0.6 * (1 - 0.6)),
+  alternative = "greater",
+  mu = 0.65
+)
+## Z_obs = -1.0206
+## P-Value = 0.8463
+
+# 4º Passo:
+
+## Como P-Value = 0.8463 > α = 0.025, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 2.5% de significância, pode-se concluir
+## que a afirmação do jormal não parece ser verdadeira, pois a
+## percentagem aparenta ser inferior ou igual a 65%, e não superior.
 
 #### 2) #####
 
+# Teste de Hipóteses Paramétrico: Teste para a Proporção:
 
+# 1º Passo:
+
+## H0: p1 = p2 vs. H1: p1 != p2
+## <=>
+## H0: p1 - p2 = 0 vs. H1: p1 - p2 != 0
+## Teste Bilateral
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## Proporção de Homens que Discordam com a Proibição:
+## p* = 50/100 = 0.5
+## 50 Homens em 100 discordam com a proibição
+## População Binomial
+(amostra_5_17_Homens_Discordantes <- c(rep(1, 50), rep(0, (100 - 50))))
+
+## Proporção de Mulheres que Discordam com a Proibição:
+## p* = 40/100 = 0.4
+## 40 Mulheres em 100 discordam com a proibição
+## População Binomial
+(amostra_5_17_Mulheres_Discordantes <- c(rep(1, 40), rep(0, (100 - 40))))
+
+## D.A.: Z = (((p1* - p2*) - (p1 - p2)) / sqrt(((p1 * q1) / n1) + ((p2 * q2) / n2)))
+## D.A.: Z ~=~ (((p1* - p2*) - (p1 - p2)) / sqrt(((p1* * q1*) / n1) + ((p2* * q2*) / n2)))
+## D.A.: z ~ N(0, 1)
+
+## Z_obs = (((0.5 - 0.4) - 0) / sqrt(((0.5 * 0.5) / 100) + ((0.4 * 0.6) / 100))) = 1.4286
+
+BSDA::z.test(
+  x = amostra_5_17_Homens_Discordantes,
+  y = amostra_5_17_Mulheres_Discordantes,
+  sigma.x = sqrt(0.5 * 0.5),
+  sigma.y = sqrt(0.4 * 0.6),
+  conf.level = 0.95,
+  mu = 0,
+  alternative = "two.sided"
+)
+## Z_obs = -1.4286
+## P-Value = 0.1531
+
+# 4º Passo:
+
+## Como P-Value = 0.1531 > α = 0.05, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que as percentagens de pessoas favoráveis à não proibição parece
+## ser igual entre ambos os sexos.
 
 "----------------------------------------------------------------------"
 
@@ -1563,7 +1775,69 @@ t.test(
 "---------------------------"
 
 
-# EX.
+# X1 - População de Hipertensos
+# X2 - População de Não Hipertensos
+
+# Amostra de X1:
+## n = 55
+## p* = 24/55 = 0.4364 (Proporção de Pessoas com Dietas Pobres em Sódio)
+
+# Amostra de X2:
+## n = 149
+## p* = 36/149 = 0.2416 (Proporção de Pessoas com Dietas Pobres em Sódio)
+
+# Teste de Hipóteses Paramétrico: Teste para a Proporção:
+
+# 1º Passo:
+
+## H0: p1 <= p2 vs. H1: p1 > p2
+## <=>
+## H0: p1 - p2 <= 0 vs. H1: p1 - p2 > 0
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## Proporção de Hipertensos com Dietas Pobres em Sódio:
+## p* = 24/55 = 0.4364
+## 24 Pessoas em 55 têm dietas pobres em sódio
+## População Binomial
+(amostra_5_18_Hipertensos <- c(rep(1, 24), rep(0, (55 - 24))))
+
+## Proporção de Não Hipertensos com Dietas Pobres em Sódio:
+## p* = 36/149 = 0.2416
+## 36 Pessoas em 149 têm dietas pobres em sódio
+## População Binomial
+(amostra_5_18_Nao_Hipertensos <- c(rep(1, 36), rep(0, (149 - 36))))
+
+## D.A.: Z = (((p1* - p2*) - (p1 - p2)) / sqrt(((p1 * q1) / n1) + ((p2 * q2) / n2)))
+## D.A.: Z ~=~ (((p1* - p2*) - (p1 - p2)) / sqrt(((p1* * q1*) / n1) + ((p2* * q2*) / n2)))
+## D.A.: z ~ N(0, 1)
+
+BSDA::z.test(
+  x = amostra_5_18_Hipertensos,
+  y = amostra_5_18_Nao_Hipertensos,
+  sigma.x = sqrt(0.4364 * (1 - 0.4364)),
+  sigma.y = sqrt(0.2416 * (1 - 0.2416)),
+  conf.level = 0.95,
+  mu = 0,
+  alternative = "greater"
+)
+## Z_obs = 2.5792
+## P-Value = 0.004952
+
+# 4º Passo:
+
+## Como P-Value = 0.004952 <= α = 0.05, rejeita-se H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que a hipótese é verdadeira, a proporção de pessoas com dietas
+## pobres em sódio é superior em hipertensos.
 
 "----------------------------------------------------------------------"
 
@@ -1592,7 +1866,69 @@ t.test(
 "---------------------------"
 
 
-# EX.
+# Populações:
+## Desconhecidas.
+
+# Amostra - Pop. MS:
+## n = 500 pessoas
+## 220 pessoas votaram no presidente demissionário
+
+# Amostra - Pop. MN:
+## n = 300 pessoas
+## 156 pessoas votaram no presidente demissionário
+
+# Amostras Independentes
+
+# Teste de Hipóteses Paramétrico: Teste para a Proporção:
+
+# 1º Passo:
+
+## H0: p_MS = p_MN vs. H1: p_MS != p_MN
+## <=>
+## H0: p_MS - p_MN = 0 vs. H1: p_MS - p_MN != 0
+## Teste Bilateral
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## Proporção de Votantes no Presidente Demissonário da Margem Sul:
+## p* = 220/500 = 0.44
+## 220 Pessoas em 500 votaram no Presidente Demissonário
+## População Binomial
+(amostra_5_19_MS <- c(rep(1, 220), rep(0, (500 - 220))))
+
+## Proporção de Votantes no Presidente Demissonário da Margem Norte:
+## p* = 156/300 = 0.52
+## 156 Pessoas em 300 votaram no Presidente Demissonário
+## População Binomial
+(amostra_5_19_MN <- c(rep(1, 156), rep(0, (300 - 156))))
+
+## D.A.: Z = (((p1* - p2*) - (p1 - p2)) / sqrt(((p1 * q1) / n1) + ((p2 * q2) / n2)))
+## D.A.: Z ~=~ (((p1* - p2*) - (p1 - p2)) / sqrt(((p1* * q1*) / n1) + ((p2* * q2*) / n2)))
+## D.A.: z ~ N(0, 1)
+BSDA::z.test(
+  x = amostra_5_19_MS,
+  y = amostra_5_19_MN,
+  sigma.x = sqrt(0.44 * (1 - 0.44)),
+  sigma.y = sqrt(0.52 * (1 - 0.52)),
+  conf.level = 0.95,
+  mu = 0,
+  alternative = "two.sided"
+)
+## Z_obs = -2.1979
+## P-Value = 0.02795
+
+# 4º Passo:
+
+## Como P-Value = 0.02795 <= α = 0.05, rejeita-se H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que os resultados das votações de ambas as margens aparentam ser diferentes.
 
 "----------------------------------------------------------------------"
 
@@ -1617,22 +1953,187 @@ t.test(
 "---------------------------"
 
 
-# EX.
+# Populações:
+## Desconhecidas.
 
 #### 1) #####
 
+# X1 - Peso de quem come sempre vegetais
+# X2 - Peso de quem nunca come vegetais
 
+(amostra_5_20_1_Peso_Come_Vegetais <- obesidade[obesidade$FCVC == 3,]$Peso)
+(amostra_5_20_1_Peso_Nunca_Come_Vegetais <- obesidade[obesidade$FCVC == 1,]$Peso)
+
+# Teste de Hipóteses Paramétrico: Teste para a Diferença de Médias:
+
+# 1º Passo:
+
+## H0: μ1 >= μ2 vs. H1: μ1 < μ2
+## <=>
+## H0: μ1-μ2 >= 0 vs. H1: μ1-μ2 < 0
+## Teste Unilateral Esquerdo
+
+# 2º Passo:
+
+## α = 0.01
+
+# 3º Passo:
+
+## D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2))) ~ N(0, 1)
+BSDA::z.test(
+  x = amostra_5_20_1_Peso_Come_Vegetais,                 # Primeira Amostra
+  sigma.x = sd(amostra_5_20_1_Peso_Come_Vegetais),       # Desvio Padrão da Amostra 1
+  y = amostra_5_20_1_Peso_Nunca_Come_Vegetais,                 # Segunda Amostra
+  sigma.y = sd(amostra_5_20_1_Peso_Nunca_Come_Vegetais),       # Desvio Padrão da Amostra 2
+  conf.level = 0.99,  # Grau de Confiança
+  alternative = "less",
+  mu = 0
+)
+## Z_obs = 5.3663
+## P-Value = 1
+
+# 4º Passo:
+
+## Como P-Value = 1 > α = 0.01, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 1% de significância, pode-se concluir
+## que em média, o peso de quem come sempre vegetais é igual ou
+## superior ao peso de quem nunca come vegetais.
 
 #### 2) #####
 
+# X1 - Peso de quem nunca pratica exercício
+# X2 - Peso de quem pratica exercício pelo menos 1 dia
 
+(amostra_5_20_2_Peso_Sem_Exercicio <- obesidade[obesidade$FAF == 0,]$Peso)
+(amostra_5_20_2_Peso_Exercicio_1_Dia <- obesidade[obesidade$FAF == 1,]$Peso)
+
+# Teste de Hipóteses Paramétrico: Teste para a Diferença de Médias:
+
+# 1º Passo:
+
+## H0: μ1 <= μ2 vs. H1: μ1 > μ2
+## <=>
+## H0: μ1-μ2 <= 0 vs. H1: μ1-μ2 > 0
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2))) ~ N(0, 1)
+BSDA::z.test(
+  x = amostra_5_20_2_Peso_Sem_Exercicio,                 # Primeira Amostra
+  sigma.x = sd(amostra_5_20_2_Peso_Sem_Exercicio),       # Desvio Padrão da Amostra 1
+  y = amostra_5_20_2_Peso_Exercicio_1_Dia,                 # Segunda Amostra
+  sigma.y = sd(amostra_5_20_2_Peso_Exercicio_1_Dia),       # Desvio Padrão da Amostra 2
+  conf.level = 0.95,  # Grau de Confiança
+  alternative = "greater",
+  mu = 0
+)
+## Z_obs = -3.2156
+## P-Value = 0.9993
+
+# 4º Passo:
+
+## Como P-Value = 0.9993 > α = 0.05, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que em média, o peso de quem nunca pratica exercício físico é
+## igual ou inferior ao peso de quem pratica pelo menos 1 dia
+## exercício físico.
 
 #### 3) #####
 
+# X - Obesos que comem habitualmente alimentos altamente calóricos.
 
+# n = nrow(obesidade) = 2111
+
+(amostra_5_20_3 <- obesidade[obesidade$FAVC == 1,])
+# n_X = nrow(amostra_5_20_3) = 1866
+
+# p* = 1866/2111 = 0.8839 = 88.39%
+
+# Teste de Hipóteses Paramétrico: Teste para a Proporção:
+
+# 1º Passo:
+
+## H0: p <= 0.8 vs. H1: p > 0.8
+## Teste Unilateral Direito
+
+# 2º Passo:
+
+## α = 0.06
+
+# 3º Passo:
+
+## D.A.: Z = ((p* - p) / sqrt((p* * q*) / n)) ~ N(0, 1)
+## Z_obs = ((0.8839 - 0.8) / sqrt((0.8839 * (1 - 0.8839)) / 2111)) = 12.0334
+## P-Value = P(Z >= Z_obs) = 1 - pnorm(12.0334) = 0
+
+# 4º Passo:
+
+## Como P-Value = 0 <= α = 0.06, rejeita-se H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 6% de significância, pode-se concluir
+## que a percentagem de obesos que come habitualmente alimentos
+## altamente calóricos aparenta ser superior a 80%.
 
 #### 4) #####
 
+# X1 - Obesos masculinos que nunca comem entre as refeições principais.
+# X2 - Obesos femininos que nunca comem entre as refeições principais.
 
+# n = nrow(obesidade) = 2111
+
+(amostra_5_20_4_Masc <- obesidade[obesidade$CAEC == "N" & obesidade$Genero == "Masculino",])
+# n_X1 = nrow(amostra_5_20_4_Masc) = 36
+
+(amostra_5_20_4_Fem <- obesidade[obesidade$CAEC == "N" & obesidade$Genero == "Feminino",])
+# n_X2 = nrow(amostra_5_20_4_Fem) = 15
+
+# p1* = 36/2111 = 0.01705 = 1.705%
+# p2* = 15/2111 = 0.007106 = 0.7106%
+
+# Teste de Hipóteses Paramétrico: Teste para a Diferença de Proporções:
+
+# 1º Passo:
+
+## H0: p1 = p2 vs. H1: p1 != p2
+## <=>
+## H0: p1 - p2 = 0 vs. H1: p1 - p2 != 0
+## Teste Bilateral
+
+# 2º Passo:
+
+## α = 0.03
+
+# 3º Passo:
+
+# D.A.: Z = (((p1* - p2*) - (p1 - p2)) / sqrt(((p1 * q1) / n1) + ((p2 * q2) / n2)))
+# D.A.: Z ~=~ (((p1* - p2*) - (p1 - p2)) / sqrt(((p1* * q1*) / n1) + ((p2* * q2*) / n2)))
+# D.A.: z ~ N(0, 1)
+
+## Z_obs = (((0.01705 - 0.007106) - 0) / sqrt(((0.01705 * (1 - 0.01705)) / 2111) + ((0.007106 * (1 - 0.007106)) / 2111)))
+##       = 2.9606
+## P-Value = P(Z >= Z_obs) = 1 - pnorm(2.960614) = 0.001535
+
+# 4º Passo:
+
+## Como P-Value = 0.001535 <= α = 0.03, rejeita-se H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 3% de significância, pode-se concluir
+## que há diferenças na percentagem de obesos que nunca comem entre
+## as refeições principais do género feminino e do género masculino.
 
 "----------------------------------------------------------------------"
