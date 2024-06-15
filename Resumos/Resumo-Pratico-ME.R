@@ -1406,7 +1406,7 @@ library(nortest)
 
 ###### Testes de Ajustamento: ######
 
-# Distribuição Discreta ou Contínua com Classes:
+# Para testar se a População segue uma Distribuição Discreta ou Contínua com Classes:
 # Qui-Quadrado
 ## chisq.test()
 chisq.test(
@@ -1420,7 +1420,7 @@ RES_CHISQ$p.value   # Valor-P
 RES_CHISQ$observed  # Oi
 RES_CHISQ$expected  # Ei = npi
 
-# Distribuição Contínua Completamente Especificada:
+# Para testar se a População segue uma Distribuição Contínua (Completamente Especificada):
 # Kolmogorov-Smirnov
 ## ks.test()
 ks.test(
@@ -1429,14 +1429,14 @@ ks.test(
   rate = MEDIA    # Média
 )
 
-# Normal e n >= 50:
+# Para testar se a População segue uma Normal (com n >= 50, sem a especificar completamente):
 # Lilliefors
 ## nortest::lillie.test()
 nortest::lillie.test(
   VARIAVEL  # Amostra
 )
 
-# Normal e n < 50:
+# Para testar se a População segue uma Normal (com n < 50):
 # Shapiro Wilk
 ## shapiro.test()
 shapiro.test(
@@ -1548,6 +1548,9 @@ if (length(which(RES_CHISQ$expected < 5)) > (k * 0.2)) {
 # Indicar o Nº de Parâmetros Estimados:
 (r <- NR_PARAMETROS_ESTIMADOS)
 
+# Indicar o Nº de Linhas na Tabela / Nº de Elementos no Domínio:
+(k <- NR_LINHAS_TABELA)
+
 # Definir os Graus de Liberdade do Qui-Quadrado:
 (gl <- k - 1 - r)
 
@@ -1555,6 +1558,16 @@ if (length(which(RES_CHISQ$expected < 5)) > (k * 0.2)) {
 ## Se xi é um valor: pi = P(X <= xi)
 ## Se xi é uma classe: pi = P(LIM_INF < X < LIM_SUP)
 ### Os sinais < > variam consoante a classe é aberta/fechada.
+
+## Código para calcular a coluna pi para Distribuições Uniformes Discretas:
+(pi <- rep(1/k, k))
+sum(pi) # Tem que dar ~=~ 1, caso contrário está errado!
+
+## Código para calcular a coluna pi para Distribuições Poisson:
+(pi = dpois(xi, MEDIA_POISSON))
+pi[k] <- 1 - ppois(xi[k-1], MEDIA_POISSON)
+sum(pi) # Tem que dar ~=~ 1, caso contrário está errado!
+round(pi, 4)
 
 ## Código para calcular a coluna pi para Distribuições Exponencias:
 (pi <- pexp(cortes[2:(k+1)], 1/estimativa))
@@ -1573,6 +1586,7 @@ sum(pi) # Tem que dar ~=~ 1, caso contrário está errado!
 # Caso se estimem parâmetros, apenas o valor da E.T. do teste
 # estará correto.
 # Para saber o P-Value correto, é necessário calculá-lo.
+
 # Exemplo da Exponencial:
 (p.value_correto <- 1 - pchisq(teste_qui_quadrado$statistic, gl))
 

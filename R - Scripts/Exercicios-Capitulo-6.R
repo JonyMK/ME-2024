@@ -23,7 +23,75 @@
 "---------------------------"
 
 
-# Ex.
+# População:
+## X - Preferência em relação a 5 marcas de comprimidos para a gripe.
+
+# Amostra:
+## Dominio:
+(Dx = c(1, 2, 3, 4, 5))
+(amostra_6_1 <- c(rep(1, 190), rep(2, 210), rep(3, 180), rep(4, 205), rep(5, 210)))
+(n <- length(amostra_6_1)) # = 995
+
+# Teste de Hipóteses Não Paramétrico: Teste de Ajustamento:
+
+# 1º Passo:
+
+## H0: X ~ Uniforme Discreta vs. H1: X !~ Uniforme Discreta
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+## Para testar se a População segue uma Distribuição Discreta ou Contínua com Classes:
+##chisq.test
+
+(r <- 0)
+(k_6_1 <- length(Dx))
+(gl <- k - 1 - r)
+
+(Oi_6_1 <- table(amostra_6_1))
+(pi_6_1 <- rep(1/k, k))
+
+(res_cisq_6_1 <- chisq.test(
+  x = Oi_6_1,  # Frequências Observadas (Freq. Absolutas)
+  p = pi_6_1   # Frequências Esperadas
+))
+## X^2_obs = 3.6181
+## P-Value = 0.4602
+
+# Verificação das Regras:
+
+## Dimensão da Amostra Maior que 30:
+if (n > 30) {
+  print("Respeita a Regra.")
+} else {
+  print("Amostra Demasiado Pequena!")
+} ## VÁLIDA
+
+## Todas as Freq. Esperadas >= 1:
+if (length(which(res_cisq_6_1$expected < 1)) > 0) {
+  print("Juntar Linhas da Tabela de Frequências!")
+} else {
+  print("Respeita a Regra.")
+} ## VÁLIDA
+
+## Não Há Mais de 20% das Freq. Esperadas < 5:
+if (length(which(res_cisq_6_1$expected < 5)) > (k * 0.2)) {
+  print("Juntar Linhas da Tabela de Frequências!")
+} else {
+  print("Respeita a Regra.")
+} ## VÁLIDA
+
+# 4º Passo:
+
+## Como P-Value = 0.4602 > α = 0.05, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que a população pode ser considerada como Uniforme Discreta.
 
 "----------------------------------------------------------------------"
 
