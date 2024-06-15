@@ -580,7 +580,7 @@ t.test(
 # σ1 = 2.8284
 # σ2 = 3
 
-# Teste de Hipóteses Paramétrico para o Quociente de Variâncias:
+# Teste de Hipóteses Paramétrico para a Diferença de Médias:
 
 # 1º Passo:
 
