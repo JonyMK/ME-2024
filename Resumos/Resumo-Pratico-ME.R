@@ -1569,6 +1569,13 @@ pi[k] <- 1 - ppois(xi[k-1], MEDIA_POISSON)
 sum(pi) # Tem que dar ~=~ 1, caso contrário está errado!
 round(pi, 4)
 
+## Código para calcular a coluna pi para Distribuições Binomiais:
+for (i in 1:k) {
+  pi[i] <- dbinom(DOMINIO_DE_X[i], N_BINOMIAL, P_BINOMIAL)
+}
+round(pi, 4)
+sum(pi) # Tem que dar ~=~ 1, caso contrário está errado!
+
 ## Código para calcular a coluna pi para Distribuições Exponencias:
 (pi <- pexp(cortes[2:(k+1)], 1/estimativa))
 for (i in 2:k) {

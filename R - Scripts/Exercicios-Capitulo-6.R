@@ -108,12 +108,112 @@ if (length(which(res_cisq_6_1$expected < 5)) > (k * 0.2)) {
 #'*                                                                   *
 #'* Verifique, para um nível de significância de 1%, se estes         *
 #'* resultados são compatíveis com a hipótese do número de rapazes    *
-#'* por família ser uma variível aleatória com distribuição binomial, *
+#'* por família ser uma variável aleatória com distribuição binomial, *
 #'* admitindo a equiprobabilidade dos sexos.                          *
 "---------------------------"
 
 
-# Ex.
+# População:
+## X - Número de rapazes em famílias de 5 filhos.
+
+# Amostra:
+## tamanho da amostra = 320
+(n_6_2 <- 5)
+(Dx_6_2 = c(0, 1, 2, 3, 4, 5))
+(amostra_6_2 <- c(rep(0, 8), rep(1, 40), rep(2, 88), rep(3, 110), rep(4, 56), rep(5, 18)))
+
+# Teste de Hipóteses Não Paramétrico: Teste de Ajustamento:
+
+# 1º Passo:
+
+## H0: X ~ Binomial vs. H1: X !~ Binomial
+
+# 2º Passo:
+
+## α = 0.01
+
+# 3º Passo:
+
+## Para testar se a População segue uma Distribuição Discreta ou Contínua com Classes:
+##chisq.test
+
+## X ~ B(n, p)
+## n = 5
+## p = ?
+
+(mean(amostra_6_2)) # = 2.6875
+## E[X] = n * p <=>
+## n * p = 2.6875 <=>
+## 5 * p = 2.6875 <=>
+## p = 2.6875 / 5 <=>
+## p = 0.5375
+(p_6_2 <- 0.5375)
+
+(r_6_2 <- 1)
+(k_6_2 <- length(Dx_6_2))
+(gl_6_2 <- k_6_2 - 1 - r_6_2)
+
+(Oi_6_2 <- table(amostra_6_2))
+for (i in 1:k_6_2) {
+  (pi_6_2[i] <- dbinom(Dx_6_2[i], n_6_2, p_6_2))
+}
+(round(pi_6_2, 4))
+sum(pi_6_2)
+
+## Teste:
+(res_cisq_6_2 <- chisq.test(
+  x = Oi_6_2,  # Frequências Observadas (Freq. Absolutas)
+  p = pi_6_2   # Frequências Esperadas
+))
+## X^2_obs = 1.9567
+## P-Value = Está errado, foram estimados parâmetros!
+
+# Verificação das Regras:
+
+## Dimensão da Amostra Maior que 30:
+if (320 > 30) {
+  print("Respeita a Regra.")
+} else {
+  print("Amostra Demasiado Pequena!")
+} ## VÁLIDA
+
+## Todas as Freq. Esperadas >= 1:
+if (length(which(res_cisq_6_2$expected < 1)) > 0) {
+  print("Juntar Linhas da Tabela de Frequências!")
+} else {
+  print("Respeita a Regra.")
+} ## VÁLIDA
+
+## Não Há Mais de 20% das Freq. Esperadas < 5:
+if (length(which(res_cisq_6_2$expected < 5)) > (k * 0.2)) {
+  print("Juntar Linhas da Tabela de Frequências!")
+} else {
+  print("Respeita a Regra.")
+} ## VÁLIDA
+
+# 4º Passo:
+
+## Pela R.C.:
+
+### R.C. => [ X^2_(1-α; k-1-r) , +∞ [
+##       => [ qchisq(1-0.01, k_6_2-1-r_6_2) , +∞ [
+##       => [ 13.2767 , +∞ [
+
+### Como X^2_obs = 1.9567 !E R.C. = [ 13.2767 , +∞ [, não se rejeita H0.
+
+## Pelo P-Value:
+
+### P-Value Corrigido:
+#### P-Value = P(X >= X_obs) = 1 - P(X < 1.9567)
+####         = 1 - pchisq(1.9567, n_6_2)
+####         = 0.8551
+
+### Como P-Value = 0.8551 > α = 0.01, não se rejeita H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 1% de significância, pode-se concluir
+## que a população pode ser considerada como Binomial.
 
 "----------------------------------------------------------------------"
 
