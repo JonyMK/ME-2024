@@ -1,214 +1,442 @@
-# Capítulo 5 - Testes de Hipóteses Paramétricos ####
+##############
+# CAPÍTULO 5 #
+##############
 
-"-----------------------------------------------------"
 
-## Exemplo 2 - Slide 23 ####
+###############################
+###############################
+###############################
 
-# População:
-## ?
+#          Exemplo 1          #
 
-# Amostra:
-## n = 1000
-## p* = 0.014
+###############################
+###############################
+###############################
 
-"-----------------------"
+#amostra
+amostra1 = c(25.8,76.0,59.6,61.4,51.3,66.2,30.4,37.5,57.2)
 
-### 1) ####
+#teste de hipóteses paramétrico
+library(BSDA)
+z.test(x=amostra1, sigma.x=20, alternative="less", mu=60)
 
-# Empresa não adquire se a percentagem de defeitos for superior a 1%.
-# p > 0.01
+#atribuir um "nome" ao teste para aceder aos campos
+(exemplo1 = z.test(x=amostra1, sigma.x=20, alternative="less", mu=60))
 
-# Passos para os Testes de Hipóteses:
+# valor observado da estatística de teste sob H0
+exemplo1$statistic
 
-## 1)
-### H0: p = 0.01 vs. H1: p > 0.01
-### Teste Unilateral Direito
+# Região crítica
+# quantil de probabilidade da região crítica
+qnorm(0.05)
 
-## 2)
-### α = 0.05
+# valor-p
+exemplo1$p.value
+#ou
+pnorm(exemplo1$statistic)
 
-## 3)
-### E.T.: Teste de Hipóteses para a Proporção:
-###       Z = ((p* - p) / sqrt(pq / n)) ~ N(0, 1)
 
-## 4)
-### Rejeitar H0 se: E.T. E R.C.
+###############################
+###############################
+###############################
 
-### Z_obs = ((p* - p) / sqrt(pq / n))
-###       = ((0.014 - 0.01) / sqrt((0.01 * (1 - 0.01)) / 1000))
-###       = 1.2713
+#          Exemplo 2          #
 
-### R.C. = [ z_(1-0.05) , +∞ [
-###      = [ qnorm(0.95) , +∞ [
-###      = [ 1.6449, +∞ [
+###############################
+###############################
+###############################
 
-### Como Z_obs = 1.2713 \E/ R.C. = [ 1.6449, +∞ [, não se rejeita H0.
+#amostra: sucesso = 1 e insucesso = 0
+amostra2 = c(rep(1,14),rep(0,1000-14))
 
-## 5)
-### A empresa deve adquirir o novo processo de fabrico.
+#estimativa da proporção
+14/1000
+#ou
+mean(amostra2)
 
-"-----------------------"
 
-# Criar a amostra no R:
+###############
+#Exemplo 2.1
 
-# Proporção de Embalagens com Defeito:
-# 0.014
-# 0.014 * 1000 = 14 Embalagens
-# População Binomial
-(amostra_5_2 <- c(rep(1,14), rep(0,(1000 - 14))))
+#teste de hipóteses paramétrico
+library(BSDA)
+z.test(x=amostra2, sigma.x=sqrt(0.01*(1-0.01)), alternative="greater", mu=0.01)
 
-# Teste: Z_obs e P-Value
-BSDA::z.test(
-  x = amostra_5_2,
-  sigma.x = sqrt(0.01 * (1 - 0.01)),
-  alternative = "greater",
-  mu = 0.01
-)
+#atribuir um "nome" ao teste para aceder aos campos
+(exemplo21 = z.test(x=amostra2, sigma.x=sqrt(0.01*(1-0.01)), alternative="greater", mu=0.01))
 
-# 1º - ?
-# 2º - No caso das proporções pode-se colocar a amostra no R.
-# 3º - No caso da proporção, para o teste z.test, o sigma do teste é sqrt(pq) ou sqrt(p*q*).
-# 4º - Se não houver exigências na forma de tomar a decisão, a forma mais fácil é através do P-Value.
+# valor observado da estatística de teste sob H0
+exemplo21$statistic
 
-"-----------------------"
+# Região crítica
+# quantil de probabilidade da região crítica
+qnorm(1-0.05)
 
-### 2) ####
+# valor-p
+exemplo21$p.value
+#ou
+1-pnorm(exemplo21$statistic)
 
-# Empresa não adquire se a percentagem de defeitos for inferior a 1%.
-# p < 0.01
 
-# Passos para os Testes de Hipóteses:
+###############
+#Exemplo 2.2
 
-## 1)
-### H0: p = 0.01 => A afirmação não é verdadeira.
-### vs.
-### H1: p < 0.01 => A afirmação é verdadeira.
+#teste de hipóteses paramétrico
+library(BSDA)
+z.test(x=amostra2, sigma.x=sqrt(0.01*(1-0.01)), alternative="less", mu=0.01)
 
-### Teste Unilateral Direito
+#atribuir um "nome" ao teste para aceder aos campos
+(exemplo22 = z.test(x=amostra2, sigma.x=sqrt(0.01*(1-0.01)), alternative="less", mu=0.01))
 
-## 2)
-### α = 0.1
+# valor observado da estatística de teste sob H0
+exemplo22$statistic
 
-## 3)
-### E.T.: Teste de Hipóteses para a Proporção:
-###       Z = ((p* - p) / sqrt(pq / n)) ~ N(0, 1)
-BSDA::z.test(
-  x = amostra_5_2,
-  sigma.x = sqrt(0.01 * (1 - 0.01)),
-  alternative = "less",
-  mu = 0.01
-)
-### Z_obs = 1.2713
-### P-Value = 0.8982
+# Região crítica
+# quantil de probabilidade da região crítica
+qnorm(0.10)
 
-## 4)
-### Rejeitar H0 se: P-Value < α
+# valor-p
+exemplo22$p.value
+#ou
+pnorm(exemplo22$statistic)
 
-### Como P-Value = 0.8982 > α = 0.1, não se rejeita H0.
 
-## 5)
-### Com base na amostra recolhida e com 1% de significância,
-### a afirmação não é verdadeira.
+###############
+#Exemplo 2.3
 
-"-----------------------"
+#teste de hipóteses paramétrico
+library(BSDA)
+z.test(x=amostra2, sigma.x=sqrt(0.01*(1-0.01)), alternative="two.sided", mu=0.01)
 
-### 3) ####
+#atribuir um "nome" ao teste para aceder aos campos
+(exemplo23 = z.test(x=amostra2, sigma.x=sqrt(0.01*(1-0.01)), alternative="two.sided", mu=0.01))
 
-# A proporção de embalagens é verdadeira?
-# p = 0.01
+# valor observado da estatística de teste sob H0
+exemplo23$statistic
 
-# Passos para os Testes de Hipóteses:
+# Região crítica
+# quantil de probabilidade da região crítica
+qnorm(1-0.05/2)
 
-## 1)
-### H0: p = 0.01 => A afirmação é verdadeira.
-### vs.
-### H1: p != 0.01 => A afirmação não é verdadeira.
+# valor-p
+exemplo23$p.value
+#ou
+2*(1-pnorm(abs(exemplo23$statistic)))
 
-### Teste Bilateral
 
-## 2)
-### α = 0.05
+###################################
+#observação: intervalo de confiança
+IC.exemplo23 = z.test(x=amostra2, sigma.x=sqrt(0.014*(1-0.014)), conf.level=0.95)
+IC.exemplo23$conf.int
 
-## 3)
-### E.T.: Teste de Hipóteses para a Proporção:
-###       Z = ((p* - p) / sqrt(pq / n)) ~ N(0, 1)
-BSDA::z.test(
-  x = amostra_5_2,
-  sigma.x = sqrt(0.01 * (1 - 0.01)),
-  alternative = "two.sided",
-  mu = 0.01
-)
-### Z_obs = 1.2713
-### P-Value = 0.2036
 
-## 4)
-### Rejeitar H0 se: P-Value < α
+###############################
+###############################
+###############################
 
-### Como P-Value = 0.2036 > α = 0.1, não se rejeita H0.
+#          Exemplo 3          #
 
-## 5)
-### Com base na amostra recolhida e com 5% de significância,
-### a afirmação é verdadeira.
+###############################
+###############################
+###############################
 
-"-----------------------------------------------------"
+#amostra dos meninos
+amostra31 = c(rep(64,9),rep(72,16),rep(74,2),rep(90,5))
+#dimensão da amostra
+length(amostra31)
+#estimativa da média
+mean(amostra31)
+#estimativa do desvio padrão
+sd(amostra31)
 
-## Exemplo 3 - Slide 40 ####
+#amostra das meninas
+amostra32 = c(rep(70,8),rep(74,22),rep(76,2),rep(90,4))
+#dimensão da amostra
+length(amostra32)
+#estimativa da média
+mean(amostra32)
+#estimativa do desvio padrão
+sd(amostra32)
 
-(amostra_5_3_meninos <- c(rep(64,9), rep(72,16), rep(74,2), rep(90,5)))
-(amostra_5_3_meninas <- c(rep(70,8), rep(74,22), rep(76,2), rep(90,4)))
 
-# Amostras Independentes
+#teste de hipóteses paramétrico
+library(BSDA)
+z.test(x=amostra31, sigma.x=sd(amostra31), 
+       y=amostra32, sigma.y=sd(amostra32),
+       alternative="two.sided", mu=0)
 
-# Passos para os Testes de Hipóteses:
+#atribuir um "nome" ao teste para aceder aos campos
+(exemplo3 = z.test(x=amostra31, sigma.x=sd(amostra31), 
+                   y=amostra32, sigma.y=sd(amostra32),
+                   alternative="two.sided", mu=0))
 
-## 1)
-### H0: μ1 - μ2 = 0 => Não há difrenças ao nível da leitura.
-### vs.
-### H1: μ1 - μ2 != 0 => Há difrenças ao nível da leitura.
+# valor observado da estatística de teste sob H0
+exemplo3$statistic
 
-### Teste Bilateral
+# Região crítica
+# quantil de probabilidade da região critíca
+qnorm(1-0.01/2)
 
-## 2)
-### α = 0.01
+# valor-p
+exemplo3$p.value
+#ou
+2*(1-pnorm(abs(exemplo3$statistic)))
 
-## 3)
-### D.A.: Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2))) ~ N(0, 1)
-### E.T.: Teste de Hipóteses para a Proporção:
-###       Z = (((x̅1 - x̅2) - (μ1 - μ2)) / sqrt((s1^2 / n1) + (s2^2 / n2)))
-BSDA::z.test(
-  x = amostra_5_3_meninos,           # Primeira Amostra
-  sigma.x = sd(amostra_5_3_meninos), # Desvio Padrão da Amostra 1
-  y = amostra_5_3_meninas,           # Segunda Amostra
-  sigma.y = sd(amostra_5_3_meninas), # Desvio Padrão da Amostra 2
-  mu = 0,                            # Média
-  alternative = "two.sided"          # Tipo de Teste
-)
-### Z_obs = -1.3137
-### P-Value = 0.1889
 
-## 4)
-### Rejeitar H0 se: P-Value < α
+###############################
+###############################
+###############################
 
-### Como P-Value = 0.1889 > α = 0.01, não se rejeita H0.
+#          Exemplo 4          #
 
-## 5)
-### Com base na amostra recolhida e com 1% de significância,
-### não há evidência estatística que haja diferenças ao nível
-### da leitura entre meninos e meninas do 1º ciclo, em média.
+###############################
+###############################
+###############################
 
-"-----------------------------------------------------"
+# amostras
+antes = c(13, 18, 14, 16, 19, 12, 22)
+depois = c(16, 24, 18, 14, 26, 17, 29)
 
-## Exemplo 5 - Slide 59 ####
+#amostra D = Depois-Antes
+depois-antes
+#dimensão da amostra D
+length(depois-antes)
+#estimativa da média
+mean(depois-antes)
+#estimativa do desvio padrão
+sd(depois-antes)
 
-# Pretende-se comparar o consumo médio (MPG),
-# tendo em conta a transmissão (AM).
+#teste de hipóteses paramétrico com D = Depois - Antes
+t.test(x=depois, y=antes, alternative="greater", mu=0, paired=TRUE)
 
-# 1º - Criar novas amostras:
-## Amostra 1 = Transmissão Manual
-## Amostra 2  = Transmissão Automática
+#atribuir um "nome" ao teste para aceder aos campos
+(exemplo4 = t.test(x=depois, y=antes, alternative="greater", mu=0, paired=TRUE))
 
-# Como não se podem utilizar as opções em que a populão é "qualquer",
-# porque o nº de elementos das amostras são inferiores a 30.
+# valor observado da estatística de teste sob H0
+exemplo4$statistic
 
-# Não sabemos se as populações são normais, mas se forem podemos usar
-# uma das opções para populações normais.
+# graus de liberdade da distribuição t-Student
+exemplo4$parameter
+# ou
+7-1
+
+# Região crítica
+# quantil de probabilidade da região critíca
+qt(1-0.05,exemplo4$parameter)
+
+# valor-p
+exemplo4$p.value
+#ou
+1-pt(exemplo4$statistic,exemplo4$parameter)
+
+
+###############
+# outra possibilidade de resolução: só com "uma" amostra
+d = depois -antes
+t.test(x=d, alternative="greater", mu=0)
+
+
+###############################
+###############################
+###############################
+
+#          Exemplo 5          #
+
+###############################
+###############################
+###############################
+
+# dados
+mtcars
+?mtcars
+
+###############
+#Exemplo 5.1
+
+#filtrar os dados
+manual = mtcars[mtcars$am==1,]
+automatica = mtcars[mtcars$am==0,]
+
+#Amostras
+#amostra 1
+manual$mpg
+length(manual$mpg)
+mean(manual$mpg)
+sd(manual$mpg)
+#amostra 2
+automatica$mpg
+length(automatica$mpg)
+mean(automatica$mpg)
+sd(automatica$mpg)
+
+#teste de ajustamento à normalidade
+shapiro.test(manual$mpg)
+shapiro.test(automatica$mpg)
+
+#verificar se as variâncias podem ser consideradas iguais
+#intervalo de confiança
+var.test(x=manual$mpg, y=automatica$mpg, conf.level=0.95)
+# OU
+# teste de hipóteses
+var.test(x=manual$mpg, y=automatica$mpg, alternative="two.sided", ratio=1)
+
+
+#teste de hipóteses paramétrico para a diferença de médias
+t.test(x=manual$mpg, y=automatica$mpg, alternative="greater", mu = 0,
+       paired=FALSE, var.equal=TRUE)
+
+#atribuir um "nome" ao teste para aceder aos campos
+(exemplo51 = t.test(x=manual$mpg, y=automatica$mpg, alternative="greater", mu = 0,
+                    paired=FALSE, var.equal=TRUE))
+
+# valor observado da estatística de teste sob H0
+exemplo51$statistic
+
+# graus de liberdade da distribuição t-Student
+exemplo51$parameter
+# ou
+13+19-2
+
+# Região crítica
+# quantil de probabilidade da região crítica
+qt(1-0.05,exemplo51$parameter)
+
+# valor-p
+exemplo51$p.value
+#ou
+1-pt(exemplo51$statistic,exemplo51$parameter)
+
+
+###############
+#Exemplo 5.2
+
+#filtrar os dados
+motorV = mtcars[mtcars$vs==0,]
+motorL = mtcars[mtcars$vs==1,]
+
+#amostras
+#amostra 1
+motorV$mpg
+length(motorV$mpg)
+mean(motorV$mpg)
+sd(motorV$mpg)
+var(motorV$mpg)
+#amostra 2
+motorL$mpg
+length(motorL$mpg)
+mean(motorL$mpg)
+sd(motorL$mpg)
+var(motorL$mpg)
+
+#teste de ajustamento à normalidade
+shapiro.test(motorV$mpg)
+shapiro.test(motorL$mpg)
+
+#teste de hipóteses paramétrico para o quociente de variâncias
+var.test(x=motorV$mpg, y=motorL$mpg, alternative="two.side", ratio=2)
+
+#atribuir um "nome" ao teste para aceder aos campos
+(exemplo52 = var.test(x=motorV$mpg, y=motorL$mpg, alternative="two.side", ratio=2))
+
+# valor observado da estatística de teste sob H0
+exemplo52$statistic
+
+# graus de liberdade da distribuição F-Snedecor
+exemplo52$parameter
+# ou
+18-1
+14-1
+
+# Região crítica
+# quantil de probabilidade da região critíca
+qf(0.05/2,exemplo52$parameter[1],exemplo52$parameter[2])
+qf(1-0.05/2,exemplo52$parameter[1],exemplo52$parameter[2])
+
+# valor-p
+exemplo52$p.value
+#ou
+2*min(pf(0.26,exemplo52$parameter[1],exemplo52$parameter[2]), 
+      1-pf(0.26,exemplo52$parameter[1],exemplo52$parameter[2]))
+
+
+###############
+#Exemplo 5.3
+
+#amostra
+motorV$mpg
+length(motorV$mpg)
+mean(motorV$mpg)
+sd(motorV$mpg)
+var(motorV$mpg)
+
+
+#teste de hipóteses paramétrico para a variância
+library(EnvStats)
+varTest(x=motorV$mpg, alternative="less", sigma.squared=16)
+
+#atribuir um "nome" ao teste para aceder aos campos
+(exemplo53 = varTest(x=motorV$mpg, alternative="less", sigma.squared=16))
+
+# valor observado da estatística de teste sob H0
+exemplo53$statistic
+
+# graus de liberdade da distribuição Qui-Quadrado
+exemplo53$parameter
+# ou
+18-1
+
+# Região crítica
+# quantil de probabilidade da região critíca
+qchisq(0.05,exemplo53$parameter)
+
+# valor-p
+exemplo53$p.value
+#ou
+pchisq(exemplo53$statistic,exemplo53$parameter)
+
+###############################
+###############################
+###############################
+
+#          Exemplo 6          #
+
+###############################
+###############################
+###############################
+
+#amostras: sucesso = 1 e insucesso = 0
+telefone = c(rep(1,320),rep(0,1600-320))
+internet = c(rep(1,475),rep(0,2500-475))
+
+#estimativas das proporções
+320/1600
+#ou
+mean(telefone)
+
+475/2500
+#ou
+mean(internet)
+
+#teste de hipóteses paramétrico
+library(BSDA)
+z.test(x=telefone, sigma.x=sqrt(0.20*(1-0.20)),
+       y=internet, sigma.y=sqrt(0.19*(1-0.19)),
+       alternative="greater", mu=0)
+
+#atribuir um "nome" ao teste para aceder aos campos
+(exemplo6 = z.test(x=telefone, sigma.x=sqrt(0.20*(1-0.20)),
+                   y=internet, sigma.y=sqrt(0.19*(1-0.19)),
+                   alternative="greater", mu=0))
+
+# valor observado da estatística de teste sob H0
+exemplo6$statistic
+
+# Região crítica
+# quantil de probabilidade da região critíca
+qnorm(1-0.01)
+
+# valor-p
+exemplo6$p.value
+#ou
+1-pnorm(exemplo6$statistic)
+

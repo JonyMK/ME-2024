@@ -1,1 +1,0 @@
-Se as amostras são emparelhadas é necessário construir a amostra das diferenças.
