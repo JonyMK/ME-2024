@@ -1656,6 +1656,44 @@ remover_outliers <- function (VARIAVEL) {
 
 "-------------------------------------------------------------"
 
+#### Passos Para um Teste de Hipóteses: ####
+
+# Teste de Hipóteses Paramétrico:
+## OU
+# Teste de Hipóteses Não Paramétrico:
+# TESTE A FAZER:
+
+# 1º Passo:
+
+## H0: σ_X = σ_Y vs. H1: σ_X != σ_Y
+## Teste Bilateral
+
+# 2º Passo:
+
+## α = 0.05
+
+# 3º Passo:
+
+# D.A.
+## U_obs = X
+## P-Value = X
+
+# 4º Passo:
+
+## R.C. = ?
+## Como U_obs = X E R.C., rejeita-se H0.
+
+### OU
+
+## Como P-Value = X <= α = 0.05, rejeita-se H0.
+
+# 5º Passo:
+
+## Com base na amostra e com 5% de significância, pode-se concluir
+## que...
+
+"-------------------------------------------------------------"
+
 # Símbolos: ####
 
 # ✓ --> Certo

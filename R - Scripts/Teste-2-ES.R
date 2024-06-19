@@ -362,7 +362,7 @@ t.test(
 
 "----------------------------------------"
 
-### 2.A.I) ####
+### 2.B.I) ####
 
 # Amostra:
 ## n = 250 homens.
@@ -385,7 +385,7 @@ t.test(
 
 "----------------------------------------"
 
-### 2.A.II) ####
+### 2.B.II) ####
 
 # I.C. Para a Proporção:
 # I.C.: ] p* |-+| z_(1 - (α/2)) * sqrt((p* * q*) / n) [
@@ -424,8 +424,37 @@ t.test(
 
 "----------------------------------------"
 
-### 2.A.III) ####
+### 2.B.III) ####
 
+# Populações Binomiais.
 
+# p1*
+(p_asterisco.homens <- (75/850)) # = 8.82%
+(amostra_homens <- c(rep(1, 75), rep(0, 850-75)))
+
+# p2*
+(p_asterisco.mulheres <- (5/2000)) # = 0.25%
+(amostra_mulheres <- c(rep(1, 5), rep(0, 2000-5)))
+
+# Diferença de Proporções:
+# Amostras Independentes;
+# n1 = 850 >= 30 & n2 = 2000 >= 30.
+# I.C.: ] (p1* - p2*) |-+| z_(1 - (α/2)) * sqrt(((p1* * q1*) / n1) + ((p2* * q2*) / n2)) [
+# Comando para Amostras Conhecidas:
+(res_z.test <- BSDA::z.test(
+  x = amostra_homens,
+  y = amostra_mulheres,
+  sigma.x = sqrt((75/850) * (1 - (75/850))),
+  sigma.y = sqrt((5/2000) * (1 - (5/2000))),
+  conf.level = 0.90
+))
+
+res_z.test$conf.int
+# I.C. a 90% de Confiança para as Proporções => ] 0.0696 , 0.1018 [
+# I.C. a 90% de Confiança para as % => ] 6.96 , 10.18 [
+
+# Como o 0 não pertence ao I.C., está comprovado, a 90% de
+# confiança, que existem diferenças significativas nas percentagens
+# de daltonismo entre homens e mulheres.
 
 "----------------------------------------"
