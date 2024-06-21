@@ -2008,7 +2008,7 @@ BSDA::z.test(
 # X2 - Peso de quem pratica exercício pelo menos 1 dia
 
 (amostra_5_20_2_Peso_Sem_Exercicio <- obesidade[obesidade$FAF == 0,]$Peso)
-(amostra_5_20_2_Peso_Exercicio_1_Dia <- obesidade[obesidade$FAF == 1,]$Peso)
+(amostra_5_20_2_Peso_Exercicio_1_Dia <- obesidade[obesidade$FAF != 0,]$Peso)
 
 # Teste de Hipóteses Paramétrico: Teste para a Diferença de Médias:
 
