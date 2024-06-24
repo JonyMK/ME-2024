@@ -10,10 +10,117 @@
 
 "---------------------------------------------"
 
+# Análises de Variáveis Qualitativas: ####
+
+## Relação: Plataforma - Anúncio: ####
+
+### Para estudar a relação entre 2 variáveis qualitativas,
+### usa-se o teste de independência do qui-quadrado.
+
+### Hipóteses:
+
+#### H0: As variáveis plataforma e anuncio não estão relacionadas.
+#### vs.
+#### H1: As variáveis plataforma e anuncio estão relacionadas.
+
+### Confiança e Significância:
+
+#### Os testes será realizado tendo em conta:
+##### Confiaça = 0.95
+##### Significância = 0.05
+
+### Dados:
+
+#### 2 Variáveis Qualitativas Nominais: Plataforma e Anúncio.
+
+(valores_plataforma <- table(DadosMarkDig$plataforma))
+(length(names(valores_plataforma)))
+
+(valores_anuncio <- table(DadosMarkDig$anuncio))
+(length(names(valores_anuncio)))
+
+### Tabela de Contingência:
+
+#### r = c = 3
+
+#### Frequências Observadas (Oi):
+(table(DadosMarkDig$plataforma, DadosMarkDig$anuncio))
+
+
+#### Tabela de Contingência:
+(plataformas <- factor(DadosMarkDig$plataforma, levels = c("Facebook", "Google", "Instagram")))
+(anuncios <- factor(DadosMarkDig$anuncio, levels = c("Banner", "Texto", "Vídeo")))
+(tabela.contingencia.plataforma.anuncio <- table(plataformas, anuncios))
+
+### Teste de Independência do Qui-Quadrado:
+
+(resultado.independencia.plataforma.anuncio <- chisq.test(tabela.contingencia.plataforma.anuncio))
+
+resultado.independencia.plataforma.anuncio$statistic # X^2_obs
+resultado.independencia.plataforma.anuncio$parameter # Graus de Liberdade
+resultado.independencia.plataforma.anuncio$p.value   # P-Value
+resultado.independencia.plataforma.anuncio$observed  # Oi = frequências Observadas
+resultado.independencia.plataforma.anuncio$expected  # Ei = frequências Esperadas
+
+### Decisão:
+
+#### Pelo P-Value:
+
+# P-Value = P(Q >= Q_obs) = 1 - F(Q_obs) = 0.2009
+(round(
+  (1 - pchisq(
+    resultado.independencia.plataforma.anuncio$statistic,
+    resultado.independencia.plataforma.anuncio$parameter
+  )), 4
+))
+
+#### Como P-Value = 0.2009 > α = 0.05, não se rejeita H0.
+
+### Conclusão:
+
+#### Com base nas variáveis estudadas e com 5% de significância,
+#### é possível afirmar que as variáveis plataforma e anúncio não
+#### aparentam ter alguma relação entre si.
+#### Com isto pode-se afirmar que os anúncios realizados não são
+#### dependentes de uma plataforma em específico.
+
+### Como não se observa uma relação entre as variáveis, não é
+### necessário (nem faz sentido) calcular quaisquer medidas de
+### associação.
+
+"---------------------"
+
+## Relação: Plataforma - Mercado: ####
 
 
 
+"---------------------"
 
+## Relação: Anúncio - Mercado: ####
+
+
+
+"---------------------------------------------"
+
+# Anãlises de Variáveis Quantitativas: ####
+
+## relação: Investimento - Cliques: ####
+
+
+
+"---------------------"
+
+## Relação: Investimento - Conversões: ####
+
+
+
+"---------------------"
+
+## Relação: Cliques - Conversões: ####
+
+
+
+"---------------------------------------------"
 
 
 
