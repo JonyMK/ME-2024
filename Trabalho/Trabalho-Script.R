@@ -66,7 +66,7 @@ resultado.independencia.plataforma.anuncio$expected  # Ei = frequências Esperad
 
 #### Pelo P-Value:
 
-# P-Value = P(Q >= Q_obs) = 1 - F(Q_obs) = 0.2009
+# P-Value = P(Q >= Q_obs) = 1 - F(Q_obs) = 0.0071
 (round(
   (1 - pchisq(
     resultado.independencia.plataforma.anuncio$statistic,
@@ -74,19 +74,33 @@ resultado.independencia.plataforma.anuncio$expected  # Ei = frequências Esperad
   )), 4
 ))
 
-#### Como P-Value = 0.2009 > α = 0.05, não se rejeita H0.
+#### Como P-Value = 0.0071 <= α = 0.05, rejeita-se H0.
 
 ### Conclusão:
 
 #### Com base nas variáveis estudadas e com 5% de significância,
-#### é possível afirmar que as variáveis plataforma e anúncio não
-#### aparentam ter alguma relação entre si.
-#### Com isto pode-se afirmar que os anúncios realizados não são
-#### dependentes de uma plataforma em específico.
+#### é possível afirmar que as variáveis plataforma e anúncio
+#### aparentam estar relacionadas entre si.
+#### Com isto pode-se afirmar que os anúncios realizados aparenta
+#### ser dependentes de uma plataforma em específico.
 
-### Como não se observa uma relação entre as variáveis, não é
-### necessário (nem faz sentido) calcular quaisquer medidas de
-### associação.
+### Medidas de Associação:
+
+#### Como se observa uma relação entre as variáveis, pode-se
+#### calcular as medidas de associação, para se perceber se é uma
+#### relação mais forte ou mais fraca.
+
+#### Coeficiente de Contingência: 0.2344
+(round(DescTools::ContCoef(tabela.contingencia.plataforma.anuncio), 4))
+##### Resultado: [ 0.10 , 0.30 [ => Fraca
+
+#### Coeficiente V de Crámer: 0.1705
+(round(DescTools::CramerV(tabela.contingencia.plataforma.anuncio), 4))
+##### Resultado: [ 0.07 , 0.20 [ => Fraca
+
+#### Coeficiente Tb de Kendall: -0.0268
+(round(DescTools::KendallTauB(tabela.contingencia.plataforma.anuncio), 4))
+##### Resultado: Muito Próximo de 0 => Fraca
 
 "---------------------"
 
@@ -144,7 +158,7 @@ resultado.independencia.plataforma.mercado$expected  # Ei = frequências Esperad
 
 #### Pelo P-Value:
 
-# P-Value = P(Q >= Q_obs) = 1 - F(Q_obs) = 0.3423
+# P-Value = P(Q >= Q_obs) = 1 - F(Q_obs) = 0.459
 (round(
   (1 - pchisq(
     resultado.independencia.plataforma.mercado$statistic,
@@ -152,7 +166,7 @@ resultado.independencia.plataforma.mercado$expected  # Ei = frequências Esperad
   )), 4
 ))
 
-#### Como P-Value = 0.3423 > α = 0.05, não se rejeita H0.
+#### Como P-Value = 0.459 > α = 0.05, não se rejeita H0.
 
 ### Conclusão:
 
@@ -162,9 +176,11 @@ resultado.independencia.plataforma.mercado$expected  # Ei = frequências Esperad
 #### Com isto pode-se afirmar que as plataformas das campanhas não
 #### são de um tipo de mercado em específico.
 
-### Como não se observa uma relação entre as variáveis, não é
-### necessário (nem faz sentido) calcular quaisquer medidas de
-### associação.
+### Medidas de Associação:
+
+#### Como não se observa uma relação entre as variáveis, não é
+#### necessário (nem faz sentido) calcular quaisquer medidas de
+#### associação.
 
 "---------------------"
 
@@ -230,7 +246,7 @@ resultado.independencia.anuncio.mercado$expected  # Ei = frequências Esperadas
   )), 4
 ))
 
-#### Como P-Value = 0.7977 > α = 0.05, não se rejeita H0.
+#### Como P-Value = 0.0572 > α = 0.05, não se rejeita H0.
 
 ### Conclusão:
 
@@ -240,9 +256,11 @@ resultado.independencia.anuncio.mercado$expected  # Ei = frequências Esperadas
 #### Com isto pode-se afirmar que os anúncios das campanhas não
 #### são de um tipo de mercado em específico.
 
-### Como não se observa uma relação entre as variáveis, não é
-### necessário (nem faz sentido) calcular quaisquer medidas de
-### associação.
+### Medidas de Associação:
+
+#### Como não se observa uma relação entre as variáveis, não é
+#### necessário (nem faz sentido) calcular quaisquer medidas de
+#### associação.
 
 "---------------------------------------------"
 
@@ -266,7 +284,11 @@ resultado.independencia.anuncio.mercado$expected  # Ei = frequências Esperadas
 
 "---------------------------------------------"
 
-# Função para Simular Dados ####
+# Simulação e Geração da BD: ####
+
+simular_dados()
+
+"---------------------"
 
 simular_dados <- function() {
   # Parâmetros Necessários para Simular os Dados:
@@ -299,11 +321,5 @@ simular_dados <- function() {
     quote = FALSE
   )
 }
-
-"---------------------------------------------"
-
-# Simulação e Geração da BD: ####
-
-simular_dados()
 
 "---------------------------------------------"
