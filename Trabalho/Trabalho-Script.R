@@ -101,6 +101,8 @@ resultado.independencia.plataforma.anuncio$expected  # Ei = frequências Esperad
 #### Coeficiente Tb de Kendall: -0.0268
 (round(DescTools::KendallTauB(tabela.contingencia.plataforma.anuncio), 4))
 ##### Resultado: Muito Próximo de 0 => Fraca
+##### Como a associação é negativa, sabe-se que quando as plataformas
+##### aumentam, os anúncios diminuem (ou vice-versa).
 
 "---------------------"
 
