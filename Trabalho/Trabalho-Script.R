@@ -268,21 +268,243 @@ resultado.independencia.anuncio.mercado$expected  # Ei = frequências Esperadas
 
 # Anãlises de Variáveis Quantitativas: ####
 
-## relação: Investimento - Cliques: ####
+## relação: Cliques - Investimento: ####
 
+### Para estudar a relação entre 2 variáveis quantitativas,
+### usa-se a regressão linear simples.
 
+### Variável Independente X -> Cliques
+### Variável Dependente Y -> Investimento
+
+### Coeficiente de Correlação Linear de Pearson:
+(round(
+  cor(
+    x = DadosMarkDig$cliques,
+    y = DadosMarkDig$investimento,
+    method = "pearson"
+  ),
+  4
+)) # = -0.8384 => Correlação Linear Negativa Forte
+
+### Modelo de Regressão Linear Simples:
+
+#### Variável Independente Escolhida:
+##### Cliques (X)
+#### Variável Dependente Escolhida:
+##### Investimento (Y)
+
+#### Modelo Pretendido - Equação da Reta:
+##### Y = a + bX
+
+#### Fórmula:
+##### y~x
+
+#### Modelo:
+(modelo.cliques.investimento <- lm(
+  formula = investimento~cliques,
+  data = DadosMarkDig
+))
+
+#### Coeficientes Obtidos:
+(a.cliques.investimento <- modelo.cliques.investimento$coefficients[[1]])
+(b.cliques.investimento <- modelo.cliques.investimento$coefficients[[2]])
+
+#### Diagrama de Dispersão:
+plot(
+  x = DadosMarkDig$cliques,
+  y = DadosMarkDig$investimento,
+  pch = 20,
+  xlab = "Cliques",
+  ylab = "Investimento",
+  main = "Diagrama de Dispersão"
+) # => Correlação Linear Negativa Forte
+
+#### Reta y^ = a + bx no Diagrama de Dispersão:
+abline(
+  a = a.cliques.investimento,
+  b = b.cliques.investimento,
+  col = "red"
+)
+
+# Resíduos:
+modelo.cliques.investimento$residuals
+
+plot(
+  x = modelo.cliques.investimento$fitted.values,
+  y = modelo.cliques.investimento$residuals,
+  pch = 20,
+  col = "green",
+  xlab = "Cliques",
+  ylab = "Investimento",
+  main = "Diagrama de Dispersão - Resíduos"
+)
+
+abline(
+  h = 0,
+  col = "red"
+)
+
+(round(sd(modelo.cliques.investimento$residuals), 4)) # = 1.0662
 
 "---------------------"
 
-## Relação: Investimento - Conversões: ####
+## Relação: Conversões - Investimento: ####
 
+### Para estudar a relação entre 2 variáveis quantitativas,
+### usa-se a regressão linear simples.
 
+### Variável Independente X -> Conversões
+### Variável Dependente Y -> Investimento
+
+### Coeficiente de Correlação Linear de Pearson:
+(round(
+  cor(
+    x = DadosMarkDig$conversoes,
+    y = DadosMarkDig$investimento,
+    method = "pearson"
+  ),
+  4
+)) # = 0.8946 => Correlação Linear Positiva Forte
+
+### Modelo de Regressão Linear Simples:
+
+#### Variável Independente Escolhida:
+##### Conversões (X)
+#### Variável Dependente Escolhida:
+##### Investimento (Y)
+
+#### Modelo Pretendido - Equação da Reta:
+##### Y = a + bX
+
+#### Fórmula:
+##### y~x
+
+#### Modelo:
+(modelo.conversoes.investimento <- lm(
+  formula = investimento~conversoes,
+  data = DadosMarkDig
+))
+
+#### Coeficientes Obtidos:
+(a.conversoes.investimento <- modelo.conversoes.investimento$coefficients[[1]])
+(b.conversoes.investimento <- modelo.conversoes.investimento$coefficients[[2]])
+
+#### Diagrama de Dispersão:
+plot(
+  x = DadosMarkDig$conversoes,
+  y = DadosMarkDig$investimento,
+  pch = 20,
+  xlab = "Conversões",
+  ylab = "Investimento",
+  main = "Diagrama de Dispersão"
+) # => Correlação Linear Positiva Forte
+
+#### Reta y^ = a + bx no Diagrama de Dispersão:
+abline(
+  a = a.conversoes.investimento,
+  b = b.conversoes.investimento,
+  col = "red"
+)
+
+# Resíduos:
+modelo.conversoes.investimento$residuals
+
+plot(
+  x = modelo.conversoes.investimento$fitted.values,
+  y = modelo.conversoes.investimento$residuals,
+  pch = 20,
+  col = "green",
+  xlab = "Conversões",
+  ylab = "Investimento",
+  main = "Diagrama de Dispersão - Resíduos"
+)
+
+abline(
+  h = 0,
+  col = "red"
+)
+
+(round(sd(modelo.conversoes.investimento$residuals), 4)) # = 0.8742
 
 "---------------------"
 
 ## Relação: Cliques - Conversões: ####
 
+### Para estudar a relação entre 2 variáveis quantitativas,
+### usa-se a regressão linear simples.
 
+### Variável Independente X -> Cliques
+### Variável Dependente Y -> Conversões
+
+### Coeficiente de Correlação Linear de Pearson:
+(round(
+  cor(
+    x = DadosMarkDig$cliques,
+    y = DadosMarkDig$conversoes,
+    method = "pearson"
+  ),
+  4
+)) # = -0.759 => Correlação Linear Negativa Moderada
+
+### Modelo de Regressão Linear Simples:
+
+#### Variável Independente Escolhida:
+##### Cliques (X)
+#### Variável Dependente Escolhida:
+##### Conversões (Y)
+
+#### Modelo Pretendido - Equação da Reta:
+##### Y = a + bX
+
+#### Fórmula:
+##### y~x
+
+#### Modelo:
+(modelo.cliques.conversoes <- lm(
+  formula = conversoes~cliques,
+  data = DadosMarkDig
+))
+
+#### Coeficientes Obtidos:
+(a.cliques.conversoes <- modelo.cliques.conversoes$coefficients[[1]])
+(b.cliques.conversoes <- modelo.cliques.conversoes$coefficients[[2]])
+
+#### Diagrama de Dispersão:
+plot(
+  x = DadosMarkDig$cliques,
+  y = DadosMarkDig$conversoes,
+  pch = 20,
+  xlab = "Cliques",
+  ylab = "Conversões",
+  main = "Diagrama de Dispersão"
+) # => Correlação Linear Negativa Moderada
+
+#### Reta y^ = a + bx no Diagrama de Dispersão:
+abline(
+  a = a.cliques.conversoes,
+  b = b.cliques.conversoes,
+  col = "red"
+)
+
+# Resíduos:
+modelo.cliques.conversoes$residuals
+
+plot(
+  x = modelo.cliques.conversoes$fitted.values,
+  y = modelo.cliques.conversoes$residuals,
+  pch = 20,
+  col = "green",
+  xlab = "Cliques",
+  ylab = "Conversões",
+  main = "Diagrama de Dispersão - Resíduos"
+)
+
+abline(
+  h = 0,
+  col = "red"
+)
+
+(round(sd(modelo.cliques.conversoes$residuals), 4)) # = 13.2342
 
 "---------------------------------------------"
 
