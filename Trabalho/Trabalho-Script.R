@@ -170,7 +170,79 @@ resultado.independencia.plataforma.mercado$expected  # Ei = frequências Esperad
 
 ## Relação: Anúncio - Mercado: ####
 
+### Para estudar a relação entre 2 variáveis qualitativas,
+### usa-se o teste de independência do qui-quadrado.
 
+### Hipóteses:
+
+#### H0: As variáveis anúncio e mercado não estão relacionadas.
+#### vs.
+#### H1: As variáveis anúncio e mercado estão relacionadas.
+
+### Confiança e Significância:
+
+#### Os testes será realizado tendo em conta:
+##### Confiaça = 0.95
+##### Significância = 0.05
+
+### Dados:
+
+#### 2 Variáveis Qualitativas Nominais: Anúncio e Mercado.
+
+(valores_anuncio <- table(DadosMarkDig$anuncio))
+(length(names(valores_anuncio)))
+
+(valores_mercado <- table(DadosMarkDig$mercado))
+(length(names(valores_mercado)))
+
+### Tabela de Contingência:
+
+#### r = c = 3
+
+#### Frequências Observadas (Oi):
+(table(DadosMarkDig$anuncio, DadosMarkDig$mercado))
+
+
+#### Tabela de Contingência:
+(anuncios <- factor(DadosMarkDig$anuncio, levels = c("Banner", "Texto", "Vídeo")))
+(mercados <- factor(DadosMarkDig$mercado, levels = c("Alimentação", "Moda", "Tecnologia")))
+(tabela.contingencia.anuncio.mercado <- table(anuncios, mercados))
+
+### Teste de Independência do Qui-Quadrado:
+
+(resultado.independencia.anuncio.mercado <- chisq.test(tabela.contingencia.anuncio.mercado))
+
+resultado.independencia.anuncio.mercado$statistic # X^2_obs
+resultado.independencia.anuncio.mercado$parameter # Graus de Liberdade
+resultado.independencia.anuncio.mercado$p.value   # P-Value
+resultado.independencia.anuncio.mercado$observed  # Oi = frequências Observadas
+resultado.independencia.anuncio.mercado$expected  # Ei = frequências Esperadas
+
+### Decisão:
+
+#### Pelo P-Value:
+
+# P-Value = P(Q >= Q_obs) = 1 - F(Q_obs) = 0.7977
+(round(
+  (1 - pchisq(
+    resultado.independencia.anuncio.mercado$statistic,
+    resultado.independencia.anuncio.mercado$parameter
+  )), 4
+))
+
+#### Como P-Value = 0.7977 > α = 0.05, não se rejeita H0.
+
+### Conclusão:
+
+#### Com base nas variáveis estudadas e com 5% de significância,
+#### é possível afirmar que as variáveis anúncio e mercado não
+#### aparentam ter alguma relação entre si.
+#### Com isto pode-se afirmar que os anúncios das campanhas não
+#### são de um tipo de mercado em específico.
+
+### Como não se observa uma relação entre as variáveis, não é
+### necessário (nem faz sentido) calcular quaisquer medidas de
+### associação.
 
 "---------------------------------------------"
 
