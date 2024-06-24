@@ -92,7 +92,79 @@ resultado.independencia.plataforma.anuncio$expected  # Ei = frequências Esperad
 
 ## Relação: Plataforma - Mercado: ####
 
+### Para estudar a relação entre 2 variáveis qualitativas,
+### usa-se o teste de independência do qui-quadrado.
 
+### Hipóteses:
+
+#### H0: As variáveis plataforma e mercado não estão relacionadas.
+#### vs.
+#### H1: As variáveis plataforma e mercado estão relacionadas.
+
+### Confiança e Significância:
+
+#### Os testes será realizado tendo em conta:
+##### Confiaça = 0.95
+##### Significância = 0.05
+
+### Dados:
+
+#### 2 Variáveis Qualitativas Nominais: Plataforma e Mercado.
+
+(valores_plataforma <- table(DadosMarkDig$plataforma))
+(length(names(valores_plataforma)))
+
+(valores_mercado <- table(DadosMarkDig$mercado))
+(length(names(valores_mercado)))
+
+### Tabela de Contingência:
+
+#### r = c = 3
+
+#### Frequências Observadas (Oi):
+(table(DadosMarkDig$plataforma, DadosMarkDig$mercado))
+
+
+#### Tabela de Contingência:
+(plataformas <- factor(DadosMarkDig$plataforma, levels = c("Facebook", "Google", "Instagram")))
+(mercados <- factor(DadosMarkDig$mercado, levels = c("Alimentação", "Moda", "Tecnologia")))
+(tabela.contingencia.plataforma.mercado <- table(plataformas, mercados))
+
+### Teste de Independência do Qui-Quadrado:
+
+(resultado.independencia.plataforma.mercado <- chisq.test(tabela.contingencia.plataforma.mercado))
+
+resultado.independencia.plataforma.mercado$statistic # X^2_obs
+resultado.independencia.plataforma.mercado$parameter # Graus de Liberdade
+resultado.independencia.plataforma.mercado$p.value   # P-Value
+resultado.independencia.plataforma.mercado$observed  # Oi = frequências Observadas
+resultado.independencia.plataforma.mercado$expected  # Ei = frequências Esperadas
+
+### Decisão:
+
+#### Pelo P-Value:
+
+# P-Value = P(Q >= Q_obs) = 1 - F(Q_obs) = 0.3423
+(round(
+  (1 - pchisq(
+    resultado.independencia.plataforma.mercado$statistic,
+    resultado.independencia.plataforma.mercado$parameter
+  )), 4
+))
+
+#### Como P-Value = 0.3423 > α = 0.05, não se rejeita H0.
+
+### Conclusão:
+
+#### Com base nas variáveis estudadas e com 5% de significância,
+#### é possível afirmar que as variáveis plataforma e mercado não
+#### aparentam ter alguma relação entre si.
+#### Com isto pode-se afirmar que as plataformas das campanhas não
+#### são de um tipo de mercado em específico.
+
+### Como não se observa uma relação entre as variáveis, não é
+### necessário (nem faz sentido) calcular quaisquer medidas de
+### associação.
 
 "---------------------"
 
@@ -117,97 +189,6 @@ resultado.independencia.plataforma.anuncio$expected  # Ei = frequências Esperad
 "---------------------"
 
 ## Relação: Cliques - Conversões: ####
-
-
-
-"---------------------------------------------"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
