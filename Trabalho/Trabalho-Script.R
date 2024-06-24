@@ -8,6 +8,7 @@
 ## cliques -> Número de cliques recebidos pela campanha.
 ## conversoes -> Número de conversões geradas pela campanha.
 
+"---------------------------------------------"
 
 
 
@@ -103,8 +104,10 @@
 
 
 
+"---------------------------------------------"
 
 # Função para Simular Dados ####
+
 simular_dados <- function() {
   # Parâmetros Necessários para Simular os Dados:
   n <- sample(234:254, 1)
@@ -137,5 +140,10 @@ simular_dados <- function() {
   )
 }
 
+"---------------------------------------------"
+
+# Simulação e Geração da BD: ####
+
 simular_dados()
 
+"---------------------------------------------"
