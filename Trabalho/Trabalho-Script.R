@@ -26,7 +26,7 @@
 ### Confiança e Significância:
 
 #### Os testes será realizado tendo em conta:
-##### Confiaça = 0.95
+##### Confiança = 0.95
 ##### Significância = 0.05
 
 ### Dados:
@@ -120,7 +120,7 @@ resultado.independencia.plataforma.anuncio$expected  # Ei = frequências Esperad
 ### Confiança e Significância:
 
 #### Os testes será realizado tendo em conta:
-##### Confiaça = 0.95
+##### Confiança = 0.95
 ##### Significância = 0.05
 
 ### Dados:
@@ -200,7 +200,7 @@ resultado.independencia.plataforma.mercado$expected  # Ei = frequências Esperad
 ### Confiança e Significância:
 
 #### Os testes será realizado tendo em conta:
-##### Confiaça = 0.95
+##### Confiança = 0.95
 ##### Significância = 0.05
 
 ### Dados:
@@ -266,9 +266,9 @@ resultado.independencia.anuncio.mercado$expected  # Ei = frequências Esperadas
 
 "---------------------------------------------"
 
-# Anãlises de Variáveis Quantitativas: ####
+# Análises de Variáveis Quantitativas: ####
 
-## relação: Cliques - Investimento: ####
+## Relação: Cliques - Investimento: ####
 
 ### Para estudar a relação entre 2 variáveis quantitativas,
 ### usa-se a regressão linear simples.
