@@ -81,7 +81,7 @@ resultado.independencia.plataforma.anuncio$expected  # Ei = frequências Esperad
 #### Com base nas variáveis estudadas e com 5% de significância,
 #### é possível afirmar que as variáveis plataforma e anúncio
 #### aparentam estar relacionadas entre si.
-#### Com isto pode-se afirmar que os anúncios realizados aparenta
+#### Com isto pode-se afirmar que os anúncios realizados aparentam
 #### ser dependentes de uma plataforma em específico.
 
 ### Medidas de Associação:
